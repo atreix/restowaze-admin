@@ -16,7 +16,8 @@
     <!-- footer content -->
     <footer>
         <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <a href="{{ env('restowaze_path') }}">Restowaze.com</a>
+            ©{{ date('Y') }} All Rights Reserved. Privacy and Terms
         </div>
         <div class="clearfix"></div>
     </footer>
