@@ -13,7 +13,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Add New User </h2>
+                            <h2>Create New User </h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -24,7 +24,7 @@
                                             <label class="step_no">1</label>
                                             <span class="step_descr">
                                                 Step 1<br />
-                                                <small>Step 1 description</small>
+                                                <small>Basic Info</small>
                                             </span>
                                         </a>
                                     </li>
@@ -33,7 +33,7 @@
                                             <label class="step_no">2</label>
                                             <span class="step_descr">
                                                 Step 2<br />
-                                                <small>Step 2 description</small>
+                                                <small>Address</small>
                                             </span>
                                         </a>
                                     </li>
@@ -42,7 +42,7 @@
                                             <label class="step_no">3</label>
                                             <span class="step_descr">
                                                 Step 3<br />
-                                                <small>Step 3 description</small>
+                                                <small>Description</small>
                                             </span>
                                         </a>
                                     </li>
@@ -50,7 +50,7 @@
                                 <!-- step content -->
                                 <div class="stepContainer" style="height: 287px;">
                                     <div id="step-1" class="content" style="display: block;">
-                                        <form class="form-horizontal form-label-left">
+                                        <form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/user/add') }}">
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
                                                 </label>

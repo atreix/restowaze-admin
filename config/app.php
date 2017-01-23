@@ -2,6 +2,8 @@
 
 return [
 
+    'name' => 'Restowaze Admin',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -157,7 +159,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
-	
+
 		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class
     ],
 

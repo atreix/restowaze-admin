@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Restowaze Admin |</title>
+        <title>{{ config('app.name') }} |</title>
 
         <!-- Bootstrap -->
         <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -17,6 +17,8 @@
         <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+
+        <link href="{{ asset("css/smart_wizard.css") }}" rel="stylesheet" type="text/css">
 
         @stack('stylesheets')
 
@@ -41,6 +43,17 @@
         <script src="{{ asset("js/bootstrap.min.js") }}"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{ asset("js/gentelella.min.js") }}"></script>
+
+        <script type="text/javascript" src="{{ asset("js/jquery.smartWizard.js") }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#wizard').smartWizard();
+
+                $('.buttonNext').addClass('btn btn-success');
+                $('.buttonPrevious').addClass('btn btn-primary');
+                $('.buttonFinish').addClass('btn btn-default');
+            });
+        </script>
 
         @stack('scripts')
 

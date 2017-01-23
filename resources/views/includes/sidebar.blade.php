@@ -34,13 +34,13 @@
                     <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('getUserList') }}">List</a></li>
-                            <li><a href="{{ route('addUser') }}">Add New</a></li>
+                            <li><a href="{{ route('addUser') }}">Create New</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-cutlery"></i> Restaurant <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">List</a></li>
-                            <li><a href="#">Add New</a></li>
+                            <li><a href="{{ URL::route('getRestoList') }}">List</a></li>
+                            <li><a href="{{ URL::route('createResto') }}">Create New</a></li>
                         </ul>
                     </li>
                 </ul>

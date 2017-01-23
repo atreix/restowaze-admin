@@ -39,6 +39,15 @@ class UserController extends Controller
     public function addUser()
     {
 
-        return view('user/add', $data);
+        return view('user/add');
+    }
+
+    public function validator(Request $request)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
     }
 }
