@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>Gentellela Alela! | </title>
-    
+
+    <title> Restowaze Admin | Forgot Password </title>
+
     <!-- Bootstrap -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -24,7 +24,7 @@
 <div>
     <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
-    
+
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
@@ -36,7 +36,7 @@
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
                     <h1>Reset Password</h1>
                     {{ csrf_field() }}
-                    
+
                     <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
                         <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -46,7 +46,7 @@
                         </span>
                         @endif
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-default btn-block">
@@ -58,13 +58,13 @@
                         <p class="change_link">You have a password ?
                             <a href="{{ url('/login') }}" class="to_register"> Log in </a>
                         </p>
-                        
+
                         <div class="clearfix"></div>
                         <br />
-                        
+
                         <div>
-                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <h1><i class="fa fa-map"></i> Restowaze Admin </h1>
+                            <p>© {{ date('Y') }} All Rights Reserved. Privacy and Terms</p>
                         </div>
                     </div>
                 </form>
