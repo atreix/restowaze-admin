@@ -1,9 +1,7 @@
 @extends('layouts.blank')
 
-@push('stylesheets')
-    <!-- Example -->
-    <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-@endpush
+<link href="{{ asset("css/smart_wizard.css") }}" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{{ asset("js/jquery.smartWizard.js") }}"></script>
 
 @section('main_container')
 
@@ -19,128 +17,98 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-
-                        <!-- Smart Wizard -->
-                        <div id="wizard" class="form_wizard wizard_horizontal">
-                            <ul class="wizard_steps anchor">
-                                <li>
-                                    <a href="#step-1" class="selected" isdone="1" rel="1">
-                                        <span class="step_no">1</span>
-                                        <span class="step_descr">
-                                            Step 1<br>
-                                            <small>Step 1 description</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-2" class="disabled" isdone="0" rel="2">
-                                        <span class="step_no">2</span>
-                                        <span class="step_descr">
-                                            Step 2<br>
-                                            <small>Step 2 description</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                <li>
-                                    <a href="#step-3" class="disabled" isdone="0" rel="3">
-                                        <span class="step_no">3</span>
-                                        <span class="step_descr">
-                                            Step 3<br>
-                                            <small>Step 3 description</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-4" class="disabled" isdone="0" rel="4">
-                                        <span class="step_no">4</span>
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps anchor">
+                                    <li>
+                                        <a href="#step-1" class="selected" isdone="1" rel="1">
+                                            <label class="step_no">1</label>
                                             <span class="step_descr">
-                                            Step 4<br>
-                                            <small>Step 4 description</small>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="stepContainer" style="height: 287px;">
-                                <div id="step-1" class="content" style="display: block;">
-                                    <form class="form-horizontal form-label-left">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                        <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                                                    </label>
-                                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                        <input type="radio" name="gender" value="female"> Female
-                                                    </label>
+                                                Step 1<br />
+                                                <small>Step 1 description</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2" class="disabled" isdone="0" rel="2">
+                                            <label class="step_no">2</label>
+                                            <span class="step_descr">
+                                                Step 2<br />
+                                                <small>Step 2 description</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3" class="disabled" isdone="0" rel="3">
+                                            <label class="step_no">3</label>
+                                            <span class="step_descr">
+                                                Step 3<br />
+                                                <small>Step 3 description</small>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- step content -->
+                                <div class="stepContainer" style="height: 287px;">
+                                    <div id="step-1" class="content" style="display: block;">
+                                        <form class="form-horizontal form-label-left">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                            <div class="form-group">
+                                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div id="gender" class="btn-group" data-toggle="buttons">
+                                                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                            <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                                        </label>
+                                                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                            <input type="radio" name="gender" value="female"> Female
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div id="step-2" class="content" style="display: none;">
-                                    <h2 class="StepTitle">Step 2 Content</h2>
-                                    <p>
-                                        step 2
-                                    </p>
-                                    <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
-                            </div><div id="step-3" class="content" style="display: none;">
-                            <h2 class="StepTitle">Step 3 Content</h2>
-                            <p>
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            </div><div id="step-4" class="content" style="display: none;">
-                            <h2 class="StepTitle">Step 4 Content</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            </div></div><div class="actionBar"><div class="msgBox"><div class="content"></div><a href="#" class="close">X</a></div><div class="loader">Loading</div><a href="#" class="buttonFinish buttonDisabled btn btn-default">Finish</a><a href="#" class="buttonNext btn btn-success">Next</a><a href="#" class="buttonPrevious buttonDisabled btn btn-primary">Previous</a></div></div>
+                                <div class="actionBar">
+                                    <div class="msgBox">
+                                        <div class="content"></div>
+                                        <a href="#" class="close">X</a>
+                                    </div>
+                                    <div class="loader">Loading</div>
+                                    <a href="#" class="buttonFinish btn btn-default">Finish</a>
+                                    <a href="#" class="buttonNext btn btn-success buttonDisabled">Next</a>
+                                    <a href="#" class="buttonPrevious btn btn-primary">Previous</a>
+                                </div>
+                            </div>
                             <!-- End SmartWizard Content -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -156,3 +124,15 @@
     </footer>
     <!-- /footer content -->
 @endsection
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#wizard').smartWizard({
+            transitionEffect: 'slide'
+        });
+
+        $('.buttonNext').addClass('btn btn-success');
+        $('.buttonPrevious').addClass('btn btn-primary');
+        $('.buttonFinish').addClass('btn btn-default');
+    });
+</script>

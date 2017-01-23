@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -23,7 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user/list');
+        $data['users'] = User::get();
+
+        return view('user/list', $data);
     }
 
     /**
@@ -33,6 +38,7 @@ class UserController extends Controller
      */
     public function addUser()
     {
-        return view('user/add');
+
+        return view('user/add', $data);
     }
 }

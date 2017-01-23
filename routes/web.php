@@ -12,8 +12,18 @@
 */
 
 Auth::routes();
-Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index');
-Route::get('/user', 'UserController@index');
-Route::get('/user/list', 'UserController@index');
-Route::get('/user/add', 'UserController@addUser');
+Route::get('/admin/logout', 'Auth\LoginController@logout');
+Route::get('/admin', 'HomeController@index');
+
+
+Route::group(['namespace' => 'Admin'], function () {
+    // Controllers Within The "App\Http\Controllers\Admin" Namespace
+    Route::get('/user', 'UserController@index')->name('getUserList');
+    Route::get('/user/list', 'UserController@index')->name('getUserList');
+    Route::get('/user/add', 'UserController@addUser')->name('addUser');
+});
+
+Route::group(['namespace' => 'Web'], function () {
+    // Controllers Within The "App\Http\Controllers\Web" Namespace
+
+});
