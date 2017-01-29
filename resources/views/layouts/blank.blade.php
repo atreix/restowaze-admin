@@ -47,15 +47,8 @@
 
         <script type="text/javascript" src="{{ asset("admin/js/jquery.smartWizard.js") }}"></script>
         <script type="text/javascript" src="{{ asset("admin/js/dropzone.min.js") }}"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('#wizard').smartWizard();
-
-                $('.buttonNext').addClass('btn btn-success');
-                $('.buttonPrevious').addClass('btn btn-primary');
-                $('.buttonFinish').addClass('btn btn-default');
-            });
-        </script>
+        <script type="text/javascript" src="{{ asset("admin/js/validator.js") }}"></script>
+        <!--<script type="text/javascript" src="{{ asset("admin/js/restaurant.js") }}"></script>-->
 
         @stack('scripts')
 

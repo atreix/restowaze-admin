@@ -15,7 +15,7 @@
                         </div>
                         <div class="x_content">
                             <div id="wizard" class="form_wizard wizard_horizontal">
-                                <ul class="wizard_steps anchor">
+                                <!--<ul class="wizard_steps anchor">
                                     <li>
                                         <a href="#step-1" class="selected" rel="1">
                                             <label class="step_no">1</label>
@@ -52,12 +52,9 @@
                                             </span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <!-- step content -->
                                 @include('restaurant/add/step_1')
-                                @include('restaurant/add/step_2')
-                                @include('restaurant/add/step_3')
-                                @include('restaurant/add/step_4')
                             </div>
                             <!-- End SmartWizard Content -->
                         </div>

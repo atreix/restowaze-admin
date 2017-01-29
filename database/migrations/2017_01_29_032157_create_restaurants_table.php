@@ -21,8 +21,9 @@ class CreateRestaurantsTable extends Migration
             $table->date('date_established');
             $table->string('phone_number');
             $table->string('mobile_number');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('address');
+            $table->text('category');
             $table->timestamps();
         });
     }

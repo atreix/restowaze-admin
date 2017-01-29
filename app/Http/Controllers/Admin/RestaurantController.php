@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
-use App\Models\User;
+use App\Models\Restaurants;
 
 class RestaurantController extends Controller
 {
-    protected $lastStep = 3;
-    protected $step = 1;
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,7 +17,9 @@ class RestaurantController extends Controller
 
     public function index()
     {
-        return view('restaurant/list');
+        $data['restaurants'] = Restaurants::get();
+
+        return view('restaurant/list', $data);
     }
 
     public function addBasicInfo(Request $request)
@@ -29,29 +29,63 @@ class RestaurantController extends Controller
         ]);
     }
 
-    public function postInfoStep(Request $request)
+    public function saveBasicInfo(Request $request)
     {
-        $validate = $this->validate($request, [
-            'name' => 'required|min:3',
-            'owner-name' => 'required|max:20',
-            'website' => 'required|url',
-            'category' => 'required'
+        $data = $request->all();
+        $validate = Validator::make($data, [
+            'name' => 'required|max:60',
+            'website' => 'required|url|unique:website',
+            'owner_name' => 'required',
+            'date_established' => 'required|date',
+            'phone' => 'required|number',
+            'mobile' => 'required|number',
+            'address' => 'required|max:100',
         ]);
 
-        $request->session()->get('restoInfo')
-            ->update($request->all());
+        if ($validate) {
+            $create = Restaurants::create([
+                'name' => $data['name'],
+                'website' => $data['website'],
+                'owner' => $data['owner_name'],
+                'date_established' => $data['date_established'],
+                'phone_number' => $data['phone'],
+                'mobile_number' => $data['mobile'],
+                'address' => $data['address'],
+            ]);
 
-        if ($this->step === $this->lastStep) {
-            return redirect()->action('RestaurantController@getInfoDone');
+            if ($create) {
+                return $this->index();
+            }
         }
-
-        return redirect()->action('RestaurantController@getInfoStep', [
-            'step' => $this->step + 1
-        ]);
     }
 
-    public function getInfoDone()
+    public function updateBasicInfo($id)
     {
-        return '<h1> Successful! </h1>';
+        $restaurantInfo = Restaurants::find($id);
+
+        if ($restaurantInfo) {
+            return view('restaurant/edit', [
+                'restoInfo' => $restaurantInfo
+            ]);
+        }
+    }
+
+    public function saveUpdateBasicInfo(Request $request, $id)
+    {
+        $input = $request->all();
+        $update = Restaurants::where('id', $id)
+            ->update([
+                'name' => $input['name'],
+                'website' => $input['website'],
+                'owner' => $input['owner_name'],
+                'date_established' => $input['date_established'],
+                'mobile_number' => $input['mobile'],
+                'phone_number' => $input['phone'],
+                'address' => $input['address']
+        ]);
+
+        if ($update) {
+            return $this->updateBasicInfo($id);
+        }
     }
 }

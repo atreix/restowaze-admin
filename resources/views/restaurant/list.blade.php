@@ -34,10 +34,30 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <div id="datatable_filter" class="dataTables_filter">
-                                            <label>Search:
-                                                <input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable">
-                                            </label>
+                                        <div class="box-tools">
+                                            <div class="form-inline pull-right">
+                                                <form>
+                                                    <fieldset>
+                                                        <div class="input-group input-group-sm">
+                                                            <span class="input-group-addon"><strong>ID</strong></span>
+                                                            <input type="text" class="form-control" placeholder="ID" name="id" value="">
+                                                        </div>
+                                                        <div class="input-group input-group-sm">
+                                                            <div class="input-group-btn">
+                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+                                                            </div>
+                                                            <div class="input-group-btn">
+                                                                <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-undo"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                            <div class="btn-group pull-right" style="margin-right: 10px">
+                                                <a href="{{ route('add-basic-info') }}" class="btn btn-success btn-sm">
+                                                    <i class="fa fa-save"></i>&nbsp;&nbsp;New
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -61,13 +81,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if (!empty($restaurant)) : ?>
+                                                <?php if (!empty($restaurants)) : ?>
                                                     <?php foreach($restaurants as $restaurant) : ?>
                                                     <tr role="row" class="even">
-                                                        <td class="sorting_1">{{ $restaurant->name }}</td>
+                                                        <td class="sorting_1">{{ title_case($restaurant->name) }}</td>
                                                         <td>{{ $restaurant->address }}</td>
-                                                        <td>{{ $restaurant->category }}</td>
-                                                        <td> Edit | Delete </td>
+                                                        <td>
+                                                            @if (!empty($restaurant->category))
+                                                            <span class="label label-primary">
+                                                                {{ $restaurant->category }}
+                                                            </span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-pencil"></i>  Edit </a>
+                                                            |
+                                                            <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-trash"></i>  Delete </a>
                                                     </tr>
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>

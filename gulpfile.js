@@ -50,6 +50,9 @@ elixir(function(mix) {
     // Smart Wizard
     mix.copy('vendor/bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js', 'public/admin/js/jquery.smartWizard.js');
 
+    // Validator
+    mix.copy('vendor/bower_components/gentelella/vendors/validator/validator.js', 'public/admin/js/validator.js');
+
     // dropzone
     mix.copy('vendor/bower_components/gentelella/vendors/dropzone/dist/min/dropzone.min.js', 'public/admin/js/dropzone.min.js');
 

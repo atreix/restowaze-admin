@@ -26,15 +26,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/resto', 'RestaurantController@index')->name('getRestoList');
     Route::get('/resto/list', 'RestaurantController@index')->name('getRestoList');
 
+    # add
     Route::get('/resto/add/basic-info', 'RestaurantController@addBasicInfo')
         ->name('add-basic-info');
-    Route::post('/resto/add/basic-info', 'RestaurantController@psaveBasicInfo');
+    Route::post('/resto/add/basic-info', 'RestaurantController@saveBasicInfo');
 
-    Route::get('/resto/add/contact-info', 'RestaurantController@addContactInfo')
-        ->name('add-contact-info');
-    Route::post('/resto/add/contact-info', 'RestaurantController@psaveBasicInfo');
+    # edit
+    Route::get('/resto/update/{id}', 'RestaurantController@updateBasicInfo')
+        ->name('edit-basic-info');
+    Route::post('/resto/update/{id}', 'RestaurantController@saveUpdateBasicInfo');
 
     Route::get('/resto/add/upload-menu', 'RestaurantController@uploadMenu')
         ->name('upload-menu');
-    Route::post('/resto/add/upload-menu', 'RestaurantController@psaveUploadMenu');
+    Route::post('/resto/add/upload-menu', 'RestaurantController@saveUploadMenu');
 });
