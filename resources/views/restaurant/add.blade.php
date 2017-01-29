@@ -30,7 +30,7 @@
                                             <label class="step_no">2</label>
                                             <span class="step_descr">
                                                 Step 2<br />
-                                                <small>Address</small>
+                                                <small>Contact Info</small>
                                             </span>
                                         </a>
                                     </li>

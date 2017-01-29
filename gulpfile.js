@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
 // Gentelella vendors path : vendor/bower_components/gentelella/vendors
 
 elixir(function(mix) {
-    
+
     /********************/
     /* Copy Stylesheets */
     /********************/
@@ -26,7 +26,13 @@ elixir(function(mix) {
     mix.copy('vendor/bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css', 'public/css/font-awesome.min.css');
 
     // Gentelella
-    mix.copy('vendor/bower_components/gentelella/build/css/custom.min.css', 'public/css/gentelella.min.css');
+    mix.copy('vendor/bower_components/gentelella/build/css/custom.min.css', 'public/admin/css/gentelella.min.css');
+
+    // Smart Wizard
+    mix.copy('vendor/bower_components/gentelella/vendors/jQuery-Smart-Wizard/styles/smart_wizard.css', 'public/admin/css/smart_wizard.css');
+
+    // Dropzone
+    mix.copy('vendor/bower_components/gentelella/vendors/dropzone/dist/min/dropzone.min.css', 'public/admin/css/dropzone.min.css');
 
     /****************/
     /* Copy Scripts */
@@ -39,7 +45,13 @@ elixir(function(mix) {
     mix.copy('vendor/bower_components/gentelella/vendors/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
 
     // Gentelella
-    mix.copy('vendor/bower_components/gentelella/build/js/custom.min.js', 'public/js/gentelella.min.js');
+    mix.copy('vendor/bower_components/gentelella/build/js/custom.min.js', 'public/admin/js/gentelella.min.js');
+
+    // Smart Wizard
+    mix.copy('vendor/bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js', 'public/admin/js/jquery.smartWizard.js');
+
+    // dropzone
+    mix.copy('vendor/bower_components/gentelella/vendors/dropzone/dist/min/dropzone.min.js', 'public/admin/js/dropzone.min.js');
 
     /**************/
     /* Copy Fonts */

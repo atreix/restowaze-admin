@@ -40,7 +40,7 @@
                     <li><a><i class="fa fa-cutlery"></i> Restaurant <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ URL::route('getRestoList') }}">List</a></li>
-                            <li><a href="{{ URL::route('createResto') }}">Create New</a></li>
+                            <li><a href="{{ URL::route('add-basic-info') }}">Create New</a></li>
                         </ul>
                     </li>
                 </ul>

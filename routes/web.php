@@ -15,25 +15,26 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 
-Route::group(['namespace' => 'Admin'], function () {
-    // Controllers Within The "App\Http\Controllers\Admin" Namespace
-    Route::get('/admin/user', 'UserController@index')->name('getUserList');
-    Route::get('/admin/user/list', 'UserController@index')->name('getUserList');
-    Route::get('/admin/user/add', 'UserController@addUser')->name('addUser');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
-    Route::get('/admin/resto', 'RestaurantController@index')->name('getRestoList');
-    Route::get('/admin/resto/list', 'RestaurantController@index')->name('getRestoList');
+    # user
+    Route::get('/user', 'UserController@index')->name('getUserList');
+    Route::get('/user/list', 'UserController@index')->name('getUserList');
+    Route::get('/user/add', 'UserController@addUser')->name('addUser');
 
-    Route::get('/admin/resto/add/step/{step?}', 'RestaurantController@getInfoStep')
-        ->name('createResto')
-        ->where(['step' => '[1-3]']);
-    Route::post('/admin/resto/add/step/{step?}', 'RestaurantController@postInfoStep')
-        ->name('createResto')
-        ->where(['step' => '[1-3]']);
-    Route::get('/admin/resto/add/done', 'RestaurantController@getInfoDone');
-});
+    # resto
+    Route::get('/resto', 'RestaurantController@index')->name('getRestoList');
+    Route::get('/resto/list', 'RestaurantController@index')->name('getRestoList');
 
-Route::group(['namespace' => 'Web'], function () {
-    // Controllers Within The "App\Http\Controllers\Web" Namespace
+    Route::get('/resto/add/basic-info', 'RestaurantController@addBasicInfo')
+        ->name('add-basic-info');
+    Route::post('/resto/add/basic-info', 'RestaurantController@psaveBasicInfo');
 
+    Route::get('/resto/add/contact-info', 'RestaurantController@addContactInfo')
+        ->name('add-contact-info');
+    Route::post('/resto/add/contact-info', 'RestaurantController@psaveBasicInfo');
+
+    Route::get('/resto/add/upload-menu', 'RestaurantController@uploadMenu')
+        ->name('upload-menu');
+    Route::post('/resto/add/upload-menu', 'RestaurantController@psaveUploadMenu');
 });

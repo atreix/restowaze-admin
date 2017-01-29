@@ -16,9 +16,10 @@
         <!-- Font Awesome -->
         <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("admin/css/gentelella.min.css") }}" rel="stylesheet">
 
-        <link href="{{ asset("css/smart_wizard.css") }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset("admin/css/smart_wizard.css") }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset("admin/css/dropzone.min.css") }}" rel="stylesheet" type="text/css">
 
         @stack('stylesheets')
 
@@ -42,9 +43,10 @@
         <!-- Bootstrap -->
         <script src="{{ asset("js/bootstrap.min.js") }}"></script>
         <!-- Custom Theme Scripts -->
-        <script src="{{ asset("js/gentelella.min.js") }}"></script>
+        <script src="{{ asset("admin/js/gentelella.min.js") }}"></script>
 
-        <script type="text/javascript" src="{{ asset("js/jquery.smartWizard.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("admin/js/jquery.smartWizard.js") }}"></script>
+        <script type="text/javascript" src="{{ asset("admin/js/dropzone.min.js") }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#wizard').smartWizard();

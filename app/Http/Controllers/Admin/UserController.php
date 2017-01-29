@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function addUser()
     {
-
         return view('user/add');
     }
 

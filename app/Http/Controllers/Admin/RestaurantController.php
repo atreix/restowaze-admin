@@ -22,7 +22,7 @@ class RestaurantController extends Controller
         return view('restaurant/list');
     }
 
-    public function getInfoStep(Request $request)
+    public function addBasicInfo(Request $request)
     {
         return view('restaurant/add', [
             'restoInfo' => $request->session()->get('restoInfo')
