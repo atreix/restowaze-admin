@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -11,46 +10,39 @@
 
         <title>{{ config('app.name') }} |</title>
 
-        <!-- Bootstrap -->
-        <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
-        <!-- Custom Theme Style -->
-        <link href="{{ asset("admin/css/gentelella.min.css") }}" rel="stylesheet">
-
-        <link href="{{ asset("admin/css/smart_wizard.css") }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset("admin/css/dropzone.min.css") }}" rel="stylesheet" type="text/css">
-
-        @stack('stylesheets')
+        <link href="{{ asset('assets/fonts/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/fonts/elegant-fonts.css') }}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('assets/css/zabuto_calendar.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/css/trackpad-scroll-emulator.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/css/jquery.nouislider.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
 
     </head>
+    @include('layouts/header')
+        @yield('main_container')
+    @include('layouts/footer')
+    <!-- jQuery -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-migrate-1.2.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/richmarker-compiled.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/maps.js') }}"></script>
 
-    <body class="nav-md">
-        <div class="container body">
-            <div class="main_container">
-
-                @include('includes/sidebar')
-
-                @include('includes/topbar')
-
-                @yield('main_container')
-
-            </div>
-        </div>
-
-        <!-- jQuery -->
-        <script src="{{ asset("js/jquery.min.js") }}"></script>
-        <!-- Bootstrap -->
-        <script src="{{ asset("js/bootstrap.min.js") }}"></script>
-        <!-- Custom Theme Scripts -->
-        <script src="{{ asset("admin/js/gentelella.min.js") }}"></script>
-
-        <script type="text/javascript" src="{{ asset("admin/js/jquery.smartWizard.js") }}"></script>
-        <script type="text/javascript" src="{{ asset("admin/js/dropzone.min.js") }}"></script>
-        <script type="text/javascript" src="{{ asset("admin/js/validator.js") }}"></script>
-        <!--<script type="text/javascript" src="{{ asset("admin/js/restaurant.js") }}"></script>-->
-
-        @stack('scripts')
+    <script>
+    rating(".visitor-rating");
+    var _latitude = 40.7344458;
+    var _longitude = -73.86704922;
+    var element = "map-detail";
+    simpleMap(_latitude,_longitude, element);
+</script>
 
     </body>
 </html>
