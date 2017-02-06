@@ -13,8 +13,8 @@
             <li class="active">Details</li>
         </ol>
         <section class="page-title pull-left">
-            <h1>Marky’s Restaurant</h1>
-            <h3>63 Birch Street</h3>
+            <h1>{{ $name }}</h1>
+            <h3>{{ $address }}</h3>
             <div class="rating-passive" data-rating="4">
                 <span class="stars"></span>
                 <span class="reviews">6</span>
@@ -28,19 +28,19 @@
         <div class="gallery detail">
             <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
                 <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/items/1.jpg" alt=""></div>
+                    <div class="bg-transfer"><img src="{{ asset('assets/img/items/24.jpg') }}" alt=""></div>
                 </div>
                 <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/items/30.jpg" alt=""></div>
+                    <div class="bg-transfer"><img src="{{ asset('assets/img/items/30.jpg') }}" alt=""></div>
                 </div>
                 <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/items/31.jpg" alt=""></div>
+                    <div class="bg-transfer"><img src="{{ asset('assets/img/items/31.jpg') }}" alt=""></div>
                 </div>
                 <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/items/21.jpg" alt=""></div>
+                    <div class="bg-transfer"><img src="{{ asset('assets/img/items/21.jpg') }}" alt=""></div>
                 </div>
                 <div class="image">
-                    <div class="bg-transfer"><img src="assets/img/items/23.jpg" alt=""></div>
+                    <div class="bg-transfer"><img src="{{ asset('assets/img/items/23.jpg') }}" alt=""></div>
                 </div>
             </div>
             <!--end owl-carousel-->
@@ -69,22 +69,18 @@
                     </p>
                 </section>
                 <section>
-                    <h2>Features</h2>
+                    <h2>Menu</h2>
                     <ul class="tags">
-                        <li>Wi-Fi</li>
-                        <li>Parking</li>
-                        <li>TV</li>
-                        <li>Alcohol</li>
-                        <li>Vegetarian</li>
-                        <li>Take-out</li>
-                        <li>Balcony</li>
+                        @foreach ($menus as $menu)
+                            <li> {{ $menu }} </li>
+                        @endforeach
                     </ul>
                 </section>
                 <section>
                     <h2>Reviews</h2>
                     <div class="review">
                         <div class="image">
-                            <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
+                            <div class="bg-transfer"><img src="{{ asset('assets/img/person-02.jpg') }}" alt=""></div>
                         </div>
                         <div class="description">
                             <figure>
@@ -100,7 +96,7 @@
                     <!--end review-->
                     <div class="review">
                         <div class="image">
-                            <div class="bg-transfer"><img src="assets/img/person-01.jpg" alt=""></div>
+                            <div class="bg-transfer"><img src="{{ asset('assets/img/person-01.jpg') }}" alt=""></div>
                         </div>
                         <div class="description">
                             <figure>
@@ -180,15 +176,15 @@
                         <!--end map-->
                         <div class="content">
                             <div class="vertical-aligned-elements">
-                                <div class="element"><img src="assets/img/logo-2.png" alt=""></div>
-                                <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
+                                <div class="element"><img src="{{ asset('assets/img/logo-2.png') }}" alt=""></div>
+                                <!--<div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>-->
                             </div>
                             <hr>
                             <address>
-                                <figure><i class="fa fa-map-marker"></i>3858 Marion Street<br>Morrisville, VT 05661 </figure>
-                                <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
-                                <figure><i class="fa fa-phone"></i>316-436-8619</figure>
-                                <figure><i class="fa fa-globe"></i><a href="#">www.markysrestaurant.com</a></figure>
+                                <figure><i class="fa fa-map-marker"></i>{{ $address }}</figure>
+                                <figure><i class="fa fa-envelope"></i><a href="#">{{ $email }}</a></figure>
+                                <figure><i class="fa fa-phone"></i>{{ $phone_number }}</figure>
+                                <figure><i class="fa fa-globe"></i><a href="{{ $website }}">{{ $website }}</a></figure>
                             </address>
                         </div>
                     </section>

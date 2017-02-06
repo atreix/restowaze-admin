@@ -4,7 +4,7 @@
             <nav>
                 <div class="left">
                     <a href="{{ env('restowaze_path') }}" class="brand">
-                        <img src="assets/img/rw-logo.png" alt="">
+                        <img src="{{ asset('assets/img/rw-logo.png') }}" alt="">
                     </a>
                 </div>
                 <!--end left-->
@@ -108,7 +108,7 @@
                                                                     <a href="#" class="btn btn-default btn-framed">Submit Your Listing</a>
                                                                 </div>
                                                             </div>
-                                                            <div class="bg-transfer"><img src="assets/img/items/10.jpg" alt=""></div>
+                                                            <div class="bg-transfer"><img src="{{ asset('assets/img/items/10.jpg') }}" alt=""></div>
                                                         </div>
                                                     </div>
                                                     <!--end col-md-3-->
