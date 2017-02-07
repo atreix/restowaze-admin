@@ -18,6 +18,10 @@ Route::get('/detail/{id}', 'DetailController@showDetails');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
+    # dashboard
+    Route::get('/', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index');
+
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');
     Route::get('/user/list', 'UserController@index')->name('getUserList');

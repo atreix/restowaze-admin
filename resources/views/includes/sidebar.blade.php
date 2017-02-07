@@ -1,74 +1,44 @@
-<div class="col-md-3 left_col">
-    <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-map"></i> <span> Restowaze Admin </span></a>
+<!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
         </div>
-
-        <div class="clearfix"></div>
-
-        <!-- menu profile quick info -->
-        <div class="profile">
-            <div class="profile_pic">
-                <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>{{ Auth::user()->name }}</h2>
-            </div>
+        <div class="pull-left info">
+          <p>{{ Auth::user()->name }}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
-        <!-- /menu profile quick info -->
-
-        <br />
-
-        <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-home"></i>
-                            Home
-                        </a>
-                    </li>
-                    <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('getUserList') }}">List</a></li>
-                            <li><a href="{{ route('addUser') }}">Create New</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-cutlery"></i> Restaurant <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ URL::route('getRestoList') }}">List</a></li>
-                            <li><a href="{{ URL::route('add-basic-info') }}">Create New</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-tasks"></i> Category <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ URL::route('getRestoList') }}">List</a></li>
-                            <li><a href="{{ URL::route('add-basic-info') }}">Create New</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
         </div>
-        <!-- /sidebar menu -->
-
-        <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('/logout') }}">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-            </a>
-        </div>
-        <!-- /menu footer buttons -->
-    </div>
-</div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('getUserList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+            <li class="active"><a href="{{ route('addUser') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
+          </ul>
+        </li>
+    </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
