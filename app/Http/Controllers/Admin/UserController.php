@@ -19,26 +19,36 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['users'] = User::get();
+        $data = array(
+            'module_name' => 'User',
+            'module_page' => 'List',
+            'users' => User::get(),
+        );
 
-        return view('user/list', $data);
+        return view('admin/user/list', $data);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addUser()
+    public function addUser(Request $request)
     {
-        return view('user/add');
+        return view('admin/user/add', array(
+            'module_name' => 'User',
+            'module_page' => 'Create'
+        ));
+    }
+
+    public function updateUser($id)
+    {
+        $userInfo = User::find($id);
+
+        if ($userInfo) {
+            return view('admin/user/update', array(
+                'module_name' => 'User',
+                'module_page' => 'Update',
+                'user' => $userInfo
+            ));
+        }
     }
 
     public function validator(Request $request)

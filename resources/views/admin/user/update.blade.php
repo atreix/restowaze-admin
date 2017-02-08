@@ -20,7 +20,7 @@
             <div class="col-xs-12">
           <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Create New</h3>
+                <h3 class="box-title">Update user <strong> {{ $user->name }} </strong></h3>
             </div>
             <form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/user/add') }}" novalidate="">
                 {!! csrf_field() !!}
@@ -31,7 +31,7 @@
                                 Name <span class="required">*</span>
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="first-name" name="firstname" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="first-name" name="firstname" value="{{ $user->firstname }}" disabled>
                             </div>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="last-name" name="lastname" placeholder="Last Name" required>

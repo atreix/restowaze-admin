@@ -2,27 +2,22 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <!-- Meta, title, CSS, favicons, etc. -->
-        <meta charset="utf-8">
+        <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
         <title>{{ config('app.name') }} Admin |</title>
 
-        <!-- Bootstrap -->
         <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" type="text/css">
-        <!-- Font Awesome -->
         <link href="{{ asset('assets/fonts/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/fonts/elegant-fonts.css') }}" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Custom Theme Style -->
         <link href="{{ asset('admin/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}" rel="stylesheet">
-
         <link href="{{ asset('admin/css/smart_wizard.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/css/dropzone.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css">
 
     </head>
     @include('admin/layouts/header')
@@ -50,6 +45,7 @@
 
         <script type="text/javascript" src="{{ asset('admin/js/jquery.smartWizard.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/dropzone.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/datepicker3.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
     </body>
 </html>

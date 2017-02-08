@@ -12,7 +12,7 @@
 */
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('restowaze-path');
 Route::get('/home', 'MainController@index');
 Route::get('/detail/{id}', 'DetailController@showDetails');
 
@@ -20,12 +20,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # dashboard
     Route::get('/', 'DashboardController@index');
-    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');
     Route::get('/user/list', 'UserController@index')->name('getUserList');
     Route::get('/user/add', 'UserController@addUser')->name('addUser');
+    Route::get('/user/update/{id}', 'UserController@updateUser')->name('edit-user-info');
+    Route::post('/user/update/{id}', 'UserController@saveUserInfo')->name('edit-user-info');
 
     # resto
     Route::get('/resto', 'RestaurantController@index')->name('getRestoList');

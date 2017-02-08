@@ -4,7 +4,7 @@
         action="{{ route('upload-menu') }}"
     >
         <div class="dz-default dz-message">
-            <span>Drop files here to upload</span>
+            <span>Click or drag images here</span>
         </div>
     </form>
 </div>

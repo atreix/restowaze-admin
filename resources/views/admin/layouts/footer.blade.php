@@ -1,10 +1,6 @@
         <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                <a href="{{ env('restowaze_path') }}">Restowaze.com</a>
-                ©{{ date('Y') }} All Rights Reserved.
-            </div>
-            <div class="clearfix"></div>
+        <footer class="main-footer">
+            <strong>©{{ date('Y') }} <a href="{{ route('restowaze-path') }}">Restowaze.com</a>.</strong> All Rights Reserved.
         </footer>
         <!-- /footer content -->
     </div>

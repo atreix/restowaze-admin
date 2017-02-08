@@ -17,22 +17,28 @@ class RestaurantController extends Controller
 
     public function index()
     {
-        $data['restaurants'] = Restaurants::get();
+        $data = array(
+            'module_name' => 'Restaurant',
+            'module_page' => 'List',
+            'restaurants' => Restaurants::get(),
+        );
 
-        return view('restaurant/list', $data);
+        return view('admin/restaurant/list', $data);
     }
 
     public function addBasicInfo(Request $request)
     {
-        return view('restaurant/add', [
+        return view('admin/restaurant/add', array(
+            'module_name' => 'Restaurant',
+            'module_page' => 'Create',
             'restoInfo' => $request->session()->get('restoInfo')
-        ]);
+        ));
     }
 
     public function saveBasicInfo(Request $request)
     {
         $data = $request->all();
-        $validate = Validator::make($data, [
+        $validate = Validator::make($data, array(
             'name' => 'required|max:60',
             'website' => 'required|url|unique:website',
             'owner_name' => 'required',
@@ -40,7 +46,7 @@ class RestaurantController extends Controller
             'phone' => 'required|number',
             'mobile' => 'required|number',
             'address' => 'required|max:100',
-        ]);
+        ));
 
         if ($validate) {
             $create = Restaurants::create([
@@ -64,9 +70,11 @@ class RestaurantController extends Controller
         $restaurantInfo = Restaurants::find($id);
 
         if ($restaurantInfo) {
-            return view('restaurant/edit', [
+            return view('admin/restaurant/edit', array(
+                'module_name' => 'Restaurant',
+                'module_page' => 'Update',
                 'restoInfo' => $restaurantInfo
-            ]);
+            ));
         }
     }
 

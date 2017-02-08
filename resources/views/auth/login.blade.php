@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <input type="submit" class="btn btn-default submit" value="Log in">
-                        <a class="reset_pass" href="{{  url('/password/reset') }}">Lost your password?</a>
+                        <a class="reset_pass" href="{{  url('/password/reset') }}">Forgot password?</a>
                     </div>
 
                     <div class="clearfix"></div>

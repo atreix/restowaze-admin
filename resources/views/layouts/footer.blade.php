@@ -25,7 +25,7 @@
                 <div class="container">
                     <div class="vertical-aligned-elements">
                         <div class="element width-50">
-                            <a href="{{ env('restowaze_path') }}">Restowaze.com</a>
+                            <a href="{{ route('restowaze-path') }}">Restowaze.com</a>
                             ©{{ date('Y') }} All Rights Reserved.
                         </div>
                     </div>
