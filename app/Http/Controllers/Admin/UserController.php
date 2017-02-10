@@ -10,6 +10,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    const ADMIN = 1; // 1 = Admin; 2 = Customer (registered from main site)
     /**
      * Create a new controller instance.
      *
@@ -25,7 +26,7 @@ class UserController extends Controller
         $data = array(
             'module_name' => 'User',
             'module_page' => 'List',
-            'users' => User::latest()->get(),
+            'users' => User::where('type', self::ADMIN)->latest()->paginate(10),
         );
 
         return view('admin/user/list', $data);
@@ -61,6 +62,7 @@ class UserController extends Controller
                 'name' => $data['username'],
                 'birthday' => $data['birthday'],
                 'email' => $data['email'],
+                'type' => self::ADMIN, // 1 = Admin; 2 = Customer (registered from main site)
             ]);
 
             if ($create) {

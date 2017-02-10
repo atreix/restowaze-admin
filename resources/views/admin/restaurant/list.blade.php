@@ -24,7 +24,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box box-info">
                 <div class="box-header">
                   <h3 class="box-title"></h3>
 
@@ -72,6 +72,11 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </table>
+                </div>
+                <div class="box-footer clearfix ">
+                    <div class="pull-right">
+                        {{ $restaurants->links() }}
+                    </div>
                 </div>
             </div>
         </div>

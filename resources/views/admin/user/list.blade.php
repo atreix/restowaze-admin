@@ -56,6 +56,11 @@
                 <?php endif; ?>
               </table>
             </div>
+            <div class="box-footer clearfix ">
+                <div class="pull-right">
+                    {{ $users->links() }}
+                </div>
+            </div>
           </div>
         </div>
     </section>
