@@ -20,7 +20,7 @@ class RestaurantController extends Controller
         $data = array(
             'module_name' => 'Restaurant',
             'module_page' => 'List',
-            'restaurants' => Restaurants::get(),
+            'restaurants' => Restaurants::latest()->get(),
         );
 
         return view('admin/restaurant/list', $data);

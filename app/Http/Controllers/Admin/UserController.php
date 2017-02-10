@@ -25,7 +25,7 @@ class UserController extends Controller
         $data = array(
             'module_name' => 'User',
             'module_page' => 'List',
-            'users' => User::get(),
+            'users' => User::latest()->get(),
         );
 
         return view('admin/user/list', $data);
@@ -55,7 +55,7 @@ class UserController extends Controller
         }
 
         if ($validator) {
-            return User::create([
+            $create = User::create([
                 'firstname' => $data['firstname'],
                 'lastname' => $data['lastname'],
                 'name' => $data['username'],
@@ -63,6 +63,9 @@ class UserController extends Controller
                 'email' => $data['email'],
             ]);
 
+            if ($create) {
+                return $this->index();
+            }
         }
     }
 
