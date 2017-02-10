@@ -51,7 +51,7 @@ class UserController extends Controller
         ));
 
         if ($validator->fails()) {
-            return redirect()->route('add-user-info')->withErrors($validator);
+            return redirect()->back()->withInput()->withErrors($validator);
         }
 
         if ($validator) {

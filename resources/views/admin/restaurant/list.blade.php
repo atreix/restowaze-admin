@@ -54,6 +54,7 @@
                         <?php else : ?>
                             <?php foreach($restaurants as $restaurant) : ?>
                             <tr role="row" class="">
+                                <td>{{ $restaurant->id }}</td>
                                 <td>{{ title_case($restaurant->name) }}</td>
                                 <td>{{ $restaurant->address }}</td>
                                 <td>

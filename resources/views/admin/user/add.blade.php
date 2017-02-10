@@ -31,7 +31,7 @@
                                 Name <span class="required">*</span>
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="first-name" name="firstname" placeholder="First Name" required>
+                                <input type="text" class="form-control" id="first-name" name="firstname" placeholder="First Name" value="{{ old('firstname') }}">
                                 @if ($errors->has('firstname'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('firstname') }}</strong>
@@ -39,7 +39,7 @@
                                 @endif
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="last-name" name="lastname" placeholder="Last Name" required>
+                                <input type="text" class="form-control" id="last-name" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}">
                                 @if ($errors->has('lastname'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('lastname') }}</strong>
@@ -47,8 +47,8 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group has-feedback {{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label class="col-sm-2 control-label" for="first-name">Username <span class="required">*</span>
+                        <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="user-name">Username <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" value="{{ old('username') }}">
@@ -93,7 +93,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="birthday" name="birthday">
+                                    <input type="text" class="form-control" id="birthday" name="birthday" value="{{ old('birthday') }}">
                                 </div>
                                 @if ($errors->has('birthday'))
                                     <span class="help-block">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right" id="send">Submit</button>
+                    <button type="submit" class="btn btn-info pull-right" name="submit" id="send" value="1">Submit</button>
                 </div>
             </form>
             </div>

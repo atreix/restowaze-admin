@@ -49,7 +49,7 @@ class RestaurantController extends Controller
         ));
 
         if ($validator->fails()) {
-            return redirect()->route('add-basic-info')->withErrors($validator);
+            return redirect()->back()->withInput()->withErrors($validator);
         }
 
         if ($validator) {
@@ -58,8 +58,8 @@ class RestaurantController extends Controller
                 'website' => $data['website'],
                 'owner' => $data['owner_name'],
                 'date_established' => $data['date_established'],
-                'phone_number' => $data['phone'],
-                'mobile_number' => $data['mobile'],
+                'phone_number' => $data['phone_number'],
+                'mobile_number' => $data['mobile_number'],
                 'address' => $data['address'],
             ]);
 
