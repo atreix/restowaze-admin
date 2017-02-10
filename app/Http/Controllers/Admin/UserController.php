@@ -21,7 +21,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = array(
             'module_name' => 'User',
@@ -30,6 +30,28 @@ class UserController extends Controller
         );
 
         return view('admin/user/list', $data);
+    }
+
+    /**
+     * @todo
+     */
+    public function search(Request $request)
+    {
+        if ($request->has('search') && $request->has('table_search')) {
+            $searchQuery = User::where('type', self::ADMIN)
+                ->where('name', 'like', '%' . $request->get('table_search') . '%')
+                ->orWhere('email', 'like', '%' . $request->get('table_search') . '%')
+                ->latest()
+                ->paginate(10);
+
+            $data = array(
+                'module_name' => 'User',
+                'module_page' => 'List',
+                'users' => $searchQuery,
+            );
+
+            return view('admin/user/list', $data);
+        }
     }
 
     public function addUserInfo(Request $request)

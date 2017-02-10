@@ -24,7 +24,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');
-    Route::get('/user/list', 'UserController@index')->name('getUserList');
+    Route::get('/user/list', 'UserController@index');
+    Route::get('/user/search', 'UserController@search');
 
     # add
     Route::get('/user/add', 'UserController@addUserInfo')
@@ -43,7 +44,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # resto
     Route::get('/resto', 'RestaurantController@index')->name('getRestoList');
-    Route::get('/resto/list', 'RestaurantController@index')->name('getRestoList');
+    Route::get('/resto/list', 'RestaurantController@index');
+    Route::get('/resto/search', 'RestaurantController@search');
 
     # add
     Route::get('/resto/add/basic-info', 'RestaurantController@addBasicInfo')

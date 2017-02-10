@@ -15,7 +15,7 @@ class RestaurantController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = array(
             'module_name' => 'Restaurant',
@@ -24,6 +24,25 @@ class RestaurantController extends Controller
         );
 
         return view('admin/restaurant/list', $data);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->has('search') && $request->has('table_search')) {
+            $searchQuery = Restaurants::where('category', 'like', '%' . $request->get('table_search') . '%')
+                ->orWhere('name', 'like', '%' . $request->get('table_search') . '%')
+                //->orWhere('municipality', 'like', '%' . $request->get('table_search') . '%')
+                ->latest()
+                ->paginate(10);
+
+            $data = array(
+                'module_name' => 'Restaurant',
+                'module_page' => 'List',
+                'restaurants' => $searchQuery,
+            );
+
+            return view('admin/restaurant/list', $data);
+        }
     }
 
     public function addBasicInfo(Request $request)

@@ -17,13 +17,14 @@
             <div class="box-header">
               <h3 class="box-title"></h3>
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                <form name="search-user" method="get" action="{{ url('/admin/user/search') }}">
+                  <div class="input-group input-group-sm" style="width: 250px;">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                      <div class="input-group-btn">
+                          <button type="submit" name="search" value="1" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <!-- /.box-header -->
@@ -44,7 +45,7 @@
                     <?php foreach($users as $user) : ?>
                     <tr role="row" class="">
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ title_case($user->name) }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
                         <td>
