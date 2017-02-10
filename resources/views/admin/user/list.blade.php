@@ -44,7 +44,7 @@
                     <?php foreach($users as $user) : ?>
                     <tr role="row" class="">
                         <td>{{ $user->id }}</td>
-                        <td>{{ title_case($user->name) }}</td>
+                        <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
                         <td>

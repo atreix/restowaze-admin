@@ -8,7 +8,7 @@
           <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }}</p>
+          <p>{{ title_case(Auth::user()->name) }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online </a>
         </div>
       </div>
@@ -34,7 +34,7 @@
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-user"></i> <span>Restaurant</span>
+                <i class="fa fa-cutlery"></i> <span>Restaurant</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
