@@ -81,4 +81,12 @@ class UserController extends Controller
             ));
         }
     }
+
+    public function deleteUser($id)
+    {
+        $userId = User::findOrFail($id);
+        $deleted = $userId->delete();
+
+        return redirect()->route('getUserList');
+    }
 }

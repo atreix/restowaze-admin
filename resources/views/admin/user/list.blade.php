@@ -49,7 +49,7 @@
                         <td>{{ $user->created_at }}</td>
                         <td>
                             <a href="{{ route('edit-user-info', $user->id) }}" ><i class="fa fa-pencil"></i> </a>
-                            | <a href="{{ route('edit-user-info', $user->id) }}" ><i class="fa fa-trash"></i> </a>
+                            | <a href="{{ route('delete-user-info', $user->id) }}" ><i class="fa fa-trash"></i> </a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

@@ -36,6 +36,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         ->name('edit-user-info');
     Route::post('/user/update/{id}', 'UserController@updateUserInfo');
 
+    # delete
+    Route::get('/user/delete/{id}', 'UserController@deleteUser')
+        ->name('delete-user-info');
+    Route::post('/user/delete/{id}', 'UserController@deleteUserInfo');
+
     # resto
     Route::get('/resto', 'RestaurantController@index')->name('getRestoList');
     Route::get('/resto/list', 'RestaurantController@index')->name('getRestoList');
@@ -49,6 +54,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/resto/update/{id}', 'RestaurantController@updateBasicInfo')
         ->name('edit-basic-info');
     Route::post('/resto/update/{id}', 'RestaurantController@saveUpdateBasicInfo');
+
+    # delete
+    Route::get('/resto/delete/{id}', 'RestaurantController@deleteRestaurant')
+        ->name('delete-basic-info');
+    Route::post('/resto/delete/{id}', 'RestaurantController@deleteRestaurantInfo');
 
     Route::get('/resto/add/upload-menu', 'RestaurantController@uploadMenu')
         ->name('upload-menu');

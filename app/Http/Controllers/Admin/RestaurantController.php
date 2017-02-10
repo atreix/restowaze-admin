@@ -100,4 +100,12 @@ class RestaurantController extends Controller
             return $this->updateBasicInfo($id);
         }
     }
+
+    public function deleteRestaurant($id)
+    {
+        $restoId = Restaurants::findOrFail($id);
+        $deleted = $restoId->delete();
+
+        return redirect()->route('getRestoList');
+    }
 }

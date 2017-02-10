@@ -65,7 +65,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-pencil"></i> </a>
-                                    | <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-trash"></i> </a>
+                                    | <a href="{{ route('delete-basic-info', $restaurant->id) }}" ><i class="fa fa-trash"></i> </a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
