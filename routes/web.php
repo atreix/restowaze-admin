@@ -25,9 +25,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');
     Route::get('/user/list', 'UserController@index')->name('getUserList');
-    Route::get('/user/add', 'UserController@addUser')->name('addUser');
-    Route::get('/user/update/{id}', 'UserController@updateUser')->name('edit-user-info');
-    Route::post('/user/update/{id}', 'UserController@saveUserInfo')->name('edit-user-info');
+
+    # add
+    Route::get('/user/add', 'UserController@addUserInfo')
+        ->name('add-user-info');
+    Route::post('/user/add', 'UserController@saveUserInfo');
+
+    # edit
+    Route::get('/user/update/{id}', 'UserController@updateUser')
+        ->name('edit-user-info');
+    Route::post('/user/update/{id}', 'UserController@updateUserInfo');
 
     # resto
     Route::get('/resto', 'RestaurantController@index')->name('getRestoList');

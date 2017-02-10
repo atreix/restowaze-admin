@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 
@@ -30,12 +31,39 @@ class UserController extends Controller
         return view('admin/user/list', $data);
     }
 
-    public function addUser(Request $request)
+    public function addUserInfo(Request $request)
     {
         return view('admin/user/add', array(
             'module_name' => 'User',
             'module_page' => 'Create'
         ));
+    }
+
+    public function saveUserInfo(Request $request)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, array(
+            'firstname' => 'required|max:100',
+            'lastname' => 'required|max:100',
+            'username' => 'required|unique:users,name',
+            'email' => 'required|email',
+            'birthday' => 'date',
+        ));
+
+        if ($validator->fails()) {
+            return redirect()->route('add-user-info')->withErrors($validator);
+        }
+
+        if ($validator) {
+            return User::create([
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'name' => $data['username'],
+                'birthday' => $data['birthday'],
+                'email' => $data['email'],
+            ]);
+
+        }
     }
 
     public function updateUser($id)
@@ -49,14 +77,5 @@ class UserController extends Controller
                 'user' => $userInfo
             ));
         }
-    }
-
-    public function validator(Request $request)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
     }
 }

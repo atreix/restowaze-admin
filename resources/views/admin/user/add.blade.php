@@ -26,22 +26,49 @@
                 {!! csrf_field() !!}
                 <div class="box-body">
                     <section>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('firstname') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="first-name">
                                 Name <span class="required">*</span>
                             </label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="first-name" name="firstname" placeholder="First Name" required>
+                                @if ($errors->has('firstname'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('firstname') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="last-name" name="lastname" placeholder="Last Name" required>
+                                @if ($errors->has('lastname'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('lastname') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('firstname') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="first-name">Username <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" required>
+                                <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" value="{{ old('username') }}">
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="email">Email <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="username@domain.com" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group">
@@ -49,17 +76,17 @@
                             <div class="col-sm-10">
                                 <div id="gender" class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                        <input type="radio" id="gender" name="gender" value="male"> &nbsp; Male &nbsp;
                                     </label>
                                     <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="female"> Female
+                                        <input type="radio" id="gender" name="gender" value="female"> Female
                                     </label>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('birthday') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="birthday">
-                                Date of Birth <span class="required">*</span>
+                                Date of Birth
                             </label>
                             <div class="col-sm-10">
                                 <div class="input-group date">
@@ -68,6 +95,11 @@
                                     </div>
                                     <input type="text" class="form-control" id="birthday" name="birthday">
                                 </div>
+                                @if ($errors->has('birthday'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('birthday') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </section>

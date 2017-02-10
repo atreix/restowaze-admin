@@ -45,7 +45,7 @@
 
         <script type="text/javascript" src="{{ asset('admin/js/jquery.smartWizard.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/dropzone.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/datepicker3.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
     </body>
 </html>

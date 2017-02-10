@@ -29,7 +29,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{ route('getUserList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-                <li class="active"><a href="{{ route('addUser') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
+                <li class="active"><a href="{{ route('add-user-info') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
             </ul>
         </li>
         <li class="treeview">

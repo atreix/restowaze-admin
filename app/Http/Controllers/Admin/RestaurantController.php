@@ -38,17 +38,21 @@ class RestaurantController extends Controller
     public function saveBasicInfo(Request $request)
     {
         $data = $request->all();
-        $validate = Validator::make($data, array(
+        $validator = Validator::make($data, array(
             'name' => 'required|max:60',
-            'website' => 'required|url|unique:website',
-            'owner_name' => 'required',
+            'website' => 'required|url',
+            'owner_name' => 'required|max:255',
             'date_established' => 'required|date',
-            'phone' => 'required|number',
-            'mobile' => 'required|number',
-            'address' => 'required|max:100',
+            'phone_number' => 'required|digits:11',
+            'mobile_number' => 'digits:11',
+            'address' => 'required|max:255',
         ));
 
-        if ($validate) {
+        if ($validator->fails()) {
+            return redirect()->route('add-basic-info')->withErrors($validator);
+        }
+
+        if ($validator) {
             $create = Restaurants::create([
                 'name' => $data['name'],
                 'website' => $data['website'],
@@ -70,7 +74,7 @@ class RestaurantController extends Controller
         $restaurantInfo = Restaurants::find($id);
 
         if ($restaurantInfo) {
-            return view('admin/restaurant/edit', array(
+            return view('admin/restaurant/update', array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'Update',
                 'restoInfo' => $restaurantInfo

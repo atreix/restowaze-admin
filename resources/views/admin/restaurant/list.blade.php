@@ -47,7 +47,11 @@
                             <th>Category</th>
                             <th>Action</th>
                         </tr>
-                        <?php if (!empty($restaurants)) : ?>
+                        <?php if ($restaurants->isEmpty()) : ?>
+                            <tr role="row" class="">
+                                <td colspan="5" align="center"> <small> No result(s) found. </small></td>
+                            </tr>
+                        <?php else : ?>
                             <?php foreach($restaurants as $restaurant) : ?>
                             <tr role="row" class="">
                                 <td>{{ title_case($restaurant->name) }}</td>
@@ -60,8 +64,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit-user-info', $user->id) }}" ><i class="fa fa-pencil"></i> </a>
-                                    | <a href="{{ route('edit-user-info', $user->id) }}" ><i class="fa fa-trash"></i> </a>
+                                    <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-pencil"></i> </a>
+                                    | <a href="{{ route('edit-basic-info', $restaurant->id) }}" ><i class="fa fa-trash"></i> </a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

@@ -13,7 +13,7 @@
     <section class="content">
         <div class="row">
         <div class="col-xs-12">
-          <div class="box">
+          <div class="box box-info">
             <div class="box-header">
               <h3 class="box-title"></h3>
               <div class="box-tools">
@@ -36,7 +36,11 @@
                   <th>Create date</th>
                   <th>Action</th>
                 </tr>
-                <?php if (!empty($users)) : ?>
+                <?php if ($users->isEmpty()) : ?>
+                    <tr role="row" class="">
+                        <td colspan="5" align="center"> <small> No result(s) found. </small></td>
+                    </tr>
+                <?php else : ?>
                     <?php foreach($users as $user) : ?>
                     <tr role="row" class="">
                         <td>{{ $user->id }}</td>

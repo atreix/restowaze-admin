@@ -22,36 +22,51 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Create New</h3>
             </div>
-            <form class="form-horizontal form-label-left" method="POST" action="{{ route('add-basic-info') }}" novalidate>
+            <form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/resto/add/basic-info') }}" novalidate>
                 {!! csrf_field() !!}
                 <div class="box-body">
                     <section>
                         <h3 class="box-title"> Basic Info </h3>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="name">
                                 Name <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Chowking" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Chowking" required value="{{ old('name') }}">
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('website') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="website">
                                 Website <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="url" class="form-control" id="website" name="website" placeholder="www.restowaze.com">
+                                <input type="url" class="form-control" id="website" name="website" placeholder="www.restowaze.com" value="{{ old('website') }}">
+                                @if ($errors->has('website'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('website') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('owner_name') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="owner-name">
                                 Name of Owner  <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="url" class="form-control" id="owner-name" name="owner_name" placeholder="John Doe">
+                                <input type="url" class="form-control" id="owner-name" name="owner_name" placeholder="John Doe" value="{{ old('owner_name') }}">
+                                @if ($errors->has('owner_name'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('owner_name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('date_established') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="date-established">
                                 Date Established <span class="required">*</span>
                             </label>
@@ -60,14 +75,19 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="date-established" name="date_established">
+                                    <input type="text" class="form-control" id="date-established" name="date_established" value="{{ old('date_established') }}">
                                 </div>
+                                @if ($errors->has('date_established'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('date_established') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </section>
                     <section>
                         <h3 class="box-title"> Contact Info </h3>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('phone_number') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="phone">
                                 Phone # <span class="required">*</span>
                             </label>
@@ -78,11 +98,16 @@
                                     </div>
                                     <input type="text" class="form-control" id="phone" name="phone_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Phone number">
                                 </div>
+                                @if ($errors->has('phone_number'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('phone_number') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('mobile_number') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="mobile">
-                                Mobile # <span class="required">*</span>
+                                Mobile #
                             </label>
                             <div class="col-sm-10">
                                 <div class="input-group date">
@@ -91,9 +116,14 @@
                                     </div>
                                     <input type="text" class="form-control" id="mobile" name="mobile_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Mobile number">
                                 </div>
+                                @if ($errors->has('mobile_number'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('mobile_number') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback {{ $errors->has('address') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="address">
                                 Address <span class="required">*</span>
                             </label>
@@ -104,10 +134,15 @@
                                     </div>
                                     <input type="text" class="form-control" id="address" name="address" placeholder="Address">
                                 </div>
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </section>
-                    <section>
+                    <!--<section>
                         <h3 class="box-title">Gallery</h3>
                         <form class="dropzone dz-clickable">
                             <div class="dz-default dz-message">
@@ -148,11 +183,11 @@
                                 The body of the box
                             </div>
                         </div>
-                    </section>
+                    </section>-->
                 </div>
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right" id="send">Submit</button>
+                    <button type="submit" class="btn btn-info pull-right submit" id="send">Submit</button>
                 </div>
             </form>
             </div>

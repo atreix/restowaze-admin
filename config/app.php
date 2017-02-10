@@ -160,7 +160,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
 
-		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class
+		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+
+        SKAgarwal\GoogleApi\ServiceProvider::class,
+        'GoogleMaps\ServiceProvider\GoogleMapsServiceProvider',
     ],
 
     /*
@@ -208,7 +211,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 		'Notifiaction' => Illuminate\Support\Facades\Notification::class,
 
-		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class
+		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
+        'GooglePlaces' => SKAgarwal\GoogleApi\Facade::class,
+        'GoogleMaps' => 'GoogleMaps\Facade\GoogleMapsFacade',
     ],
 
 ];
