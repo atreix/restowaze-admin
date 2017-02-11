@@ -87,16 +87,19 @@ class UserController extends Controller
                 'type' => self::ADMIN, // 1 = Admin; 2 = Customer (registered from main site)
             ]);
 
-            if ($create) {
-                return $this->index();
+
+            if (!$create) {
+                abort(403);
             }
+
+            $request->session()->flash('alert-success', 'User was successful added!');
+            return redirect('admin/user/list');
         }
     }
 
     public function updateUser($id)
     {
         $userInfo = User::find($id);
-
         if ($userInfo) {
             return view('admin/user/update', array(
                 'module_name' => 'User',
@@ -106,11 +109,33 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser($id)
+    public function updateUserInfo(Request $request, $id)
+    {
+        $data = $request->all();
+
+        if ($request->has('submit')) {
+            $user = User::find($id);
+
+            $user->name = $request->username;
+            $user->birthday = $request->birthday;
+
+            if (false == $user->save()) {
+                abort(403);
+            }
+
+            $request->session()->flash('alert-success', 'User was successful updated!');
+            return redirect('admin/user/list');
+        }
+
+        //$update = User::where('id', $id)->update([]);
+    }
+
+    public function deleteUser(Request $request, $id)
     {
         $userId = User::findOrFail($id);
         $deleted = $userId->delete();
 
-        return redirect()->route('getUserList');
+        $request->session()->flash('alert-success', 'User was successful deleted!');
+        return redirect('admin/user/list');
     }
 }

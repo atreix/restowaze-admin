@@ -25,7 +25,7 @@ Route::post('/detail/{id}', 'MainController@createReview')->name('write-review')
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # dashboard
-    Route::get('/dashboard', 'DashboardController@show')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');
@@ -40,7 +40,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     # edit
     Route::get('/user/update/{id}', 'UserController@updateUser')
         ->name('edit-user-info');
-    Route::post('/user/update/{id}', 'UserController@updateUserInfo');
+    Route::post('/user/update/{id}', 'UserController@updateUserInfo')
+        ->name('save-update-user-info');
 
     # delete
     Route::get('/user/delete/{id}', 'UserController@deleteUser')

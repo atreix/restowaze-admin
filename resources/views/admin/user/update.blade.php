@@ -22,7 +22,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Update user <strong> {{ title_case($user->name) }} </strong></h3>
             </div>
-            <form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/user/add') }}" novalidate="">
+            <form class="form-horizontal form-label-left" method="post" action="{{ route('save-update-user-info', $user->id) }}" novalidate="">
                 {!! csrf_field() !!}
                 <div class="box-body">
                     <section>
@@ -66,7 +66,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="birthday" name="birthday">
+                                    <input type="text" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right" id="send">Submit</button>
+                    <button type="submit" class="btn btn-info pull-right" name="submit" id="send" value="1" >Submit</button>
                 </div>
             </form>
             </div>

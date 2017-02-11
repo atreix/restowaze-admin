@@ -4,7 +4,7 @@
             <nav>
                 <div class="left">
                     <a href="{{ env('restowaze_path') }}" class="brand">
-                        <img src="{{ asset('assets/img/rw-logo.png') }}" alt="">
+                        <img src="{{ asset('/assets/img/rw-logo.png') }}" alt="">
                     </a>
                 </div>
                 <div class="right">

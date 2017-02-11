@@ -32,6 +32,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/jquery.trackpad-scroll-emulator.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/maps.js') }}"></script>
 
     <script type="text/javascript">

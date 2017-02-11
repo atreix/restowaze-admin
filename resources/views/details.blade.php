@@ -36,37 +36,33 @@
                                     <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 2775px;">
                                     <div class="owl-item active" style="width: 555px;">
                                         <div class="image">
-                                            <div class="bg-transfer"><img src="http://127.0.0.1:9002/assets/img/items/1.jpg" alt="">
+                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img1.jpg');">
+                                                <img src="{{ url('/restaurant-logo/chowking-hero-img1.jpg') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item" style="width: 555px;">
                                         <div class="image">
-                                            <div class="bg-transfer">
-                                                <img src="http://127.0.0.1:9002/assets/img/items/30.jpg" alt="">
+                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img2.jpg');">
+                                                <img src="{{ url('/restaurant-logo/chowking-hero-img2.jpg') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
                                         <div class="owl-item" style="width: 555px;">
                                             <div class="image">
-                                                <div class="bg-transfer" style="background-image: url(&quot;assets/img/items/31.jpg&quot;);">
-                                                    <img src="assets/img/items/31.jpg" alt="">
+                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img3.jpg');">
+                                                    <img src="{{ url('/restaurant-logo/chowking-hero-img3.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="owl-item" style="width: 555px;">
                                             <div class="image">
-                                                <div class="bg-transfer" style="background-image: url(&quot;assets/img/items/21.jpg&quot;);">
-                                                    <img src="assets/img/items/21.jpg" alt="">
+                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img4.jpg');">
+                                                    <img src="{{ url('/restaurant-logo/chowking-hero-img4.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="owl-item" style="width: 555px;">
-                                            <div class="image">
-                                                <div class="bg-transfer" style="background-image: url(&quot;assets/img/items/23.jpg&quot;);"><img src="assets/img/items/23.jpg" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="owl-nav disabled">
@@ -117,7 +113,7 @@
                         <h2>Reviews</h2>
                         <div class="review">
                             <div class="image">
-                                <div class="bg-transfer"><img src="{{ asset('../assets/img/person-02.jpg') }}" alt=""></div>
+                                <div class="bg-transfer"><img src="{{ url('/assets/img/person-02.jpg') }}" alt=""></div>
                             </div>
                             <div class="description">
                                 <figure>
@@ -133,7 +129,7 @@
                         <!--end review-->
                         <div class="review">
                             <div class="image">
-                                <div class="bg-transfer"><img src="{{ asset('../assets/img/person-01.jpg') }}" alt=""></div>
+                                <div class="bg-transfer"><img src="{{ url('/assets/img/person-01.jpg') }}" alt=""></div>
                             </div>
                             <div class="description">
                                 <figure>
@@ -215,7 +211,7 @@
                                 <!--end map-->
                                 <div class="content">
                                     <div class="vertical-aligned-elements">
-                                        <div class="element"><img src="{{ asset('assets/img/logo-2.png') }}" alt=""></div>
+                                        <div class="element"><img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt=""></div>
                                         <!--<div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>-->
                                     </div>
                                     <hr>
