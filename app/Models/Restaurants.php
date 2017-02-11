@@ -15,7 +15,7 @@ class Restaurants extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'date_established', 'owner',
+        'name', 'date_established', 'owner', 'description',
         'phone_number', 'mobile_number', 'email',
         'address', 'website', 'created_at', 'updated_at', 'deleted_at'
     ];

@@ -59,11 +59,13 @@ class RestaurantController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, array(
             'name' => 'required|max:60',
+            'description' => 'required|max:500',
             'website' => 'required|url',
             'owner_name' => 'required|max:255',
             'date_established' => 'required|date',
             'phone_number' => 'required|digits:11',
             'mobile_number' => 'digits:11',
+            'email' => 'required|email|unique:restaurants,email',
             'address' => 'required|max:255',
         ));
 
@@ -74,17 +76,22 @@ class RestaurantController extends Controller
         if ($validator) {
             $create = Restaurants::create([
                 'name' => $data['name'],
+                'description' => $data['description'],
                 'website' => $data['website'],
                 'owner' => $data['owner_name'],
                 'date_established' => $data['date_established'],
                 'phone_number' => $data['phone_number'],
                 'mobile_number' => $data['mobile_number'],
+                'email' => $data['email'],
                 'address' => $data['address'],
             ]);
 
-            if ($create) {
-                return $this->index();
+            if (!$create) {
+                abort(403);
             }
+
+            $request->session()->flash('alert-success', 'Restaurant was successfully added!');
+            return redirect()->route('getRestoList');
         }
     }
 
@@ -103,20 +110,27 @@ class RestaurantController extends Controller
 
     public function saveUpdateBasicInfo(Request $request, $id)
     {
-        $input = $request->all();
-        $update = Restaurants::where('id', $id)
-            ->update([
-                'name' => $input['name'],
-                'website' => $input['website'],
-                'owner' => $input['owner_name'],
-                'date_established' => $input['date_established'],
-                'mobile_number' => $input['mobile'],
-                'phone_number' => $input['phone'],
-                'address' => $input['address']
-        ]);
+        if ($request->has('submit')) {
+            $restaurant = Restaurants::find($id);
 
-        if ($update) {
-            return $this->updateBasicInfo($id);
+            $restaurant->name = $request->name;
+            $restaurant->description = $request->description;
+            $restaurant->website = $request->website;
+            $restaurant->owner = $request->owner_name;
+            $restaurant->date_established = $request->date_established;
+            $restaurant->phone_number = $request->phone_number;
+            $restaurant->mobile_number = $request->mobile_number;
+            $restaurant->email = $request->email;
+            $restaurant->address = $request->address;
+
+            $save = $restaurant->save();
+
+            if (false == $save) {
+                abort(403);
+            }
+
+            $request->session()->flash('alert-success', 'Restaurant was successfully updated!');
+            return redirect()->route('getRestoList');
         }
     }
 

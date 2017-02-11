@@ -1,113 +1,229 @@
-@extends('layouts.blank')
+@extends('admin.layouts.blank')
 
-@section('main_container')
-
-    <!-- page content -->
-    <div class="right_col" role="main">
-        <div class="">
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Update <small>Restaurant Information </small></h2>
-                            <div class="clearfix"></div>
+@section('content')
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {{ $module_name }}
+        <small>{{ $module_page }}</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"> {{ $module_name }} </a></li>
+        <li class="active">{{ $module_page }}</li>
+      </ol>
+    </section>
+    <section class="content">
+        @include('errors/messages')
+        <div class="row">
+            <div class="col-xs-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Update <strong> {{ title_case($restoInfo->name) }} </strong> info </h3>
+            </div>
+            <form class="form-horizontal form-label-left" method="post" action="{{ url('/admin/resto/update', $restoInfo->id) }}" novalidate>
+                {!! csrf_field() !!}
+                <div class="box-body">
+                    <section>
+                        <h3 class="box-title text-aqua"> Basic Info <small class="text-red">* required </small></h3>
+                        <div class="form-group has-feedback {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="name">
+                                Name <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Chowking" required value="{{ $restoInfo->name }}">
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="x_content">
-                            <div id="wizard" class="form_wizard wizard_horizontal">
-                                <!-- step content -->
-                                <div id="step-1" class="content" style="display: block;">
-                                    <form class="form-horizontal form-label-left" id="form-add-basic-info" method="POST" action="{{ route('edit-basic-info', $restoInfo->id) }}" novalidate>
-                                        {!! csrf_field() !!}
-                                        <h4> Basic Information</h4>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text"
-                                                value="{{ title_case($restoInfo->name) }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Website <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="url" id="website" name="website" placeholder="http://www.restowaze.com" required="required" class="form-control col-md-7 col-xs-12"
-                                                value="{{ $restoInfo->website }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="owner-name">Name of Owner <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="owner-name" name="owner_name" required="required" class="form-control col-md-7 col-xs-12"
-                                                value="{{ title_case($restoInfo->owner) }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date-established">Date Established <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input id="date-established" name="date_established" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"
-                                                    value="{{ $restoInfo->date_established }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h4> Contact Information</h4>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> Phone #
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="phone" name="phone" class="form-control col-md-7 col-xs-12" value="{{ $restoInfo->phone_number }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile"> Mobile #
-                                                <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="mobile" name="mobile" required="required" class="form-control col-md-7 col-xs-12" value="{{ $restoInfo->mobile_number }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website"> Address <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                                                    <textarea id="address" required="required" class="form-control" name="address">{{ $restoInfo->address }}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ln_solid"></div>
-                                        <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <button type="submit" class="btn btn-primary">Cancel</button>
-                                                <button id="send" type="submit" class="btn btn-success">Update</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                        <div class="form-group has-feedback {{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="description">
+                                Description <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="6" id="description" name="description" placeholder="Enter description...">{{ $restoInfo->description }}</textarea>
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('website') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="website">
+                                Website <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="url" class="form-control" id="website" name="website" placeholder="www.restowaze.com" value="{{ $restoInfo->website }}">
+                                @if ($errors->has('website'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('website') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('owner_name') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="owner-name">
+                                Name of Owner  <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="url" class="form-control" id="owner-name" name="owner_name" placeholder="John Doe" value="{{ $restoInfo->owner }}">
+                                @if ($errors->has('owner_name'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('owner_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('date_established') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="date-established">
+                                Date Established <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="date-established" name="date_established" value="{{ $restoInfo->date_established }}">
+                                </div>
+                                @if ($errors->has('date_established'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('date_established') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="box-title text-aqua"> Contact Info </h3>
+                        <div class="form-group has-feedback {{ $errors->has('phone_number') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="phone">
+                                Phone # <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="phone" name="phone_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Phone number" value="{{ $restoInfo->phone_number }}">
+                                </div>
+                                @if ($errors->has('phone_number'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('phone_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('mobile_number') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="mobile">
+                                Mobile #
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mobile"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="mobile" name="mobile_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Mobile number" value="{{ $restoInfo->mobile_number }}">
+                                </div>
+                                @if ($errors->has('mobile_number'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('mobile_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="email">
+                                Email <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="customer@support.com" value="{{ $restoInfo->email }}">
+                                </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="address">
+                                Address <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-map"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ $restoInfo->address }}">
+                                </div>
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                    </section>
+                    <!--<section>
+                        <h3 class="box-title">Gallery</h3>
+                        <form class="dropzone dz-clickable">
+                            <div class="dz-default dz-message">
+                                <span>Click or drag images here</span>
+                            </div>
+                        </form>
+                    </section>
+                    <section>
+                        <h3 class="box-title">Menu <small class="note">(optional)</small></h3>
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="panel-title">
+                                    <i class="fa fa-cutlery"></i>
+                                    Add restaurant menu
+                                </h4>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                 </div>
                             </div>
-                            <!-- End SmartWizard Content -->
+                            <div class="box-body">
+                                The body of the box
+                            </div>
                         </div>
-                    </div>
+                    </section>
+                    <section>
+                        <h3 class="box-title">Opening Hours <small>(optional)</small></h3>
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="panel-title">
+                                    <i class="fa fa-clock-o"></i>
+                                    Add opening hours
+                                </h4>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                The body of the box
+                            </div>
+                        </div>
+                    </section>-->
                 </div>
+                <div class="box-footer">
+                    <button type="reset" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-info pull-right submit" name="submit" value="1" id="send">Save</button>
+                </div>
+            </form>
             </div>
         </div>
-    </div>
-    <!-- /page content -->
-
-    <!-- footer content -->
-    <footer>
-        <div class="pull-right">
-            <a href="{{ env('restowaze_path') }}">Restowaze.com</a>
-            ©{{ date('Y') }} All Rights Reserved. Privacy and Terms
-        </div>
-        <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
+    </section>
+</div>
 @endsection

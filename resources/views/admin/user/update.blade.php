@@ -16,6 +16,7 @@
       </ol>
     </section>
     <section class="content">
+        @include('errors/messages')
         <div class="row">
             <div class="col-xs-12">
           <div class="box box-info">
@@ -74,7 +75,7 @@
                 </div>
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right" name="submit" id="send" value="1" >Submit</button>
+                    <button type="submit" class="btn btn-info pull-right" name="submit" id="send" value="1" >Save</button>
                 </div>
             </form>
             </div>

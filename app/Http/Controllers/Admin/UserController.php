@@ -69,7 +69,7 @@ class UserController extends Controller
             'firstname' => 'required|max:100',
             'lastname' => 'required|max:100',
             'username' => 'required|unique:users,name',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'birthday' => 'date',
         ));
 
@@ -87,12 +87,11 @@ class UserController extends Controller
                 'type' => self::ADMIN, // 1 = Admin; 2 = Customer (registered from main site)
             ]);
 
-
             if (!$create) {
                 abort(403);
             }
 
-            $request->session()->flash('alert-success', 'User was successful added!');
+            $request->session()->flash('alert-success', 'User was successfully added!');
             return redirect('admin/user/list');
         }
     }
@@ -111,31 +110,32 @@ class UserController extends Controller
 
     public function updateUserInfo(Request $request, $id)
     {
-        $data = $request->all();
-
         if ($request->has('submit')) {
             $user = User::find($id);
 
             $user->name = $request->username;
             $user->birthday = $request->birthday;
 
-            if (false == $user->save()) {
+            $save = $user->save();
+
+            if (false == $save) {
                 abort(403);
             }
 
-            $request->session()->flash('alert-success', 'User was successful updated!');
+            $request->session()->flash('alert-success', 'User was successfully updated!');
             return redirect('admin/user/list');
         }
-
-        //$update = User::where('id', $id)->update([]);
     }
 
     public function deleteUser(Request $request, $id)
     {
         $userId = User::findOrFail($id);
-        $deleted = $userId->delete();
 
-        $request->session()->flash('alert-success', 'User was successful deleted!');
+        if (false == $userId->delete()) {
+            abort(403);
+        }
+
+        $request->session()->flash('alert-success', 'User was successfully deleted!');
         return redirect('admin/user/list');
     }
 }

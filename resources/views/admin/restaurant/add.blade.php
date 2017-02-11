@@ -16,6 +16,7 @@
       </ol>
     </section>
     <section class="content">
+        @include('errors/messages')
         <div class="row">
             <div class="col-xs-12">
           <div class="box box-info">
@@ -26,7 +27,7 @@
                 {!! csrf_field() !!}
                 <div class="box-body">
                     <section>
-                        <h3 class="box-title"> Basic Info </h3>
+                        <h3 class="box-title text-aqua"> Basic Info </h3>
                         <div class="form-group has-feedback {{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="name">
                                 Name <span class="required">*</span>
@@ -36,6 +37,19 @@
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="description">
+                                Description <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="6" id="description" name="description" placeholder="Enter description..." value="{{ old('description') }}"></textarea>
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -86,7 +100,7 @@
                         </div>
                     </section>
                     <section>
-                        <h3 class="box-title"> Contact Info </h3>
+                        <h3 class="box-title text-aqua"> Contact Info </h3>
                         <div class="form-group has-feedback {{ $errors->has('phone_number') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="phone">
                                 Phone # <span class="required">*</span>
@@ -96,7 +110,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="phone" name="phone_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Phone number">
+                                    <input type="text" class="form-control" id="phone" name="phone_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Phone number" value="{{ old('phone_number') }}">
                                 </div>
                                 @if ($errors->has('phone_number'))
                                     <span class="help-block">
@@ -114,11 +128,29 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-mobile"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="mobile" name="mobile_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Mobile number">
+                                    <input type="text" class="form-control" id="mobile" name="mobile_number" data-inputmask=""mask": "(999) 999-9999"" data-mask placeholder="Mobile number" value="{{ old('mobile_number') }}">
                                 </div>
                                 @if ($errors->has('mobile_number'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('mobile_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="email">
+                                Email <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="customer@support.com" value="{{ old('email') }}">
+                                </div>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
