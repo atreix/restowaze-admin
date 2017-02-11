@@ -1,4 +1,4 @@
-<body class="nav-btn-only homepage">
+<body class="homepage">
     <div class="page-wrapper">
         <header id="page-header">
             <nav>

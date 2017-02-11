@@ -6,27 +6,48 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+use App\Models\Restaurants;
+
 class MainController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct() {}
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('home');
+        $data['categories'] = [
+            'Asian',
+            'Japanese',
+            'Coffee',
+            'Filipino',
+            'American',
+            'Mexican'
+        ];
+
+        $data['locations'] = [
+            'Balanga City',
+            'Abucay',
+            'Mariveles',
+            'Orani',
+            'Bagac'
+        ];
+
+        return view('home', $data);
     }
 
-    public function showDetails()
+    public function showDetails($id)
     {
-        return view('details');
+        $findId = Restaurants::find($id);
+
+        if (!$findId) {
+            abort(404);
+        }
+
+        $data = Restaurants::where('id', $id)->get()->first();
+
+        return view('details', $data);
+    }
+
+    public function createReview()
+    {
+
+        dd('ss');
     }
 }

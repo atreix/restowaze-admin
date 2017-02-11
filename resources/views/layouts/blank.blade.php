@@ -29,16 +29,21 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
     <script type="text/javascript" src="{{ asset('assets/js/richmarker-compiled.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.trackpad-scroll-emulator.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/maps.js') }}"></script>
 
     <script type="text/javascript">
-        rating(".visitor-rating");
+        var optimizedDatabaseLoading = 0;
         var _latitude = 40.7344458;
         var _longitude = -73.86704922;
-        var element = "map-detail";
-        simpleMap(_latitude,_longitude, element);
+        var element = "map-homepage";
+        var markerTarget = "modal"; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
+        var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
+        var showMarkerLabels = false; // next to every marker will be a bubble with title
+        var mapDefaultZoom = 14; // default zoom
+        heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarget, showMarkerLabels, mapDefaultZoom);
     </script>
     </body>
 </html>

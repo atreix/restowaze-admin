@@ -10,17 +10,22 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index')->name('restowaze-path');
-Route::get('/home', 'MainController@index');
-Route::get('/detail/{id}', 'DetailController@showDetails');
 
+# Main site
+Route::get('/', 'MainController@index');
+Route::get('/home', 'MainController@index')->name('restowaze-path');
+Route::get('/detail/{id}', 'MainController@showDetails');
+Route::post('/detail/{id}', 'MainController@createReview')->name('write-review');
+
+
+# Admin site
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # dashboard
-    Route::get('/', 'DashboardController@index');
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@show')->name('dashboard');
 
     # user
     Route::get('/user', 'UserController@index')->name('getUserList');

@@ -14,8 +14,8 @@
                         </div>
                     </div>
                     <div class="background-wrapper">
-                        <div class="bg-transfer opacity-50">
-                            <img src="{{ asset('assets/img/footer-bg.png') }}" alt="">
+                        <div class="bg-transfer opacity-50" style="background-image: url('assets/img/footer-bg.png');">
+                            <img src="{{ url('assets/img/footer-bg.png') }}" alt="">
                         </div>
                     </div>
                     <!--end background-wrapper-->

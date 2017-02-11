@@ -24,6 +24,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->text('category');
+            $table->text('description');
             $table->timestamps();
         });
     }

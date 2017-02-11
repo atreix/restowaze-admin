@@ -8,7 +8,59 @@
 @section('main_container')
     <!-- page content -->
     <div id="page-content">
-        <div class="hero-section has-background height-600px">
+        <div class="hero-section full-screen has-map has-sidebar">
+            <div class="map-wrapper">
+                <div class="map" id="map-homepage"></div>
+            </div>
+            <div class="results-wrapper">
+                <div class="form search-form inputs-underline">
+                    <form>
+                        <div class="section-title">
+                            <h2>Search</h2>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="keyword" placeholder="Enter keyword">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <select class="form-control selectpicker" name="city">
+                                        <option value="0">Location</option>
+                                        @foreach ($locations as $key => $location)
+                                        <option value="{{ $key + 1 }}">{{ $location }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <select class="form-control selectpicker" name="category">
+                                        <option value="0">Category</option>
+                                        @foreach ($categories as $key => $category)
+                                        <option value="{{ $key + 1 }}">{{ $category }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" data-ajax-response="map" data-ajax-data-file="" data-ajax-auto-zoom="1" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="results">
+                    <div class="tse-scrollable">
+                        <div class="tse-content">
+                            <div class="section-title">
+                                <h2>Search Results<span class="results-number"></span></h2>
+                            </div>
+                            <div class="results-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="hero-section full-screen has-map has-sidebar">
             <div class="wrapper">
                 <div class="inner">
                     <div class="container">
@@ -16,7 +68,6 @@
                             <h1>Best Deals in One Place</h1>
                             <h2>With Locations you can find the best deals in your location</h2>
                         </div>
-                        <!--end page-title-->
                         <div class="row">
                             <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">
                                 <div class="form search-form horizontal">
@@ -26,28 +77,20 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="submit"><i class="arrow_right"></i></button>
                                             </span>
-                                        </div><!-- /input-group -->
+                                        </div>
                                     </form>
-                                    <!--end form-->
                                 </div>
-                            <!--end search-form-->
                             </div>
-                            <!--end col-md-10-->
                         </div>
-                        <!--end row-->
                     </div>
-                    <!--end container-->
                 </div>
-                <!--end inner-->
             </div>
-            <!--end wrapper-->
             <div class="background-wrapper">
                 <div class="bg-transfer opacity-30"><img src="assets/img/background-01.jpg" alt=""></div>
                 <div class="background-color background-color-black"></div>
             </div>
-            <!--end background-wrapper-->
         </div>
-        <!--end hero-section-->
+        -->
     </div>
     <div class="block">
             <div class="container">
