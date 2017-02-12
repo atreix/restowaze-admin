@@ -20,7 +20,7 @@
               <div class="box-tools">
                 <form name="search-user" method="get" action="{{ url('/admin/user/search') }}">
                   <div class="input-group input-group-sm" style="width: 250px;">
-                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                      <input type="text" name="table_search" class="form-control pull-right" placeholder="Search (name, email)">
                       <div class="input-group-btn">
                           <button type="submit" name="search" value="1" class="btn btn-default"><i class="fa fa-search"></i></button>
                       </div>

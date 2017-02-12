@@ -4,11 +4,11 @@ echo json_encode(
     $data = array(
         [
             'id' => 1,
-            'latitude' => 40.72807182,
-            'longitude' => -73.85735035,
+            'latitude' => 14.6763222,
+            'longitude' => 120.5321418,
             'featured' => 1,
-            'title' => "Marky's Restaurant",
-            'location' => "63 Birch Street",
+            'title' => "Fortune Hong Kong Seafood Restaurant",
+            'location' => "One Magnolia Place, Capitol Drive, San Jose, Balanga City, 2100, Bataan, Philippines",
             'city' => 1,
             'phone' => "361-492-2356",
             'email' => "hello@markys.com",
@@ -29,7 +29,7 @@ echo json_encode(
                 "Vegetarian"
             ),
             'additional_info' => "Average price $30",
-            'url' => "detail.html",
+            'url' => "{{ url('/detail', 1) }}",
             'description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis, arcu non hendrerit imperdiet, metus odio scelerisque elit, sed lacinia odio est ac felis. Nam ullamcorper hendrerit ullamcorper. Praesent quis arcu quis leo posuere ornare eu in purus. Nulla ornare rutrum condimentum. Praesent eu pulvinar velit. Quisque non finibus purus, eu auctor ipsum.",
             'reviews' => array(
                 [
@@ -60,11 +60,11 @@ echo json_encode(
 
         [
             'id' => 2,
-            'latitude' => 40.73925841,
-            'longitude' => -73.85348797,
+            'latitude' => 14.679667,
+            'longitude' => 120.541293,
             'featured' => 0,
-            'title' => "Ironapple",
-            'location' => "4209 Glenview Drive",
+            'title' => "The Plaza Hotel Balanga City",
+            'location' => "J.P. Rizal Street, Poblacion, City of Balanga, 2100 Bataan, Philippines",
             'city' => 1,
             'contact' => "989-410-0777",
             'category' => "Restaurant",
@@ -113,13 +113,15 @@ echo json_encode(
 
         [
             'id' => 3,
-            'address' => "Forest Hills, Queens, NY 11375, USA",
+            'address' => "Aguirre St., Poblacion ( beside St. Joseph 's Cathedral), Balanga City, Bataan, Philippines",
             'featured' => 0,
-            'title' => "Food Festival",
-            'location' => "23 Hillhaven Drive",
+            'latitude' => 14.679781,
+            'longitude' => 120.540335,
+            'title' => "Max's Restaurant",
+            'location' => "Aguirre St., Poblacion",
             'city' => 1,
             'contact' => "<i class='fa fa-phone'></i>323-843-4729",
-            'category' => "Event",
+            'category' => "Restaurant",
             'rating' => "5",
             'reviews_number' => "15",
             'marker_image' => "assets/img/items/4.jpg",
@@ -1330,4 +1332,3 @@ echo json_encode(
 
     )
 );
-

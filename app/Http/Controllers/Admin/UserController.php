@@ -83,9 +83,13 @@ class UserController extends Controller
                 'lastname' => $data['lastname'],
                 'name' => $data['username'],
                 'birthday' => $data['birthday'],
+                'gender' => ($data['gender'] == 'male') ? 1 : 0, // 1 = male; 0 = female
                 'email' => $data['email'],
+                'registeredIP' => $request->ip(),
                 'type' => self::ADMIN, // 1 = Admin; 2 = Customer (registered from main site)
             ]);
+
+
 
             if (!$create) {
                 abort(403);
@@ -110,11 +114,22 @@ class UserController extends Controller
 
     public function updateUserInfo(Request $request, $id)
     {
+        $data = $request->all();
+        $validator = Validator::make($data, array(
+            'username' => 'required|unique:users,name',
+            'birthday' => 'date',
+        ));
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
         if ($request->has('submit')) {
             $user = User::find($id);
 
             $user->name = $request->username;
             $user->birthday = $request->birthday;
+            $user->gender = $request->gender;
 
             $save = $user->save();
 

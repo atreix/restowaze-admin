@@ -29,6 +29,28 @@ class MainController extends Controller
             'Bagac'
         ];
 
+        $getLocation = \GooglePlaces::textSearch('Balanga City, Bataan', [
+            'location' => '14.6753824, 120.5316586',
+            'type' => 'restaurant',
+        ]);
+
+        $data['details'] = [];
+        $results = $getLocation['results'];
+        foreach ($results as $key => $result) {
+            $data['details'][] = [
+                'id' => $key+1,
+                'title' => $result['name'],
+                'location' => $result['formatted_address'],
+                'latitude' => $result['geometry']['location']['lat'],
+                'longitude' => $result['geometry']['location']['lng'],
+                'marker_image' => 'assets/img/items/1.jpg',
+                //'rating' => $result['rating'],
+            ];
+
+        }
+
+        //dd($data['details']);
+
         return view('home', $data);
     }
 

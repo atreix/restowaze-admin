@@ -18,6 +18,7 @@
         <link href="{{ asset('admin/css/smart_wizard.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/css/dropzone.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
 
     </head>
     @include('admin/layouts/header')
@@ -46,6 +47,24 @@
         <script type="text/javascript" src="{{ asset('admin/js/jquery.smartWizard.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/dropzone.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#birthday').datepicker({
+                  autoclose: true,
+                  minDate: new Date(1930, 1 - 1, 1),
+                  maxDate: '0'
+                });
+
+                $('#date-established').datepicker({
+                  autoclose: true,
+                  maxDate: '0'
+                });
+
+                $('.select2').select2();
+            });
+        </script>
+
     </body>
 </html>

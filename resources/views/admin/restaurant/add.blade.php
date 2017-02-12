@@ -54,6 +54,16 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="category">Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select category" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    @foreach ($categories as $category)
+                                    <option>{{ $category }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group has-feedback {{ $errors->has('website') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="website">
                                 Website <span class="required">*</span>

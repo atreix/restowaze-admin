@@ -17,10 +17,17 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
+        $categories = [
+            'Fine Dining',
+            'Fast food',
+            'Bar & Grill',
+            'Coffee shop',
+        ];
         $data = array(
             'module_name' => 'Restaurant',
             'module_page' => 'List',
             'restaurants' => Restaurants::latest()->paginate(10),
+            'categories' => $categories,
         );
 
         return view('admin/restaurant/list', $data);
@@ -47,9 +54,16 @@ class RestaurantController extends Controller
 
     public function addBasicInfo(Request $request)
     {
+        $categories = [
+            'Fine Dining',
+            'Fast food',
+            'Bar & Grill',
+            'Coffee shop',
+        ];
         return view('admin/restaurant/add', array(
             'module_name' => 'Restaurant',
             'module_page' => 'Create',
+            'categories' => $categories,
             'restoInfo' => $request->session()->get('restoInfo')
         ));
     }
