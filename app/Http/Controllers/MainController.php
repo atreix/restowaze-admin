@@ -43,13 +43,13 @@ class MainController extends Controller
                 'location' => $result['formatted_address'],
                 'latitude' => $result['geometry']['location']['lat'],
                 'longitude' => $result['geometry']['location']['lng'],
-                'marker_image' => 'assets/img/items/1.jpg',
-                //'rating' => $result['rating'],
+                'rating' => isset($result['rating']) ? $result['rating'] : '',
+                'type' => $result['types'][0],
             ];
 
         }
 
-        //dd($data['details']);
+        //dd($getLocation['results'], $data['details']);
 
         return view('home', $data);
     }
