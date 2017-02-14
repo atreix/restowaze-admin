@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Redirect;
 use App\Models\User;
 
 class SignInController extends Controller
 {
-    use AuthenticatesUsers;
     const USER = 2; // 1 = Admin; 2 = Customer (registered from main site)
 
     public function __construct()
@@ -49,7 +48,7 @@ class SignInController extends Controller
         ));
 
         if ($validator->fails()) {
-            return redirect()->back()->withInput(Input::except('_token'))->withErrors($validator);
+            return redirect()->back()->withInput()->withErrors($validator);
         }
 
         if ($validator) {
