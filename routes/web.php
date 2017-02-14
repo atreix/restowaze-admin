@@ -20,6 +20,12 @@ Route::get('/home', 'MainController@index')->name('restowaze-path');
 Route::get('/detail/{id}', 'MainController@showDetails');
 Route::post('/detail/{id}', 'MainController@createReview')->name('write-review');
 
+# Sign in
+Route::get('/signin', 'SignInController@index')->name('sign-in');
+Route::post('/signin', 'SignInController@doSignin')->name('sign-in');
+Route::get('/registration', 'SignInController@register')->name('registration');
+Route::post('/registration', 'SignInController@saveregister')->name('registration');
+
 
 # Admin site
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {

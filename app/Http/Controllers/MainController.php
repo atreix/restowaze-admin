@@ -46,7 +46,6 @@ class MainController extends Controller
                 'rating' => isset($result['rating']) ? $result['rating'] : '',
                 'type' => $result['types'][0],
             ];
-
         }
 
         //dd($getLocation['results'], $data['details']);

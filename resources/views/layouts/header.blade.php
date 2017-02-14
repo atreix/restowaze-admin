@@ -9,8 +9,12 @@
                 </div>
                 <div class="right">
                     <div class="secondary-nav">
-                        <a href="#" data-target="modal-sign-in">Sign In</a>
-                        <a href="#" class="promoted" data-target="modal-register">Register</a>
+                        @if (Auth::check())
+                        <a href="{{ url('/logout') }}">Sign Out</a>
+                        @else
+                        <a href="{{ route('sign-in') }}">Sign In</a>
+                        <a href="{{ route('registration') }}" class="promoted">Register</a>
+                        @endif
                     </div>
                 </div>
             </nav>

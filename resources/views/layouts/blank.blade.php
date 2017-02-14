@@ -45,6 +45,9 @@
         var showMarkerLabels = false; // next to every marker will be a bubble with title
         var mapDefaultZoom = 14; // default zoom
         heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarget, showMarkerLabels, mapDefaultZoom);
+
+        var element = "map-detail";
+        simpleMap(_latitude,_longitude, element);
     </script>
     </body>
 </html>

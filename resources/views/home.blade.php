@@ -142,9 +142,9 @@
                     @endforeach
                 </div>
                 <!--end row-->
-                <div class="center">
+                <!--<div class="center">
                     <a href="listing.html" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">View all listings</a>
-                </div>
+                </div>-->
             <!--end center-->
             </div>
             <!--end container-->
