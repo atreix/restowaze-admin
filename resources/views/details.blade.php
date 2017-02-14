@@ -36,29 +36,29 @@
                                     <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 2775px;">
                                     <div class="owl-item active" style="width: 555px;">
                                         <div class="image">
-                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img1.jpg');">
-                                                <img src="{{ url('/restaurant-logo/chowking-hero-img1.jpg') }}" alt="">
+                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-1.jpg');">
+                                                <img src="{{ url('/restaurant-logo/image-1.jpg') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item" style="width: 555px;">
                                         <div class="image">
-                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img2.jpg');">
-                                                <img src="{{ url('/restaurant-logo/chowking-hero-img2.jpg') }}" alt="">
+                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-2.jpg');">
+                                                <img src="{{ url('/restaurant-logo/image-2.jpg') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
                                         <div class="owl-item" style="width: 555px;">
                                             <div class="image">
-                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img3.jpg');">
-                                                    <img src="{{ url('/restaurant-logo/chowking-hero-img3.jpg') }}" alt="">
+                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-3.jpg');">
+                                                    <img src="{{ url('/restaurant-logo/image-3.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="owl-item" style="width: 555px;">
                                             <div class="image">
-                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/chowking-hero-img4.jpg');">
-                                                    <img src="{{ url('/restaurant-logo/chowking-hero-img4.jpg') }}" alt="">
+                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-4.jpg');">
+                                                    <img src="{{ url('/restaurant-logo/image-4.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +211,10 @@
                                 <!--end map-->
                                 <div class="content">
                                     <div class="vertical-aligned-elements">
-                                        <div class="element"><img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt=""></div>
+                                        <div class="element">
+                                            <!--<img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt="">-->
+                                            [LOGO HERE]
+                                        </div>
                                         <!--<div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>-->
                                     </div>
                                     <hr>
