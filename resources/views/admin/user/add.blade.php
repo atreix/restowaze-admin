@@ -77,10 +77,13 @@
                             <div class="col-sm-10">
                                 <div id="gender" class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" id="gender" name="gender" value="male"> &nbsp; Male &nbsp;
+                                        {{ Form::radio('gender', 1) }} &nbsp; Male &nbsp;
+                                        <!-- <input type="radio" id="gender" name="gender" value="male"> &nbsp; Male &nbsp; -->
                                     </label>
                                     <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" id="gender" name="gender" value="female"> Female
+                                        {{ Form::radio('gender', 0, true) }} Female 
+                                        <!-- <input type="radio" id="gender" name="gender" value="female"> Female -->
+
                                     </label>
                                 </div>
                             </div>

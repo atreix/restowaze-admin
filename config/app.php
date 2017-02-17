@@ -164,6 +164,8 @@ return [
 
         SKAgarwal\GoogleApi\ServiceProvider::class,
         'GoogleMaps\ServiceProvider\GoogleMapsServiceProvider',
+
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -214,6 +216,9 @@ return [
 		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
         'GooglePlaces' => SKAgarwal\GoogleApi\Facade::class,
         'GoogleMaps' => 'GoogleMaps\Facade\GoogleMapsFacade',
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];
