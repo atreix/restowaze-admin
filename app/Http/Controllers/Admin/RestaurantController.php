@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Restaurants;
+use App\Models\Menu;
 
 class RestaurantController extends Controller
 {
@@ -154,5 +155,60 @@ class RestaurantController extends Controller
         $deleted = $restoId->delete();
 
         return redirect()->route('getRestoList');
+    }
+
+    public function addMenu(Request $request)
+    {
+        $this->updateBasicInfo($request);
+    }
+
+    public function saveMenu(Request $request)
+    {
+        $requests = $request->all();
+
+        $validator = Validator::make($requests, array(
+            'name.*' => 'required|max:100',
+            'description.*' => 'required|max:500',
+            'type.*' => 'required',
+            'price.*' => 'required|numeric',
+        ));
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        unset($requests['_token']);
+        //$requests['restaurant_id'] = 2; // todo: change restaurant_id
+        //
+        dd($requests);
+        if ($validator) {
+
+            $menu = [];
+            foreach ($requests as $index => $name) {
+
+                echo $index;
+                foreach ($requests[$index] as $k => $name) {
+                    $menu[] = [
+                        'name' => $name,
+                        'description' => $name,
+                        'type' => $name,
+                        'price' => $name
+                    ];
+                }
+            }
+
+
+            dd($menu);
+
+
+
+            //dd($menu, $data);
+
+            //$create = $menu->save($menu);
+
+
+
+            //dd('2', $create);
+        }
     }
 }

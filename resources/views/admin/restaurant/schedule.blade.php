@@ -3,21 +3,16 @@
         <div class="col-md-4 col-sm-4 horizontal-input-title">
             <strong>Monday</strong>
         </div>
-        <!--end col-md-4-->
         <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <input type="text" class="form-control" name="open_hours[]" value="08:00">
             </div>
-            <!--end form-group-->
         </div>
-        <!--end col-md-4-->
         <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <input type="text" class="form-control" name="close_hours[]" value="20:00">
             </div>
-            <!--end form-group-->
         </div>
-        <!--end col-md-4-->
     </div>
     <!--end row-->
     <div class="row">

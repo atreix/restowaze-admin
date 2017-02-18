@@ -1,5 +1,20 @@
 <div class="x_panel">
-    <div class="x_title">
+    <div class="file-uploaded-images">
+        @if ( !empty($images) )
+            @foreach ($images as $image)
+            <div class="image">
+                <figure><i class="fa fa-close"></i></figure>
+                <img src="{{ $image->path }}" alt="">
+            </div>
+            @endforeach
+        @endif
+    </div>
+    <div class="file-upload-previews"></div>
+    <div class="file-upload">
+        <div class="MultiFile-wrap" id="MultiFile1"><input type="file" name="files[]" class="file-upload-input with-preview MultiFile-applied MultiFile" multiple="" title="Click to add files" maxlength="10" accept="gif|jpg|png" id="MultiFile1_F1" value=""></div>
+        <span>Click or drag images here</span>
+    </div>
+    <!--<div class="x_title">
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -9,5 +24,5 @@
         <br />
         <br />
         <br />
-    </div>
+    </div>-->
 </div>

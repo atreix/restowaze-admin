@@ -73,6 +73,12 @@
                     var parentElement = $(duplicateElement)[0].parentElement;
                     $(parentElement).append( $(duplicateElement)[0].outerHTML );
                 });
+
+                if( $("input[type=file].with-preview").length ){
+                    $("input.file-upload-input").MultiFile({
+                        list: ".file-upload-previews"
+                    });
+                }
             });
         </script>
 
