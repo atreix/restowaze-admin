@@ -180,7 +180,13 @@ class RestaurantController extends Controller
         unset($requests['_token']);
         //$requests['restaurant_id'] = 2; // todo: change restaurant_id
         //
-        dd($requests);
+
+        
+        //dd($requests);
+        
+        $menu = $this->merge_menu_items($requests['name'], $requests['description'], $requests['type'], $requests['price']);
+        dd($menu);
+        
         if ($validator) {
 
             $menu = [];
@@ -197,6 +203,7 @@ class RestaurantController extends Controller
                 }
             }
 
+            
 
             dd($menu);
 
@@ -211,4 +218,16 @@ class RestaurantController extends Controller
             //dd('2', $create);
         }
     }
+    
+    public function merge_menu_items (array $names, array $descs, array $types, array $prices) {
+    
+    	$menu = [];
+    
+    	foreach ($names as $key => $name) {
+    		$menu[] = [ 'name' => $name, 'description' => $descs[$key], 'type' => $types[$key], 'price' => $prices[$key] ] ;
+    	}
+    
+    	return $menu;
+    }
+    
 }
