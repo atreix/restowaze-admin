@@ -64,8 +64,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         ->name('add-basic-info');
     Route::post('/resto/add/basic-info', 'RestaurantController@saveBasicInfo');
 
+    # menu
     Route::get('/resto/add/menu', 'RestaurantController@addMenu');
     Route::post('/resto/add/menu', 'RestaurantController@saveMenu');
+
+    # gallery
+    Route::post('/resto/upload/gallery/{id}', 'GalleryController@saveGallery');
 
     # edit
     Route::get('/resto/update/{id}', 'RestaurantController@updateBasicInfo')

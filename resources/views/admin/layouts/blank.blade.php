@@ -31,26 +31,23 @@
         <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-        <!-- Custom Theme Scripts -->
-        <!-- FastClick -->
         <script src="{{ asset('admin/plugins/fastclick/fastclick.js') }}"></script>
-        <!-- AdminLTE App -->
         <script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
-        <!-- Sparkline -->
         <script src="{{ asset('admin/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-        <!-- jvectormap -->
         <script src="{{ asset('admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
         <script src="{{ asset('admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-        <!-- SlimScroll 1.3.0 -->
         <script src="{{ asset('admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-
-        <script type="text/javascript" src="{{ asset('admin/js/jquery.smartWizard.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/dropzone.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+                Dropzone.options.imageUpload = {
+                    maxFilesize: 5,
+                    acceptedFiles: ".jpeg,.jpg,.png"
+                };
+
                 $('#birthday').datepicker({
                     autoclose: true,
                     startDate: '-100y',
@@ -73,12 +70,6 @@
                     var parentElement = $(duplicateElement)[0].parentElement;
                     $(parentElement).append( $(duplicateElement)[0].outerHTML );
                 });
-
-                if( $("input[type=file].with-preview").length ){
-                    $("input.file-upload-input").MultiFile({
-                        list: ".file-upload-previews"
-                    });
-                }
             });
         </script>
 
