@@ -28,8 +28,8 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ route('getUserList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-                <li class="active"><a href="{{ route('add-user-info') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
+                <li class="active"><a href="{{ route('getUserList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+                <li><a href="{{ route('add-user-info') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
             </ul>
         </li>
         <li class="treeview">
@@ -40,8 +40,8 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{ URL::route('getRestoList') }}"><i class="fa fa-circle-o"></i> List</a></li>
-                <li class="active"><a href="{{ URL::route('add-basic-info') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
+                <li class="active"><a href="{{ URL::route('getRestoList') }}"><i class="fa fa-circle-o"></i> List</a></li>
+                <li><a href="{{ URL::route('add-basic-info') }}"><i class="fa fa-circle-o"></i> Create New</a></li>
             </ul>
         </li>
     </ul>

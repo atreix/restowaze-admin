@@ -52,17 +52,27 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#birthday').datepicker({
-                  autoclose: true,
-                  minDate: new Date(1930, 1 - 1, 1),
-                  maxDate: '0'
+                    autoclose: true,
+                    startDate: '-100y',
+                    endDate: 'today',
+                    todayHighlight: true
                 });
 
                 $('#date-established').datepicker({
-                  autoclose: true,
-                  maxDate: '0'
+                    autoclose: true,
+                    startDate: '-200y',
+                    endDate: 'today',
+                    todayHighlight: true
                 });
 
                 $('.select2').select2();
+
+                $(".duplicate").live("click", function(e){
+                    e.preventDefault();
+                    var duplicateElement = $(this).attr("href");
+                    var parentElement = $(duplicateElement)[0].parentElement;
+                    $(parentElement).append( $(duplicateElement)[0].outerHTML );
+                });
             });
         </script>
 
