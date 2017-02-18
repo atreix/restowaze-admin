@@ -23,7 +23,7 @@ class GalleryController extends Controller
         $restaurantId = Restaurants::find($id);
         if ($restaurantId) {
             // @todo: log to gallery table
-            Request::file('gallery')->store('restaurants');
+            $request->file('gallery')->store('restaurants');
 
             return back();
         }
