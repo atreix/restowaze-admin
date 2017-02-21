@@ -35,6 +35,7 @@
                   <th>ID</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Birthday</th>
                   <th>Create date</th>
                   <th>Action</th>
                 </tr>
@@ -48,6 +49,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ title_case($user->name) }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->birthday }}</td>
                         <td>{{ $user->created_at }}</td>
                         <td>
                             <a href="{{ route('edit-user-info', $user->id) }}" ><i class="fa fa-pencil"></i> </a>

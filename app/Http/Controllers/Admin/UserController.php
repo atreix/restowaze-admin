@@ -83,7 +83,7 @@ class UserController extends Controller
                 'lastname' => $data['lastname'],
                 'name' => $data['username'],
                 'birthday' => $data['birthday'],
-                'gender' => ($data['gender'] == 'male') ? 1 : 0, // 1 = male; 0 = female
+                'gender' => $data['gender'], // 1 = male; 0 = female
                 'email' => $data['email'],
                 'registeredIP' => $request->ip(),
                 'type' => self::ADMIN, // 1 = Admin; 2 = Customer (registered from main site)
@@ -116,7 +116,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, array(
-            'username' => 'required|unique:users,name',
+            //'username' => 'required|unique:users,name',
             'birthday' => 'date',
         ));
 
@@ -127,7 +127,7 @@ class UserController extends Controller
         if ($request->has('submit')) {
             $user = User::find($id);
 
-            $user->name = $request->username;
+            //$user->name = $request->username;
             $user->birthday = $request->birthday;
             $user->gender = $request->gender;
 

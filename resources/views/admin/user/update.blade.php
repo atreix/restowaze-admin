@@ -42,7 +42,7 @@
                             <label class="col-sm-2 control-label" for="user-name">Username <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" value="{{ $user->name }}" required>
+                                <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" value="{{ $user->name }}" disabled>
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,10 +50,14 @@
                             <div class="col-sm-10">
                                 <div id="gender" class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
+                                        {{ Form::radio('gender', 1) }} &nbsp; Male &nbsp;
+                                        <!-- <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp; -->
+
                                     </label>
                                     <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="female"> Female
+                                        {{ Form::radio('gender', 0, true) }} Female 
+                                        <!-- <input type="radio" name="gender" value="female"> Female -->
+
                                     </label>
                                 </div>
                             </div>
