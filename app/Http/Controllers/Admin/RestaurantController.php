@@ -11,24 +11,42 @@ use App\Models\Menu;
 
 class RestaurantController extends Controller
 {
-    public function __construct()
+	private $categories = [
+			'Fine Dining',
+			'Fast food',
+			'Bar & Grill',
+			'Coffee shop',
+	];
+	
+	private $municities = [
+			'Abucay',
+			'Bagac',
+			'Balanga',
+			'Dinalupihan',
+			'Hermosa',
+			'Limay',
+			'Mariveles',
+			'Morong',
+			'Orani',
+			'Orion',
+			'Pilar',
+			'Samal',
+	];
+	
+	
+	public function __construct()
     {
         $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
-        $categories = [
-            'Fine Dining',
-            'Fast food',
-            'Bar & Grill',
-            'Coffee shop',
-        ];
+
         $data = array(
             'module_name' => 'Restaurant',
             'module_page' => 'List',
             'restaurants' => Restaurants::latest()->paginate(10),
-            'categories' => $categories,
+            'categories' => $this->categories,
         );
 
         return view('admin/restaurant/list', $data);
@@ -55,16 +73,11 @@ class RestaurantController extends Controller
 
     public function addBasicInfo(Request $request)
     {
-        $categories = [
-            'Fine Dining',
-            'Fast food',
-            'Bar & Grill',
-            'Coffee shop',
-        ];
         return view('admin/restaurant/add', array(
             'module_name' => 'Restaurant',
             'module_page' => 'Create',
-            'categories' => $categories,
+            'categories' => $this->categories,
+        	'municities' => $this->municities,
             'restoInfo' => $request->session()->get('restoInfo')
         ));
     }
@@ -72,16 +85,21 @@ class RestaurantController extends Controller
     public function saveBasicInfo(Request $request)
     {
         $data = $request->all();
+        //dd($data);
+        
         $validator = Validator::make($data, array(
-            'name' => 'required|max:60',
+            'name' => 'required|max:60|unique:restaurants,name',
             'description' => 'required|max:500',
-            'website' => 'required|url',
+        	'category' => 'required|max:500',
+        	'website' => 'required|url',
+        	'bus_hours' => 'required|max:255',
             'owner_name' => 'required|max:255',
             'date_established' => 'required|date',
             'phone_number' => 'required|digits:11',
             'mobile_number' => 'digits:11',
             'email' => 'required|email|unique:restaurants,email',
             'address' => 'required|max:255',
+        	'municity' => 'required|max:500',
         ));
 
         if ($validator->fails()) {
@@ -92,13 +110,16 @@ class RestaurantController extends Controller
             $create = Restaurants::create([
                 'name' => $data['name'],
                 'description' => $data['description'],
+            	'category' => $data['category'],
                 'website' => $data['website'],
-                'owner' => $data['owner_name'],
+            	'bus_hours' => $data['bus_hours'],
+            	'owner' => $data['owner_name'],
                 'date_established' => $data['date_established'],
                 'phone_number' => $data['phone_number'],
                 'mobile_number' => $data['mobile_number'],
                 'email' => $data['email'],
                 'address' => $data['address'],
+            	'municipality' => $data['municity'],
             ]);
 
             if (!$create) {
@@ -118,6 +139,8 @@ class RestaurantController extends Controller
             return view('admin/restaurant/update', array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'Update',
+            	'categories' => $this->categories,
+	        	'municities' => $this->municities,
                 'restoInfo' => $restaurantInfo
             ));
         }
@@ -125,18 +148,24 @@ class RestaurantController extends Controller
 
     public function saveUpdateBasicInfo(Request $request, $id)
     {
+        $data = $request->all();
+        //dd($data);
+    	
         if ($request->has('submit')) {
             $restaurant = Restaurants::find($id);
 
             $restaurant->name = $request->name;
             $restaurant->description = $request->description;
+            $restaurant->category = $request->category;
             $restaurant->website = $request->website;
+            $restaurant->bus_hours = $request->bus_hours;
             $restaurant->owner = $request->owner_name;
             $restaurant->date_established = $request->date_established;
             $restaurant->phone_number = $request->phone_number;
             $restaurant->mobile_number = $request->mobile_number;
             $restaurant->email = $request->email;
             $restaurant->address = $request->address;
+            $restaurant->municipality = $request->municity;
 
             $save = $restaurant->save();
 
@@ -180,7 +209,13 @@ class RestaurantController extends Controller
         unset($requests['_token']);
         //$requests['restaurant_id'] = 2; // todo: change restaurant_id
         //
-        dd($requests);
+
+        
+        //dd($requests);
+        
+        $menu = $this->merge_menu_items($requests['name'], $requests['description'], $requests['type'], $requests['price']);
+        dd($menu);
+        
         if ($validator) {
 
             $menu = [];
@@ -197,6 +232,7 @@ class RestaurantController extends Controller
                 }
             }
 
+            
 
             dd($menu);
 
@@ -211,4 +247,16 @@ class RestaurantController extends Controller
             //dd('2', $create);
         }
     }
+    
+    public function merge_menu_items (array $names, array $descs, array $types, array $prices) {
+    
+    	$menu = [];
+    
+    	foreach ($names as $key => $name) {
+    		$menu[] = [ 'name' => $name, 'description' => $descs[$key], 'type' => $types[$key], 'price' => $prices[$key] ] ;
+    	}
+    
+    	return $menu;
+    }
+    
 }

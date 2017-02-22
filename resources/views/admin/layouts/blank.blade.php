@@ -49,6 +49,7 @@
                 };
 
                 $('#birthday').datepicker({
+                    format: 'yyyy/mm/dd',
                     autoclose: true,
                     startDate: '-100y',
                     endDate: 'today',
@@ -56,6 +57,7 @@
                 });
 
                 $('#date-established').datepicker({
+                    format: 'yyyy/mm/dd',
                     autoclose: true,
                     startDate: '-200y',
                     endDate: 'today',

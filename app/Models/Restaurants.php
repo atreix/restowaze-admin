@@ -17,7 +17,8 @@ class Restaurants extends Model
     protected $fillable = [
         'name', 'date_established', 'owner', 'description',
         'phone_number', 'mobile_number', 'email',
-        'address', 'website', 'created_at', 'updated_at', 'deleted_at'
+        'address', 'category', 'website', 'created_at', 'updated_at', 'deleted_at', 
+    	'municipality', 'bus_hours'
     ];
 
     protected $dates = ['deleted_at'];

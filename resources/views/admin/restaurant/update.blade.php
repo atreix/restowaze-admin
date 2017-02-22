@@ -58,12 +58,28 @@
                                         @endif
                                     </div>
                                 </div>
+                        		<div class="form-group">
+                            		<label class="col-sm-2 control-label" for="category">
+                                 		Category <span class="required">*</span>
+                            		</label>
+                            		<div class="col-sm-10">
+                                		<select class="form-control select2 select2-hidden-accessible" name="category" id="category" data-placeholder="Select category" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                	    	@foreach ($categories as $category)
+                                	    	<option @if ($category == $restoInfo->category)
+                                	    				selected
+                                	    			@endif >
+                                	    			{{ $category }} 
+                                	    	</option>
+                                	    	@endforeach
+                                		</select>
+                            		</div>
+                        		</div>
                                 <div class="form-group has-feedback {{ $errors->has('website') ? ' has-error' : '' }}">
                                     <label class="col-sm-2 control-label" for="website">
                                         Website <span class="required">*</span>
                                     </label>
                                     <div class="col-sm-10">
-                                        <input type="url" class="form-control" id="website" name="website" placeholder="www.restowaze.com" value="{{ $restoInfo->website }}">
+                                        <input type="url" class="form-control" id="website" name="website" placeholder="http://www.restowaze.com" value="{{ $restoInfo->website }}">
                                         @if ($errors->has('website'))
                                             <span class="help-block">
                                               <strong>{{ $errors->first('website') }}</strong>
@@ -84,6 +100,19 @@
                                         @endif
                                     </div>
                                 </div>
+                        <div class="form-group has-feedback {{ $errors->has('bus_hours') ? ' has-error' : '' }}">
+                            <label class="col-sm-2 control-label" for="description">
+                                Business Hours <span class="required">*</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="6" id="bus_hours" name="bus_hours" placeholder="Enter business hours..." >{{ $restoInfo->bus_hours }}</textarea>
+                                @if ($errors->has('bus_hours'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('bus_hours') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                                 <div class="form-group has-feedback {{ $errors->has('date_established') ? ' has-error' : '' }}">
                                     <label class="col-sm-2 control-label" for="date-established">
                                         Date Established <span class="required">*</span>
@@ -177,6 +206,35 @@
                                         @endif
                                     </div>
                                 </div>
+                        		<div class="form-group has-feedback {{ $errors->has('municity') ? ' has-error' : '' }}">
+                            		<label class="col-sm-2 control-label" for="municity">
+                                		City/Municipality <span class="required">*</span>
+		                            </label>
+        		                    <div class="col-sm-10">
+        		                        <div class="input-group date">
+        		                            <div class="input-group-addon">
+        		                                <i class="fa fa-map"></i>
+        		                            </div>
+        		                            
+        		                            <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
+        		                            @foreach ($municities as $municity)
+        		                            <option @if ($municity == $restoInfo->municity)
+        		                            			selected
+        		                            		@endif> 
+        		                            		{{ $municity }}
+        		                            </option>
+        		                            @endforeach
+        		                        </select>
+                                    
+        		                        </div>
+        		                        @if ($errors->has('municipality'))
+        		                            <span class="help-block">
+        		                              <strong>{{ $errors->first('municipality') }}</strong>
+        		                            </span>
+        		                        @endif
+        		                    </div>
+        		                </div>
+
                             </section>
                             <!--<section>
                                 <h3 class="box-title">Gallery</h3>
