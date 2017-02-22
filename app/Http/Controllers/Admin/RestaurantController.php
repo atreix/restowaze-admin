@@ -139,6 +139,8 @@ class RestaurantController extends Controller
             return view('admin/restaurant/update', array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'Update',
+            	'categories' => $this->categories,
+	        	'municities' => $this->municities,
                 'restoInfo' => $restaurantInfo
             ));
         }
@@ -146,6 +148,9 @@ class RestaurantController extends Controller
 
     public function saveUpdateBasicInfo(Request $request, $id)
     {
+        $data = $request->all();
+        //dd($data);
+    	
         if ($request->has('submit')) {
             $restaurant = Restaurants::find($id);
 
