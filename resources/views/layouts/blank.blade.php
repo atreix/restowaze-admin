@@ -4,7 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name') }}</title>
 
@@ -36,6 +37,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/maps.js') }}"></script>
 
     <script type="text/javascript">
+
         var optimizedDatabaseLoading = 0;
         var _latitude = 14.6753824;
         var _longitude = 120.5316586;
@@ -48,6 +50,16 @@
 
         var element = "map-detail";
         simpleMap(_latitude,_longitude, element);
+
+
+        $.ajax({
+            url: $('#map-restaurants').val(),
+            type: 'POST',
+            complete: function (response) {
+                console.log(response);
+
+            },
+        });
     </script>
     </body>
 </html>

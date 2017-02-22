@@ -1,4 +1,6 @@
 <body class="homepage">
+    <input type="hidden" id="map-restaurantsx" name="map-restaurantsx" value="assets/external/data.php" />
+    <input type="hidden" id="map-restaurants" name="map-restaurants" value="http://127.0.0.1:9003/get-restaurants" />
     <div class="page-wrapper">
         <header id="page-header">
             <nav>

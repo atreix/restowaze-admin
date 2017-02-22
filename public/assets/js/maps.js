@@ -32,6 +32,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
         // Load necessary data for markers using PHP (from database) after map is loaded and ready ---------------------
 
         var allMarkers;
+        var sUrl = $('#map-restaurants').val();
 
         //  When optimization is enabled, map will load the data in Map Bounds every time when it's moved. Otherwise will load data at once
 
@@ -48,13 +49,13 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                     if( markerCluster != undefined ){
                         markerCluster.clearMarkers();
                     }
-                    loadData("assets/external/data.php", ajaxData);
+                    loadData(sUrl, ajaxData);
                 }
             });
         }
         else {
             google.maps.event.addListenerOnce(map, 'idle', function(){
-                loadData("assets/external/data.php");
+                loadData(sUrl);
             });
         }
 
@@ -433,9 +434,12 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
         function loadData(url, ajaxData){
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: url,
                 dataType: "json",
-                method: "POST",
+                type: "POST",
                 data: ajaxData,
                 cache: false,
                 success: function(results){

@@ -215,7 +215,7 @@
                                             <!--<img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt="">-->
                                             [LOGO HERE]
                                         </div>
-                                        <!--<div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>-->
+                                        <div class="element text-align-right"><a href="{{ url('/get-direction') }}" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
                                     </div>
                                     <hr>
                                     <address>

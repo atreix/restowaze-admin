@@ -28,8 +28,8 @@ class MainController extends Controller
             'Orani',
             'Bagac'
         ];
-
-        $getLocation = \GooglePlaces::textSearch('Balanga City, Bataan', [
+$data['details'] = [];
+        /*$getLocation = \GooglePlaces::textSearch('Balanga City, Bataan', [
             'location' => '14.6753824, 120.5316586',
             'type' => 'restaurant',
         ]);
@@ -46,7 +46,7 @@ class MainController extends Controller
                 'rating' => isset($result['rating']) ? $result['rating'] : '',
                 'type' => $result['types'][0],
             ];
-        }
+        }*/
 
         //dd($getLocation['results'], $data['details']);
 

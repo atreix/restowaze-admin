@@ -189,12 +189,13 @@
                                 Address <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <div class="input-group date">
+                                <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-map"></i>
                                     </div>
                                     <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}">
                                 </div>
+                                <a href="#" data-toggle="modal" data-target="#get-location" class="btn btn-link pull-right"> Locate on map </a>
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('address') }}</strong>
@@ -232,6 +233,27 @@
                         </div>
                         
                     </section>
+                    <div class="example-modal">
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get-location" aria-hidden="true"  id="get-location">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Locate your address</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="mapCanvas" style="width: 500px; height: 400px"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--<section>
                         <h3 class="box-title">Gallery</h3>
                         <form class="dropzone dz-clickable">
