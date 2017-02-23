@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Gallery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,4 +23,10 @@ class Restaurants extends Model
     ];
 
     protected $dates = ['deleted_at'];
+    
+    
+    public function gallery() {
+    	return $this->hasMany(Gallery::class, 'restaurant_id');
+    }
+    
 }
