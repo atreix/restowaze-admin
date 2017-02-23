@@ -35,21 +35,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                               <!-- <div class="image">
-                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-2.jpg');">
-                                        <img src="{{ url('/restaurant-logo/image-2.jpg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="image">
-                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-3.jpg');">
-                                        <img src="{{ url('/restaurant-logo/image-3.jpg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="image">
-                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-4.jpg');">
-                                        <img src="{{ url('/restaurant-logo/image-4.jpg') }}" alt="">
-                                    </div>
-                                </div>-->
                             </div>
                         </div>
                     </section>
@@ -82,21 +67,30 @@
                     </section>
                     <section>
                         <h2>Reviews</h2>
+                        @if (!empty($reviews))
+                        @foreach ($reviews as $review)
                         <div class="review">
                             <div class="image">
-                                <div class="bg-transfer"><img src="{{ url('/assets/img/person-02.jpg') }}" alt=""></div>
+                                <div class="bg-transfer"><img src="{{ Gravatar::src($review['from'] ? $review['from'] : 'restowaze@gmail.com') }}" class="user-image" alt="User Image"></div>
                             </div>
                             <div class="description">
                                 <figure>
-                                    <div class="rating-passive" data-rating="4">
+                                    <div class="rating-passive" data-rating="{{ $review['rating'] }}">
                                         <span class="stars"></span>
-                                        <span class="reviews">6</span>
+                                        <span class="reviews"></span>
                                     </div>
-                                    <span class="date">09.05.2016</span>
+                                    <span class="user">by : {{ $review['from'] }}</span>
+                                    <span class="date">{{ date('m.d.Y', strtotime($review['created_at'])) }}</span>
                                 </figure>
-                                <p>Donec nec tristique sapien. Aliquam ante felis, sagittis sodales diam sollicitudin, dapibus semper turpis</p>
+                                <p>
+                                    <strong> {{ title_case($review['subject']) }} </strong>
+                                    {{ $review['message'] }}
+                                </p>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
+                       
                         <!--end review-->
                     </section>
                     <input type="hidden" id="latitude" value="{{ $details['latitude'] }}" />
@@ -179,7 +173,7 @@
                                         <figure><i class="fa fa-map-marker"></i>{{ $details['address'] }}</figure>
                                         <figure><i class="fa fa-envelope"></i><a href="#">{{ $details['email'] }}</a></figure>
                                         <figure><i class="fa fa-phone"></i>{{ $details['phone_number'] }}</figure>
-                                        <figure><i class="fa fa-globe"></i><a href="#"> {{ $details['id'] }}</a></figure>
+                                        <figure><i class="fa fa-globe"></i><a href="{{ $details['website'] }}"> visit our page </a></figure>
                                     </address>
                                 </div>
                             </section>
