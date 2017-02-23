@@ -12,8 +12,8 @@
         <div class="col-md-9 col-sm-9">
             <section class="page-title">
                 <div class="pull-left">
-                    <h1>{{ $name }}</h1>
-                    <h3>{{ $address }}</h3>
+                    <h1>{{ $details['name'] }}</h1>
+                    <h3>{{ $details['address'] }}</h3>
                     <div class="rating-passive" data-rating="4">
                         <span class="stars"></span>
                         <span class="reviews">6</span>
@@ -27,12 +27,15 @@
                     <section>
                         <div class="gallery detail">
                             <div class="owl-carousel" data-owl-nav="0" data-owl-dots="1">
+                            
+                                @foreach ($galleries as $gallery)
                                 <div class="image">
-                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-1.jpg');">
-                                        <img src="{{ url('/restaurant-logo/image-1.jpg') }}" alt="">
+                                    <div class="bg-transfer" style="background-image: url({{ $gallery }});">
+                                        <img src="{{ url('/') }}/app/{{ $gallery }}" alt="">
                                     </div>
                                 </div>
-                                <div class="image">
+                                @endforeach
+                               <!-- <div class="image">
                                     <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-2.jpg');">
                                         <img src="{{ url('/restaurant-logo/image-2.jpg') }}" alt="">
                                     </div>
@@ -46,7 +49,7 @@
                                     <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-4.jpg');">
                                         <img src="{{ url('/restaurant-logo/image-4.jpg') }}" alt="">
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </section>
@@ -54,7 +57,7 @@
                         <section>
                             <h2>About this Restaurant</h2>
                             <p>
-                                {{ $description }}
+                                {{ $details['description'] }}
                             </p>
                         </section>
                     </section>
@@ -96,11 +99,11 @@
                         </div>
                         <!--end review-->
                     </section>
-                    <input type="hidden" id="latitude" value="{{ $latitude }}" />
-                    <input type="hidden" id="longitude" value="{{ $longitude }}" />
+                    <input type="hidden" id="latitude" value="{{ $details['latitude'] }}" />
+                    <input type="hidden" id="longitude" value="{{ $details['longitude'] }}" />
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
-                        <form class="clearfix form inputs-underline" method="post" action="{{ route('write-review', $id) }}">
+                        <form class="clearfix form inputs-underline" method="post" action="{{ route('write-review', $details['id']) }}">
                             <div class="box">
                                 <div class="comment">
                                     <div class="row">
@@ -171,10 +174,10 @@
                                     </div>
                                     <hr>
                                     <address>
-                                        <figure><i class="fa fa-map-marker"></i>{{ $address }}</figure>
-                                        <figure><i class="fa fa-envelope"></i><a href="#">{{ $email }}</a></figure>
-                                        <figure><i class="fa fa-phone"></i>{{ $phone_number }}</figure>
-                                        <figure><i class="fa fa-globe"></i><a href="#">{{ $website }}</a></figure>
+                                        <figure><i class="fa fa-map-marker"></i>{{ $details['address'] }}</figure>
+                                        <figure><i class="fa fa-envelope"></i><a href="#">{{ $details['email'] }}</a></figure>
+                                        <figure><i class="fa fa-phone"></i>{{ $details['phone_number'] }}</figure>
+                                        <figure><i class="fa fa-globe"></i><a href="#"> {{ $details['id'] }}</a></figure>
                                     </address>
                                 </div>
                             </section>
@@ -184,7 +187,7 @@
                     <section>
                         <h2>Opening hours</h2>
                         <ul class="tags">
-                            <li>{{ $openinghours }}</li>
+                            <li>{{ $details['openinghours'] }}</li>
                         </ul>
                     </section>
                 </div>

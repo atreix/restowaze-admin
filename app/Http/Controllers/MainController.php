@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Models\Restaurants;
+use App\Models\Gallery;
 
 class MainController extends Controller
 {
@@ -35,7 +36,6 @@ class MainController extends Controller
     public function index()
     {
         $restaurants = Restaurants::latest()->take(10)->get();
-
         $details = [];
         foreach ($restaurants as $restaurant) {
             $address = explode(',', $restaurant->address);
@@ -45,6 +45,7 @@ class MainController extends Controller
                 'category' => $restaurant->category,
                 'location' => $address[0] . ',' . $address[1],
                 'rating' => 6,
+                'primary_photo' => $this->getGalleryByRestaurant($restaurant->id),
                 //'review' => $restaurant->review,
             ];
         }
@@ -58,6 +59,21 @@ class MainController extends Controller
         return view('home', $data);
     }
 
+    public function getGalleryByRestaurant($id)
+    {
+        $result = '';
+        $gallery = Gallery::where('restaurant_id', '=', $id)
+            ->get()
+            ->pluck('path')
+            ->toArray();
+
+        if ($gallery) {
+            $result = collect($gallery)->random();
+        }
+
+        return $result;
+    }
+
     public function showDetails($id)
     {
         $findId = Restaurants::find($id);
@@ -66,10 +82,15 @@ class MainController extends Controller
             abort(404);
         }
 
+        $data['galleries'] = Gallery::where('restaurant_id', '=', $id)
+            ->get()
+            ->pluck('path')
+            ->toArray();
+
         $restaurant = Restaurants::where('id', '=', $id)->get()->first();
 
         $address = explode(',', $restaurant->address);
-        $details = [
+        $data['details'] = [
             'id' => $restaurant->id,
             'name' => title_case($restaurant->name),
             'category' => $restaurant->category,
@@ -86,7 +107,7 @@ class MainController extends Controller
             //'review' => $restaurant->review,
         ];
 
-        return view('details', $details);
+        return view('details', $data);
     }
 
 }
