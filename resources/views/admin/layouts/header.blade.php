@@ -5,7 +5,8 @@
       <span class="logo-mini"><b>RW</b>A</span>
       <span class="logo-lg"><b>Restowaze</b>Admin</span>
     </a>
-
+  <input type="hidden" id="map-restaurant" value="{{ url('/') }}" />
+  <input type="hidden" id="marker-img" value="{{ asset('/assets/img/marker.png') }}" />
     <nav class="navbar navbar-static-top">
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>

@@ -26,6 +26,11 @@ Route::post('/signin', 'SignInController@doSignin')->name('sign-in');
 Route::get('/registration', 'SignInController@register')->name('registration');
 Route::post('/registration', 'SignInController@saveregister')->name('registration');
 
+Route::get('/get-direction', 'GetDirectionController@index');
+Route::get('/get-restaurants', 'GetDirectionController@postRestaurants');
+Route::post('/get-restaurants', 'GetDirectionController@postRestaurants');
+Route::get('/get-location-by-restaurant', 'GetDirectionController@getLocationByRestaurant');
+
 
 # Admin site
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {

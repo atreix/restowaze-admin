@@ -26,8 +26,8 @@
                                 <div class="form-group">
                                     <select class="form-control selectpicker" name="city">
                                         <option value="0">Location</option>
-                                        @foreach ($locations as $key => $location)
-                                        <option value="{{ $key + 1 }}">{{ $location }}</option>
+                                        @foreach ($municities as $key => $municity)
+                                        <option value="{{ $key + 1 }}">{{ $municity }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -111,13 +111,13 @@
                             <a href="{{ url('/detail', $detail['id']) }}">
                                 <div class="description">
                                     <!--<figure>Average Price: $8 - $30</figure>-->
-                                    <div class="label label-default">{{ $detail['type'] }}</div>
-                                    <h3>{{ $detail['title'] }}</h3>
+                                    <div class="label label-default">{{ $detail['category'] }}</div>
+                                    <h3>{{ $detail['name'] }}</h3>
                                     <h4>{{ $detail['location'] }}</h4>
                                 </div>
                                 <!--end description-->
                                 <div class="image bg-transfer">
-                                        <img src="assets/img/items/1.jpg" alt="">
+                                        <img src="{{ url('assets/img/items/1.jpg') }}" alt="">
                                 </div>
                                 <!--end image-->
                             </a>
@@ -126,13 +126,13 @@
                                     <span class="stars"></span>
                                     <!--<span class="reviews">6</span>-->
                                 </div>
-                                <div class="controls-more">
+                                <!--<div class="controls-more">
                                     <ul>
                                         <li><a href="#">Add to favorites</a></li>
                                         <li><a href="#">Add to watchlist</a></li>
                                         <li><a href="#" class="quick-detail">Quick detail</a></li>
                                     </ul>
-                                </div>
+                                </div>-->
                                 <!--end controls-more-->
                             </div>
                             <!--end additional-info-->
@@ -169,8 +169,8 @@
                                             <h4>4209 Glenview Drive</h4>
                                         </div>
                                         <!--end description-->
-                                        <div class="image bg-transfer" style="background-image: url(&quot;assets/img/items/2.jpg&quot;);">
-                                            <img src="assets/img/items/2.jpg" alt="">
+                                        <div class="image bg-transfer" style="background-image: url('../assets/img/items/2.jpg');">
+                                            <img src="{{ url('../assets/img/items/2.jpg') }}" alt="">
                                         </div>
                                         <!--end image-->
                                     </a>

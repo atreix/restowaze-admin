@@ -18,7 +18,7 @@ class RestaurantController extends Controller
 			'Bar & Grill',
 			'Coffee shop',
 	];
-	
+
 	private $municities = [
 			'Abucay',
 			'Bagac',
@@ -33,8 +33,8 @@ class RestaurantController extends Controller
 			'Pilar',
 			'Samal',
 	];
-	
-	
+
+
 	public function __construct()
     {
         $this->middleware('auth');
@@ -42,7 +42,6 @@ class RestaurantController extends Controller
 
     public function index(Request $request)
     {
-
         $data = array(
             'module_name' => 'Restaurant',
             'module_page' => 'List',
@@ -87,7 +86,7 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
         //dd($data);
-        
+
         $validator = Validator::make($data, array(
             'name' => 'required|max:60|unique:restaurants,name',
             'description' => 'required|max:500',
@@ -120,7 +119,9 @@ class RestaurantController extends Controller
                 'mobile_number' => $data['mobile_number'],
                 'email' => $data['email'],
                 'address' => $data['address'],
-            	'municipality' => $data['municity'],
+                'municipality' => $data['municity'],
+                'latitude' => $data['latitude'],
+            	'longitude' => $data['longitude'],
             ]);
 
             if (!$create) {
@@ -163,7 +164,7 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
         //dd($data);
-    	
+
         if ($request->has('submit')) {
             $restaurant = Restaurants::find($id);
 
@@ -223,12 +224,12 @@ class RestaurantController extends Controller
         //$requests['restaurant_id'] = 2; // todo: change restaurant_id
         //
 
-        
+
         //dd($requests);
-        
+
         $menu = $this->merge_menu_items($requests['name'], $requests['description'], $requests['type'], $requests['price']);
         dd($menu);
-        
+
         if ($validator) {
 
             $menu = [];
@@ -245,7 +246,7 @@ class RestaurantController extends Controller
                 }
             }
 
-            
+
 
             dd($menu);
 
@@ -260,16 +261,16 @@ class RestaurantController extends Controller
             //dd('2', $create);
         }
     }
-    
+
     public function merge_menu_items (array $names, array $descs, array $types, array $prices) {
-    
+
     	$menu = [];
-    
+
     	foreach ($names as $key => $name) {
     		$menu[] = [ 'name' => $name, 'description' => $descs[$key], 'type' => $types[$key], 'price' => $prices[$key] ] ;
     	}
-    
+
     	return $menu;
     }
-    
+
 }

@@ -64,7 +64,7 @@
                                     <option @if ($category == old('category'))
                                     			selected
                                     		@endif >
-                                    		{{ $category }} 
+                                    		{{ $category }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -95,7 +95,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>                        
+                        </div>
                         <div class="form-group has-feedback {{ $errors->has('bus_hours') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="description">
                                 Business Hours <span class="required">*</span>
@@ -189,12 +189,13 @@
                                 Address <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <div class="input-group date">
+                                <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-map"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}">
+                                    <input type="text" class="form-control" id="address-autocomplete" name="address" placeholder="Address" value="{{ old('address') }}">
                                 </div>
+                                <a href="#" data-toggle="modal" data-target="#get-location" class="btn btn-link pull-right"> Locate on map </a>
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('address') }}</strong>
@@ -207,22 +208,15 @@
                                 City/Municipality <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    
-                                    <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                     @foreach ($municities as $municity)
                                     <option @if ($municity == old('municity'))
                                     			selected
-                                    		@endif> 
+                                    		@endif>
                                     		{{ $municity }}
                                     </option>
                                     @endforeach
                                 </select>
-                                    
-                                </div>
                                 @if ($errors->has('municipality'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('municipality') }}</strong>
@@ -230,51 +224,36 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                     </section>
-                    <!--<section>
-                        <h3 class="box-title">Gallery</h3>
-                        <form class="dropzone dz-clickable">
-                            <div class="dz-default dz-message">
-                                <span>Click or drag images here</span>
-                            </div>
-                        </form>
-                    </section>
-                    <section>
-                        <h3 class="box-title">Menu <small class="note">(optional)</small></h3>
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h4 class="panel-title">
-                                    <i class="fa fa-cutlery"></i>
-                                    Add restaurant menu
-                                </h4>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="example-modal">
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get-location" aria-hidden="true"  id="get-location">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Locate your address</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="map shadow" style="width: 568px; height: 400px" id="map-submit"></div>
+                                        <!--end map-->
+                                        <div class="form-group hidden">
+                                            <input type="text" class="form-control" id="latitude" name="latitude" value="" />
+                                            <input type="text" class="form-control" id="longitude" name="longitude" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="box-body">
-                                The body of the box
-                            </div>
                         </div>
-                    </section>
-                    <section>
-                        <h3 class="box-title">Opening Hours <small>(optional)</small></h3>
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h4 class="panel-title">
-                                    <i class="fa fa-clock-o"></i>
-                                    Add opening hours
-                                </h4>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                The body of the box
-                            </div>
-                        </div>
-                    </section>-->
+                    </div>
                 </div>
+
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
                     <button type="submit" class="btn btn-info pull-right submit" id="send">Submit</button>

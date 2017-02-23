@@ -19,7 +19,7 @@ class Restaurants extends Model
         'name', 'date_established', 'owner', 'description',
         'phone_number', 'mobile_number', 'email',
         'address', 'category', 'website', 'created_at', 'updated_at', 'deleted_at', 
-    	'municipality', 'bus_hours'
+    	'municipality', 'bus_hours', 'latitude', 'longitude'
     ];
 
     protected $dates = ['deleted_at'];

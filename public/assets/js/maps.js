@@ -32,6 +32,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
         // Load necessary data for markers using PHP (from database) after map is loaded and ready ---------------------
 
         var allMarkers;
+        var sUrl = $('#map-restaurants').val();
 
         //  When optimization is enabled, map will load the data in Map Bounds every time when it's moved. Otherwise will load data at once
 
@@ -48,13 +49,13 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                     if( markerCluster != undefined ){
                         markerCluster.clearMarkers();
                     }
-                    loadData("assets/external/data.php", ajaxData);
+                    loadData(sUrl, ajaxData);
                 }
             });
         }
         else {
             google.maps.event.addListenerOnce(map, 'idle', function(){
-                loadData("assets/external/data.php");
+                loadData(sUrl);
             });
         }
 
@@ -86,7 +87,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                     thumbnailImage = markers[i]["marker_image"];
                 }
                 else {
-                    thumbnailImage = "assets/img/items/default.png";
+                    thumbnailImage = "../assets/img/items/default.png";
                 }
 
                 if( markers[i]["featured"] == 1 ){
@@ -189,7 +190,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             function openInfobox(id, _this, i){
                 $.ajax({
-                    url: "assets/external/infobox.php",
+                    url: $('#map-restaurants').val() + "/assets/external/infobox.php",
                     dataType: "html",
                     data: { id: id },
                     method: "POST",
@@ -203,7 +204,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                             boxClass: "infobox-wrapper",
                             enableEventPropagation: true,
                             closeBoxMargin: "0px 0px -8px 0px",
-                            closeBoxURL: "assets/img/close-btn.png",
+                            closeBoxURL: "../assets/img/close-btn.png",
                             infoBoxClearance: new google.maps.Size(1, 1)
                         };
 
@@ -273,9 +274,9 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             function openSidebarDetail(id){
                 $.ajax({
-                    url: "assets/external/sidebar_detail.php",
+                    url: $('#map-restaurants').val() + "/assets/external/sidebar_detail.php",
                     data: { id: id },
-                    method: "POST",
+                    type: "POST",
                     success: function(results){
                         $(".sidebar-wrapper").html(results);
                         $(".results-wrapper").removeClass("loading");
@@ -324,7 +325,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             var clusterStyles = [
                 {
-                    url: 'assets/img/cluster.png',
+                    url: '../assets/img/cluster.png',
                     height: 36,
                     width: 36
                 }
@@ -362,8 +363,8 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                 // Ajax load data for sidebar results after markers are placed
 
                 $.ajax({
-                    url: "assets/external/sidebar_results.php",
-                    method: "POST",
+                    url: $('#map-restaurants').val() + "/assets/external/sidebar_results.php",
+                    type: "POST",
                     data: { markers: visibleMarkersId },
                     success: function(results){
                         resultsArray.push(results); // push the results from php into array
@@ -433,9 +434,12 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
         function loadData(url, ajaxData){
             $.ajax({
-                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url + '/get-restaurants',
                 dataType: "json",
-                method: "POST",
+                type: "POST",
                 data: ajaxData,
                 cache: false,
                 success: function(results){
@@ -529,7 +533,7 @@ function simpleMap(_latitude,_longitude, element, markerDrag, place){
             position: mapCenter,
             map: map,
             draggable: markerDrag,
-            content: "<img src='assets/img/marker.png'>",
+            content: '<img src="'+ $('#marker-img').val() +'">',
             flat: true
         });
         google.maps.event.addListener(marker, "dragend", function () {
@@ -551,8 +555,19 @@ function autoComplete(map, marker){
         if( !map ){
             map = new google.maps.Map(document.getElementById("address-autocomplete"));
         }
+
+        var defaultBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(14.6826349, 120.3926858)
+        );
+
+        var options = {
+            componentRestrictions: {country: "PH"},
+            bounds: defaultBounds,
+            types: ['establishment']
+        };
+        
         var input = document.getElementById('address-autocomplete');
-        var autocomplete = new google.maps.places.Autocomplete(input);
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.bindTo('bounds', map);
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
