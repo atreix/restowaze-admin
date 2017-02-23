@@ -18,7 +18,8 @@
         <link href="{{ asset('admin/css/smart_wizard.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/css/dropzone.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('admin/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('admin/css/magnific-popup.css') }}" rel="stylesheet" type="text/css">
 
     </head>
     @include('admin/layouts/header')
@@ -42,7 +43,9 @@
         <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('admin/js/jquery.magnific-popup.min.js') }}"></script>
         <script type="text/javascript" src="{{ url('/assets/js/maps.js') }}"></script>
+
         <script type="text/javascript">
             $(document).ready(function(){
                 var _latitude = 14.6753824;
@@ -84,6 +87,24 @@
                     var parentElement = $(duplicateElement)[0].parentElement;
                     $(parentElement).append( $(duplicateElement)[0].outerHTML );
                 });
+
+                $('.popup-gallery').magnificPopup({
+            		delegate: 'a',
+            		type: 'image',
+            		tLoading: 'Loading image #%curr%...',
+            		mainClass: 'mfp-img-mobile',
+            		gallery: {
+            			enabled: true,
+            			navigateByImgClick: true,
+            			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            		},
+            		image: {
+            			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+            			titleSrc: function(item) {
+            				return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+            			}
+            		}
+            	});
             });
 
         </script>

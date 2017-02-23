@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Restaurants;
+use App\Models\Gallery;
 use App\Models\Menu;
 
 class RestaurantController extends Controller
@@ -134,7 +135,18 @@ class RestaurantController extends Controller
 
     public function updateBasicInfo($id)
     {
+    	
         $restaurantInfo = Restaurants::find($id);
+
+        $gallery = Restaurants::find($id)->gallery;
+        
+        $gallery_data = [];
+        $ptr = 0;
+        foreach ($gallery as $gall) {
+        	$gallery_data[$ptr]['path'] = $gall->path;
+        	$gallery_data[$ptr++]['name'] = $gall->name;
+    	}
+        //dd($gallery_data);
 
         if ($restaurantInfo) {
             return view('admin/restaurant/update', array(
@@ -142,6 +154,7 @@ class RestaurantController extends Controller
                 'module_page' => 'Update',
             	'categories' => $this->categories,
 	        	'municities' => $this->municities,
+            	'gallery' => $gallery_data,
                 'restoInfo' => $restaurantInfo
             ));
         }
