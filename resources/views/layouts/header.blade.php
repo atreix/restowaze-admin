@@ -1,5 +1,6 @@
 <body class="homepage">
     <input type="hidden" id="map-restaurants" name="map-restaurants" value="{{ url('/') }}" />
+    <input type="hidden" id="marker-img" name="map-image" value="{{ url('/assets/img/marker.png') }}" />
     <div class="page-wrapper">
         <header id="page-header">
             <nav>

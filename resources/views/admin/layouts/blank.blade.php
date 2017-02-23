@@ -31,6 +31,7 @@
         <script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
+        <script type="text/javascript" src="{{ url('/assets/js/richmarker-compiled.js') }}"></script>
         <script src="{{ asset('admin/plugins/fastclick/fastclick.js') }}"></script>
         <script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
         <script src="{{ asset('admin/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
@@ -41,8 +42,19 @@
         <script type="text/javascript" src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('admin/js/validator.js') }}"></script>
+        <script type="text/javascript" src="{{ url('/assets/js/maps.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+                var _latitude = 14.6753824;
+                var _longitude = 120.5316586;
+                var element = "map-submit";
+
+                if ($('#address-autocomplete').val().length) {
+                    var place = $('#address-autocomplete').val();
+                }
+
+                simpleMap(_latitude,_longitude, element, true, place);
+
                 Dropzone.options.imageUpload = {
                     maxFilesize: 5,
                     acceptedFiles: ".jpeg,.jpg,.png"
@@ -73,6 +85,7 @@
                     $(parentElement).append( $(duplicateElement)[0].outerHTML );
                 });
             });
+
         </script>
 
     </body>

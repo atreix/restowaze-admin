@@ -61,7 +61,7 @@ class GetDirectionController extends Controller
             $list[] = [
                 'id' => $restaurant['id'],
                 'latitude' => $restaurant['latitude'],
-                'longitude' => $restaurant['longtitude'],
+                'longitude' => $restaurant['longitude'],
                 'title' => $restaurant['name'],
                 'location' => $restaurant['address'],
                 'marker_image' => '../assets/img/items/1.jpg',

@@ -118,7 +118,9 @@ class RestaurantController extends Controller
                 'mobile_number' => $data['mobile_number'],
                 'email' => $data['email'],
                 'address' => $data['address'],
-            	'municipality' => $data['municity'],
+                'municipality' => $data['municity'],
+                'latitude' => $data['latitude'],
+            	'longitude' => $data['longitude'],
             ]);
 
             if (!$create) {

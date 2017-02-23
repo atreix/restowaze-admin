@@ -533,7 +533,7 @@ function simpleMap(_latitude,_longitude, element, markerDrag, place){
             position: mapCenter,
             map: map,
             draggable: markerDrag,
-            content: '<img src="../assets/img/marker.png">',
+            content: '<img src="'+ $('#marker-img').val() +'">',
             flat: true
         });
         google.maps.event.addListener(marker, "dragend", function () {
@@ -555,8 +555,19 @@ function autoComplete(map, marker){
         if( !map ){
             map = new google.maps.Map(document.getElementById("address-autocomplete"));
         }
+
+        var defaultBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(14.6826349, 120.3926858)
+        );
+
+        var options = {
+            componentRestrictions: {country: "PH"},
+            bounds: defaultBounds,
+            types: ['establishment']
+        };
+        
         var input = document.getElementById('address-autocomplete');
-        var autocomplete = new google.maps.places.Autocomplete(input);
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
         autocomplete.bindTo('bounds', map);
         google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();

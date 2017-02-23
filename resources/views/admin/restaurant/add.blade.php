@@ -193,7 +193,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-map"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ old('address') }}">
+                                    <input type="text" class="form-control" id="address-autocomplete" name="address" placeholder="Address" value="{{ old('address') }}">
                                 </div>
                                 <a href="#" data-toggle="modal" data-target="#get-location" class="btn btn-link pull-right"> Locate on map </a>
                                 @if ($errors->has('address'))
@@ -237,7 +237,12 @@
                                         <h4 class="modal-title">Locate your address</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div id="mapCanvas" style="width: 500px; height: 400px"></div>
+                                        <div class="map shadow" style="width: 568px; height: 400px" id="map-submit"></div>
+                                        <!--end map-->
+                                        <div class="form-group hidden">
+                                            <input type="text" class="form-control" id="latitude" name="latitude" value="" />
+                                            <input type="text" class="form-control" id="longitude" name="longitude" value=""/>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -247,49 +252,8 @@
                             </div>
                         </div>
                     </div>
-                    <!--<section>
-                        <h3 class="box-title">Gallery</h3>
-                        <form class="dropzone dz-clickable">
-                            <div class="dz-default dz-message">
-                                <span>Click or drag images here</span>
-                            </div>
-                        </form>
-                    </section>
-                    <section>
-                        <h3 class="box-title">Menu <small class="note">(optional)</small></h3>
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h4 class="panel-title">
-                                    <i class="fa fa-cutlery"></i>
-                                    Add restaurant menu
-                                </h4>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                The body of the box
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <h3 class="box-title">Opening Hours <small>(optional)</small></h3>
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h4 class="panel-title">
-                                    <i class="fa fa-clock-o"></i>
-                                    Add opening hours
-                                </h4>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                The body of the box
-                            </div>
-                        </div>
-                    </section>-->
                 </div>
+
                 <div class="box-footer">
                     <button type="reset" class="btn btn-default">Cancel</button>
                     <button type="submit" class="btn btn-info pull-right submit" id="send">Submit</button>
