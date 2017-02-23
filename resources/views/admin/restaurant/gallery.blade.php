@@ -9,8 +9,8 @@
 			<hr>
 			@foreach ($gallery as $item) 
 				
-			<a href="{{ Config::get('app.url') }}/app/{{ $item['path'] }}" title="{{ $item['name'] }}"><img 
-			src="{{ Config::get('app.url') }}/app/{{ $item['path'] }}" width="75" height="75"></a>
+			<a href="{{ url('/') }}/app/{{ $item['path'] }}" title="{{ $item['name'] }}"><img 
+			src="{{ url('/') }}/app/{{ $item['path'] }}" width="75" height="75"></a>
 			
 			@endforeach
 		</div>
@@ -21,7 +21,7 @@
 		<form action="{{ url('/admin/resto/upload/gallery', $restoInfo->id) }}" method="post" enctype="multipart/form-data">
             {!! csrf_field() !!}
             <input type="file" name="gallery[]" multiple/>
-            <input type="submit" name="submitForm" value="Upload Image" />
+            <input type="submit" name="submitForm" class="btn btn-info" value="Upload Image" />
         </form> 
         </div> 
         <br />
