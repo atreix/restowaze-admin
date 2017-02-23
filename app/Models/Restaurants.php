@@ -29,4 +29,8 @@ class Restaurants extends Model
     	return $this->hasMany(Gallery::class, 'restaurant_id');
     }
     
+    public function menu() {
+        return $this->hasMany(Menu::class, 'restaurant_id');
+    }
+    
 }
