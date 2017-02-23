@@ -97,7 +97,7 @@
                         <!--end review-->
                     </section>
                     <input type="hidden" id="latitude" value="{{ $latitude }}" />
-                    <input type="hidden" id="longitude" value="{{ $longtitude }}" />
+                    <input type="hidden" id="longitude" value="{{ $longitude }}" />
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
                         <form class="clearfix form inputs-underline" method="post" action="{{ route('write-review', $id) }}">
@@ -184,8 +184,7 @@
                     <section>
                         <h2>Opening hours</h2>
                         <ul class="tags">
-                            <li>Wi-Fi</li>
-                            <li>Parking</li>
+                            <li>{{ $openinghours }}</li>
                         </ul>
                     </section>
                 </div>

@@ -10,45 +10,50 @@ use App\Models\Restaurants;
 
 class MainController extends Controller
 {
+    private $categories = [
+            'Fine Dining',
+            'Fast food',
+            'Bar & Grill',
+            'Coffee shop',
+    ];
+
+    private $municities = [
+            'Abucay',
+            'Bagac',
+            'Balanga',
+            'Dinalupihan',
+            'Hermosa',
+            'Limay',
+            'Mariveles',
+            'Morong',
+            'Orani',
+            'Orion',
+            'Pilar',
+            'Samal',
+    ];
+
     public function index()
     {
-        $data['categories'] = [
-            'Asian',
-            'Japanese',
-            'Coffee',
-            'Filipino',
-            'American',
-            'Mexican'
-        ];
+        $restaurants = Restaurants::latest()->take(10)->get();
 
-        $data['locations'] = [
-            'Balanga City',
-            'Abucay',
-            'Mariveles',
-            'Orani',
-            'Bagac'
-        ];
-$data['details'] = [];
-        /*$getLocation = \GooglePlaces::textSearch('Balanga City, Bataan', [
-            'location' => '14.6753824, 120.5316586',
-            'type' => 'restaurant',
-        ]);
-
-        $data['details'] = [];
-        $results = $getLocation['results'];
-        foreach ($results as $key => $result) {
-            $data['details'][] = [
-                'id' => $key+1,
-                'title' => $result['name'],
-                'location' => $result['formatted_address'],
-                'latitude' => $result['geometry']['location']['lat'],
-                'longitude' => $result['geometry']['location']['lng'],
-                'rating' => isset($result['rating']) ? $result['rating'] : '',
-                'type' => $result['types'][0],
+        $details = [];
+        foreach ($restaurants as $restaurant) {
+            $address = explode(',', $restaurant->address);
+            $details[] = [
+                'id' => $restaurant->id,
+                'name' => title_case($restaurant->name),
+                'category' => $restaurant->category,
+                'location' => $address[0] . ',' . $address[1],
+                'rating' => 6,
+                //'review' => $restaurant->review,
             ];
-        }*/
+        }
 
-        //dd($getLocation['results'], $data['details']);
+        $data = [
+            'details' => $details,
+            'categories' => $this->categories,
+            'municities' => $this->municities,
+        ];
 
         return view('home', $data);
     }
@@ -61,14 +66,27 @@ $data['details'] = [];
             abort(404);
         }
 
-        $data = Restaurants::where('id', $id)->get()->first();
+        $restaurant = Restaurants::where('id', '=', $id)->get()->first();
 
-        return view('details', $data);
+        $address = explode(',', $restaurant->address);
+        $details = [
+            'id' => $restaurant->id,
+            'name' => title_case($restaurant->name),
+            'category' => $restaurant->category,
+            'address' => $address[0] . ',' . $address[1],
+            'rating' => 6,
+            'description' => $restaurant->description,
+            'openinghours' => $restaurant->bus_hours,
+            'email' => $restaurant->email,
+            'website' => $restaurant->website,
+            'phone_number' => $restaurant->phone_number,
+            'mobile_number' => $restaurant->mobile_number,
+            'latitude' => $restaurant->latitude,
+            'longitude' => $restaurant->longitude,
+            //'review' => $restaurant->review,
+        ];
+
+        return view('details', $details);
     }
 
-    public function createReview()
-    {
-
-        dd('ss');
-    }
 }

@@ -37,7 +37,7 @@
     <script type="text/javascript" src="{{ url('/assets/js/maps.js') }}"></script>
 
     <script type="text/javascript">
-
+        $('#cog').hide();
         var optimizedDatabaseLoading = 0;
         var _latitude = 14.6753824;
         var _longitude = 120.5316586;

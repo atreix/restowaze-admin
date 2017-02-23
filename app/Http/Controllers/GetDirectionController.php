@@ -10,27 +10,10 @@ use App\Models\Restaurants;
 
 class GetDirectionController extends Controller
 {
-    public function index() {
-        //$this->getDirection();
-        $this->getPlaceId();
-    }
 
     public function getLocationByRestaurant()
     {
 
-    }
-
-    public function getPlaceId($coordinates = array())
-    {
-        $getLocation = \GooglePlaces::textSearch('Balanga City, Bataan', [
-            'location' => '14.6753824, 120.5316586',
-            'type' => 'restaurant',
-        ]);
-        dd('aa',$getLocation);
-        $coordinates = [
-            'lat' => '',
-            'lng' => '',
-        ];
     }
 
     /**
