@@ -45,7 +45,7 @@ class MainController extends Controller
                 'id' => $restaurant->id,
                 'name' => title_case($restaurant->name),
                 'category' => $restaurant->category,
-                'location' => $address[0] . ',' . $address[1],
+                'location' => $address[0] . (empty($address[1]) ? '' : ',' . $address[1]),
                 'rating' => 6,
                 'primary_photo' => $this->getGalleryByRestaurant($restaurant->id),
                 //'review' => $restaurant->review,
@@ -89,6 +89,8 @@ class MainController extends Controller
             ->pluck('path')
             ->toArray();
 
+        $data['reviews'] = $this->getReviews($id);
+
         $restaurant = Restaurants::where('id', '=', $id)->get()->first();
 
         $address = explode(',', $restaurant->address);
@@ -129,15 +131,16 @@ class MainController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
         }
 
+        $totalRating = 4;
+
         if ($validator) {
             $create = Feedback::create([
                 'subject' => $data['name'],
                 'message' => $data['message'],
                 'restaurant_id' => $id,
-                'from' => \Auth::user()->id,
-               // 'rating' => $this->starRating,
+                'from' => (\Auth::user() === true) ? \Auth::user()->email : 'Guest',
+                'rating' => $totalRating,
             ]);
-
 
 
             if (!$create) {
@@ -148,8 +151,14 @@ class MainController extends Controller
         }
     }
 
-    public function starRating() {
-        return 3;
+    public function getReviews($restaurant_id) {
+
+        $reviews = Feedback::where('restaurant_id', '=', $restaurant_id)
+            ->latest()
+            ->get()
+            ->toArray();
+
+        return $reviews;
     }
 
 }
