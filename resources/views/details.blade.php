@@ -1,10 +1,5 @@
 @extends('layouts.blank')
 
-@push('stylesheets')
-    <!-- Example -->
-    <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-@endpush
-
 @section('main_container')
 <div class="container">
     <ol class="breadcrumb">
@@ -29,57 +24,32 @@
 
             <div class="row">
                 <div class="col-md-8 col-sm-12">
-                    <section class="">
+                    <section>
                         <div class="gallery detail">
-                            <div class="owl-carousel owl-loaded owl-drag" data-owl-nav="0" data-owl-dots="1">
-                                <div class="owl-stage-outer owl-height" style="height: 360px;">
-                                    <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 2775px;">
-                                    <div class="owl-item active" style="width: 555px;">
-                                        <div class="image">
-                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-1.jpg');">
-                                                <img src="{{ url('/restaurant-logo/image-1.jpg') }}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 555px;">
-                                        <div class="image">
-                                            <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-2.jpg');">
-                                                <img src="{{ url('/restaurant-logo/image-2.jpg') }}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                        <div class="owl-item" style="width: 555px;">
-                                            <div class="image">
-                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-3.jpg');">
-                                                    <img src="{{ url('/restaurant-logo/image-3.jpg') }}" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item" style="width: 555px;">
-                                            <div class="image">
-                                                <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-4.jpg');">
-                                                    <img src="{{ url('/restaurant-logo/image-4.jpg') }}" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-
+                            <div class="owl-carousel" data-owl-nav="0" data-owl-dots="1">
+                                <div class="image">
+                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-1.jpg');">
+                                        <img src="{{ url('/restaurant-logo/image-1.jpg') }}" alt="">
                                     </div>
                                 </div>
-                                <div class="owl-nav disabled">
-                                    <div class="owl-prev"></div>
-                                    <div class="owl-next"></div>
+                                <div class="image">
+                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-2.jpg');">
+                                        <img src="{{ url('/restaurant-logo/image-2.jpg') }}" alt="">
+                                    </div>
                                 </div>
-                                <div class="owl-dots">
-                                    <div class="owl-dot active"><span></span></div>
-                                    <div class="owl-dot"><span></span></div>
-                                    <div class="owl-dot"><span></span></div>
-                                    <div class="owl-dot"><span></span></div>
-                                    <div class="owl-dot"><span></span></div>
+                                <div class="image">
+                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-3.jpg');">
+                                        <img src="{{ url('/restaurant-logo/image-3.jpg') }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="image">
+                                    <div class="bg-transfer" style="background-image: url('/restaurant-logo/image-4.jpg');">
+                                        <img src="{{ url('/restaurant-logo/image-4.jpg') }}" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-
                     <section>
                         <section>
                             <h2>About this Restaurant</h2>
@@ -88,9 +58,8 @@
                             </p>
                         </section>
                     </section>
-
                     <section class="box">
-                        <h2>Opening Hours</h2>
+                        <h2>Menu</h2>
                         <dl>
                             <dt>Monday</dt>
                             <dd>08:00am - 11:00pm</dd>
@@ -108,7 +77,6 @@
                             <dd>Closed</dd>
                         </dl>
                     </section>
-
                     <section>
                         <h2>Reviews</h2>
                         <div class="review">
@@ -127,26 +95,9 @@
                             </div>
                         </div>
                         <!--end review-->
-                        <div class="review">
-                            <div class="image">
-                                <div class="bg-transfer"><img src="{{ url('/assets/img/person-01.jpg') }}" alt=""></div>
-                            </div>
-                            <div class="description">
-                                <figure>
-                                    <div class="rating-passive" data-rating="5">
-                                        <span class="stars"></span>
-                                        <span class="reviews">6</span>
-                                    </div>
-                                    <span class="date">09.05.2016</span>
-                                </figure>
-                                <p>Vestibulum vel est massa. Integer pellentesque non augue et accumsan. Maecenas molestie elit nibh,
-                                    vel vestibulum leo condimentum quis. Duis ac orci a magna auctor vehicula.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end review-->
                     </section>
-
+                    <input type="hidden" id="latitude" value="{{ $latitude }}" />
+                    <input type="hidden" id="longitude" value="{{ $longtitude }}" />
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
                         <form class="clearfix form inputs-underline" method="post" action="{{ route('write-review', $id) }}">
@@ -209,12 +160,13 @@
                             <section class="shadow">
                                 <div class="map height-250px" id="map-detail"></div>
                                 <!--end map-->
+
                                 <div class="content">
                                     <div class="vertical-aligned-elements">
-                                        <div class="element">
-                                            <!--<img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt="">-->
+                                        <!--<div class="element">
+                                            <img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt="">
                                             [LOGO HERE]
-                                        </div>
+                                        </div>-->
                                         <div class="element text-align-right"><a href="{{ url('/get-direction') }}" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
                                     </div>
                                     <hr>
@@ -230,15 +182,10 @@
                         <!--end detail-sidebar-->
                     </section>
                     <section>
-                        <h2>Features</h2>
+                        <h2>Opening hours</h2>
                         <ul class="tags">
                             <li>Wi-Fi</li>
                             <li>Parking</li>
-                            <li>TV</li>
-                            <li>Alcohol</li>
-                            <li>Vegetarian</li>
-                            <li>Take-out</li>
-                            <li>Balcony</li>
                         </ul>
                     </section>
                 </div>

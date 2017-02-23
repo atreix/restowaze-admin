@@ -87,7 +87,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                     thumbnailImage = markers[i]["marker_image"];
                 }
                 else {
-                    thumbnailImage = "assets/img/items/default.png";
+                    thumbnailImage = "../assets/img/items/default.png";
                 }
 
                 if( markers[i]["featured"] == 1 ){
@@ -190,7 +190,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             function openInfobox(id, _this, i){
                 $.ajax({
-                    url: "assets/external/infobox.php",
+                    url: $('#map-restaurants').val() + "/assets/external/infobox.php",
                     dataType: "html",
                     data: { id: id },
                     method: "POST",
@@ -204,7 +204,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                             boxClass: "infobox-wrapper",
                             enableEventPropagation: true,
                             closeBoxMargin: "0px 0px -8px 0px",
-                            closeBoxURL: "assets/img/close-btn.png",
+                            closeBoxURL: "../assets/img/close-btn.png",
                             infoBoxClearance: new google.maps.Size(1, 1)
                         };
 
@@ -274,9 +274,9 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             function openSidebarDetail(id){
                 $.ajax({
-                    url: "assets/external/sidebar_detail.php",
+                    url: $('#map-restaurants').val() + "/assets/external/sidebar_detail.php",
                     data: { id: id },
-                    method: "POST",
+                    type: "POST",
                     success: function(results){
                         $(".sidebar-wrapper").html(results);
                         $(".results-wrapper").removeClass("loading");
@@ -325,7 +325,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 
             var clusterStyles = [
                 {
-                    url: 'assets/img/cluster.png',
+                    url: '../assets/img/cluster.png',
                     height: 36,
                     width: 36
                 }
@@ -363,8 +363,8 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                 // Ajax load data for sidebar results after markers are placed
 
                 $.ajax({
-                    url: "assets/external/sidebar_results.php",
-                    method: "POST",
+                    url: $('#map-restaurants').val() + "/assets/external/sidebar_results.php",
+                    type: "POST",
                     data: { markers: visibleMarkersId },
                     success: function(results){
                         resultsArray.push(results); // push the results from php into array
@@ -437,7 +437,7 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: url,
+                url: url + '/get-restaurants',
                 dataType: "json",
                 type: "POST",
                 data: ajaxData,
@@ -533,7 +533,7 @@ function simpleMap(_latitude,_longitude, element, markerDrag, place){
             position: mapCenter,
             map: map,
             draggable: markerDrag,
-            content: "<img src='assets/img/marker.png'>",
+            content: '<img src="../assets/img/marker.png">',
             flat: true
         });
         google.maps.event.addListener(marker, "dragend", function () {

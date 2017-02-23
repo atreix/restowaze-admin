@@ -117,7 +117,7 @@
                                 </div>
                                 <!--end description-->
                                 <div class="image bg-transfer">
-                                        <img src="assets/img/items/1.jpg" alt="">
+                                        <img src="{{ url('assets/img/items/1.jpg') }}" alt="">
                                 </div>
                                 <!--end image-->
                             </a>
@@ -169,8 +169,8 @@
                                             <h4>4209 Glenview Drive</h4>
                                         </div>
                                         <!--end description-->
-                                        <div class="image bg-transfer" style="background-image: url(&quot;assets/img/items/2.jpg&quot;);">
-                                            <img src="assets/img/items/2.jpg" alt="">
+                                        <div class="image bg-transfer" style="background-image: url('../assets/img/items/2.jpg');">
+                                            <img src="{{ url('../assets/img/items/2.jpg') }}" alt="">
                                         </div>
                                         <!--end image-->
                                     </a>

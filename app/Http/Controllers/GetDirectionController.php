@@ -60,11 +60,11 @@ class GetDirectionController extends Controller
         foreach ($restaurants as $restaurant) {
             $list[] = [
                 'id' => $restaurant['id'],
-                'latitude' => 14.6763222, //$restaurant['latitude'],
-                'longitude' => 120.5321418, //$restaurant['longitude'],
+                'latitude' => $restaurant['latitude'],
+                'longitude' => $restaurant['longtitude'],
                 'title' => $restaurant['name'],
                 'location' => $restaurant['address'],
-                'marker_image' => "assets/img/items/1.jpg",
+                'marker_image' => '../assets/img/items/1.jpg',
             ];
         }
 

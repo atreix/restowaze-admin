@@ -57,7 +57,7 @@
                     </div>
                     <!--end description-->
                     <div class="image bg-transfer">
-                        <img src="assets/img/items/1.jpg" alt="">
+                        <img src="{{ url('/assets/img/items/1.jpg') }}" alt="">
                     </div>
                     <!--end image-->
                 </a>
@@ -79,7 +79,7 @@
                     </div>
                     <!--end description-->
                     <div class="image bg-transfer">
-                        <img src="assets/img/items/2.jpg" alt="">
+                        <img src="{{ url('/assets/img/items/2.jpg') }}" alt="">
                     </div>
                     <!--end image-->
                 </a>
@@ -104,7 +104,7 @@
                     </div>
                     <!--end description-->
                     <div class="image bg-transfer">
-                        <img src="assets/img/items/3.jpg" alt="">
+                        <img src="{{ url('../assets/img/items/3.jpg') }}" alt="">
                     </div>
                     <!--end image-->
                 </a>

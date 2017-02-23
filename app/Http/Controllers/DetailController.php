@@ -21,7 +21,7 @@ class DetailController extends Controller
             'red velvet 3',
             'red velvet 4'
         ];
-
+dd($data);
 
         return view('details', $data);
     }

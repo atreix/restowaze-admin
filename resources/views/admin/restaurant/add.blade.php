@@ -64,7 +64,7 @@
                                     <option @if ($category == old('category'))
                                     			selected
                                     		@endif >
-                                    		{{ $category }} 
+                                    		{{ $category }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -95,7 +95,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>                        
+                        </div>
                         <div class="form-group has-feedback {{ $errors->has('bus_hours') ? ' has-error' : '' }}">
                             <label class="col-sm-2 control-label" for="description">
                                 Business Hours <span class="required">*</span>
@@ -208,22 +208,15 @@
                                 City/Municipality <span class="required">*</span>
                             </label>
                             <div class="col-sm-10">
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-map"></i>
-                                    </div>
-                                    
-                                    <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                     @foreach ($municities as $municity)
                                     <option @if ($municity == old('municity'))
                                     			selected
-                                    		@endif> 
+                                    		@endif>
                                     		{{ $municity }}
                                     </option>
                                     @endforeach
                                 </select>
-                                    
-                                </div>
                                 @if ($errors->has('municipality'))
                                     <span class="help-block">
                                       <strong>{{ $errors->first('municipality') }}</strong>
@@ -231,7 +224,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                     </section>
                     <div class="example-modal">
                         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get-location" aria-hidden="true"  id="get-location">
