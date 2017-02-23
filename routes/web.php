@@ -19,6 +19,12 @@ Route::get('/', 'MainController@index');
 Route::get('/home', 'MainController@index')->name('restowaze-path');
 Route::get('/detail/{id}', 'MainController@showDetails');
 Route::post('/detail/{id}', 'MainController@saveReview')->name('write-review');
+Route::get('/terms-of-service', function () {
+    return View::make('terms');
+});
+Route::get('/privacy-policy', function () {
+    return View::make('privacy');
+});
 
 # Sign in
 Route::get('/signin', 'SignInController@index')->name('sign-in');
@@ -71,7 +77,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # menu
     Route::get('/resto/add/menu', 'RestaurantController@addMenu');
-    Route::post('/resto/add/menu', 'RestaurantController@saveMenu');
+    Route::post('/resto/add/menu/{id}', 'RestaurantController@saveMenu');
 
     # gallery
     Route::post('/resto/upload/gallery/{id}', 'GalleryController@saveGallery');
