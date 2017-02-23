@@ -19,7 +19,6 @@
         @include('errors/messages')
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-                <li><a href="#schedulex" data-toggle="tab"><i class="fa fa-calendar-plus-o"></i> Schedule</a></li>
                 <li><a href="#galleryx" data-toggle="tab"><i class="fa fa-th"></i> Gallery</a></li>
                 <li><a href="#menux" data-toggle="tab"><i class="fa fa-spoon"></i> Menu</a></li>
                 <li class="active"><a href="#basic" data-toggle="tab"><i class="fa fa-pencil"></i> Basic Info</a></li>
@@ -68,7 +67,7 @@
                                 	    	<option @if ($category == $restoInfo->category)
                                 	    				selected
                                 	    			@endif >
-                                	    			{{ $category }}
+                                	    			{{ $category }} 
                                 	    	</option>
                                 	    	@endforeach
                                 		</select>
@@ -211,23 +210,73 @@
                                 		City/Municipality <span class="required">*</span>
 		                            </label>
         		                    <div class="col-sm-10">
-    		                            <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
+        		                        <div class="input-group date">
+        		                            <div class="input-group-addon">
+        		                                <i class="fa fa-map"></i>
+        		                            </div>
+        		                            
+        		                            <select class="form-control select2 select2-hidden-accessible" id="municity" name="municity" data-placeholder="Select City/Municipality" style="width: 100%;" tabindex="-1" aria-hidden="true">
         		                            @foreach ($municities as $municity)
         		                            <option @if ($municity == $restoInfo->municity)
         		                            			selected
-        		                            		@endif>
+        		                            		@endif> 
         		                            		{{ $municity }}
         		                            </option>
         		                            @endforeach
-		                                </select>
-    		                        </div>
-    		                        @if ($errors->has('municipality'))
-    		                            <span class="help-block">
-    		                              <strong>{{ $errors->first('municipality') }}</strong>
-    		                            </span>
-    		                        @endif
+        		                        </select>
+                                    
+        		                        </div>
+        		                        @if ($errors->has('municipality'))
+        		                            <span class="help-block">
+        		                              <strong>{{ $errors->first('municipality') }}</strong>
+        		                            </span>
+        		                        @endif
+        		                    </div>
         		                </div>
+
                             </section>
+                            <!--<section>
+                                <h3 class="box-title">Gallery</h3>
+                                <form class="dropzone dz-clickable">
+                                    <div class="dz-default dz-message">
+                                        <span>Click or drag images here</span>
+                                    </div>
+                                </form>
+                            </section>
+                            <section>
+                                <h3 class="box-title">Menu <small class="note">(optional)</small></h3>
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="panel-title">
+                                            <i class="fa fa-cutlery"></i>
+                                            Add restaurant menu
+                                        </h4>
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        The body of the box
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <h3 class="box-title">Opening Hours <small>(optional)</small></h3>
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="panel-title">
+                                            <i class="fa fa-clock-o"></i>
+                                            Add opening hours
+                                        </h4>
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        The body of the box
+                                    </div>
+                                </div>
+                            </section>-->
                         </div>
                         <div class="box-footer">
                             <button type="reset" class="btn btn-default">Cancel</button>
