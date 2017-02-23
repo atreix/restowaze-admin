@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Restaurants;
 use App\Models\Gallery;
+use App\Models\Feedback;
 
 class MainController extends Controller
 {
@@ -97,7 +99,7 @@ class MainController extends Controller
             'address' => $address[0] . ',' . $address[1],
             'rating' => 6,
             'description' => $restaurant->description,
-            'openinghours' => $restaurant->bus_hours,
+            'openinghours' => explode(';', $restaurant->bus_hours),
             'email' => $restaurant->email,
             'website' => $restaurant->website,
             'phone_number' => $restaurant->phone_number,
@@ -108,6 +110,46 @@ class MainController extends Controller
         ];
 
         return view('details', $data);
+    }
+
+    public function saveReview(Request $request, $id)
+    {
+        $find = Restaurants::find($id);
+        if (!$find) {
+            abort(403);
+        }
+
+        $data = $request->all();
+        $validator = Validator::make($data, array(
+            'name' => 'required|max:100',
+            'message' => 'required|max:1000',
+        ));
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        if ($validator) {
+            $create = Feedback::create([
+                'subject' => $data['name'],
+                'message' => $data['message'],
+                'restaurant_id' => $id,
+                'from' => \Auth::user()->id,
+               // 'rating' => $this->starRating,
+            ]);
+
+
+
+            if (!$create) {
+                abort(403);
+            }
+
+            return redirect()->back();
+        }
+    }
+
+    public function starRating() {
+        return 3;
     }
 
 }

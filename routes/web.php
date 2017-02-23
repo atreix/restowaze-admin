@@ -18,7 +18,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'MainController@index');
 Route::get('/home', 'MainController@index')->name('restowaze-path');
 Route::get('/detail/{id}', 'MainController@showDetails');
-Route::post('/detail/{id}', 'MainController@createReview')->name('write-review');
+Route::post('/detail/{id}', 'MainController@saveReview')->name('write-review');
 
 # Sign in
 Route::get('/signin', 'SignInController@index')->name('sign-in');

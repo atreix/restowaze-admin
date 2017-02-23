@@ -103,7 +103,8 @@
                     <input type="hidden" id="longitude" value="{{ $details['longitude'] }}" />
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
-                        <form class="clearfix form inputs-underline" method="post" action="{{ route('write-review', $details['id']) }}">
+                        <form class="clearfix form inputs-underline" method="POST" action="{{ route('write-review', $details['id']) }}">
+                        {!! csrf_field() !!}
                             <div class="box">
                                 <div class="comment">
                                     <div class="row">
@@ -155,6 +156,7 @@
                         </form>
                         <!--end form-->
                     </section>
+
                 </div>
                 <!--end col-md-6-->
                 <div class="col-md-4 col-sm-12">
@@ -187,7 +189,9 @@
                     <section>
                         <h2>Opening hours</h2>
                         <ul class="tags">
-                            <li>{{ $details['openinghours'] }}</li>
+                            @foreach ($details['openinghours'] as $opening)
+                            <li>{{ $opening }}</li>
+                            @endforeach
                         </ul>
                     </section>
                 </div>
