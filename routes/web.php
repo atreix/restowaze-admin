@@ -36,6 +36,7 @@ Route::get('/get-direction', 'GetDirectionController@index');
 Route::get('/get-restaurants', 'GetDirectionController@postRestaurants');
 Route::post('/get-restaurants', 'GetDirectionController@postRestaurants');
 Route::get('/get-location-by-restaurant', 'GetDirectionController@getLocationByRestaurant');
+Route::any('/get-results', 'MainController@getResults');
 
 
 # Admin site

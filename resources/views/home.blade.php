@@ -15,7 +15,8 @@
             <input type="hidden" id="detail-page" value="{{ url('/detail') }}" />
             <div class="results-wrapper">
                 <div class="form search-form inputs-underline">
-                    <form>
+                    <form method="get" action="{{ url('/') }}">
+                        
                         <div class="section-title">
                             <h2>Search</h2>
                         </div>
@@ -25,10 +26,10 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    <select class="form-control selectpicker" name="city">
+                                    <select class="form-control selectpicker" name="municipality">
                                         <option value="0">Location</option>
                                         @foreach ($municities as $key => $municity)
-                                        <option value="{{ $key + 1 }}">{{ $municity }}</option>
+                                        <option value="{{ $municity }}">{{ $municity }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -38,14 +39,14 @@
                                     <select class="form-control selectpicker" name="category">
                                         <option value="0">Category</option>
                                         @foreach ($categories as $key => $category)
-                                        <option value="{{ $key + 1 }}">{{ $category }}</option>
+                                        <option value="{{ $category }}">{{ $category }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" data-ajax-response="map" data-ajax-data-file="" data-ajax-auto-zoom="1" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
+                            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
                         </div>
                     </form>
                 </div>
@@ -53,45 +54,35 @@
                     <div class="tse-scrollable">
                         <div class="tse-content">
                             <div class="section-title">
-                                <h2>Search Results<span class="results-number"></span></h2>
+                                <h2>Search Results<span class="results-number">{{ count($getResults) }}</span></h2>
                             </div>
-                            <div class="results-content"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="hero-section full-screen has-map has-sidebar">
-            <div class="wrapper">
-                <div class="inner">
-                    <div class="container">
-                        <div class="page-title center">
-                            <h1>Best Deals in One Place</h1>
-                            <h2>With Locations you can find the best deals in your location</h2>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">
-                                <div class="form search-form horizontal">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="email" placeholder="What are you looking for?">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit"><i class="arrow_right"></i></button>
-                                            </span>
+                            <div class="results-content">
+                                @if (!empty($getResults))
+                                    @foreach ($getResults as $getResult)
+                                        <div class="result-item" data-id="{{ $getResult['id'] }}">
+                                            <a href="{{ url('/detail', $getResult['id']) }}" class=""><h3>{{ $getResult['title'] }}</h3>
+                                                <div class="result-item-detail">
+                                                    <div class="image" style="background-image: url({{ url('/') }}/app/{{ $getResult['image-primary'] }})">
+                                                        
+                                                    </div>
+                                                    <div class="description"><h5><i class="fa fa-map-marker"></i>{{ $getResult['location'] }}</h5>
+                                                        <div class="rating-passive" data-rating="{{ $getResult['rating'] }}">
+                                                            <!--<span class="reviews">12</span>-->
+                                                        </div>
+                                                        <div class="label label-default">{{ $getResult['category'] }}</div>
+                                                        <p>{{ $getResult['description'] }}</p>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </form>
-                                </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="background-wrapper">
-                <div class="bg-transfer opacity-30"><img src="assets/img/background-01.jpg" alt=""></div>
-                <div class="background-color background-color-black"></div>
-            </div>
         </div>
-        -->
     </div>
     <div class="block">
             <div class="container">

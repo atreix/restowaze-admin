@@ -36,9 +36,52 @@ class MainController extends Controller
             'Samal',
     ];
 
-    public function index()
+    public function getResults(Request $request)
     {
+        $where = [
+            'municipality' => $request->municipality,
+            'category' => $request->category,
+        ];
 
+        if (!is_null($where)) {
+            $restaurants = Restaurants::where($where)->get()->toArray();
+        } else {
+            $restaurants = Restaurants::get()->toArray();
+        }
+
+        $list = [];
+        foreach ($restaurants as $restaurant) {
+            $list[] = [
+                'id' => $restaurant['id'],
+                'latitude' => $restaurant['latitude'],
+                'longitude' => $restaurant['longitude'],
+                'title' => $restaurant['name'],
+                'location' => $restaurant['address'],
+                'description' => $restaurant['description'],
+                'category' => $restaurant['category'],
+                'rating' => 4,
+                'image-primary' => $this->getGalleryByRestaurant($restaurant['id']),
+            ];
+        }
+
+        return $list;
+    }
+
+    public function index(Request $request)
+    {
+        $data = [
+            'details' => $this->getDetails(),
+            'getResults' => $this->getResults($request),
+            'recentRatedItems' => $this->getRecentItems(),
+            'categories' => $this->categories,
+            'municities' => $this->municities,
+        ];
+
+        return view('home', $data);
+    }
+
+    public function getRecentItems()
+    {
         $recentRatedItems = Feedback::select('id','restaurant_id')
             ->latest()
             ->groupBy('restaurant_id')
@@ -46,6 +89,11 @@ class MainController extends Controller
             ->get()
             ->toArray();
 
+        return $recentRatedItems;
+    }
+
+    public function getDetails() 
+    {
         $restaurants = Restaurants::latest()->take(10)->get();
         $details = [];
         foreach ($restaurants as $restaurant) {
@@ -61,14 +109,7 @@ class MainController extends Controller
             ];
         }
 
-        $data = [
-            'details' => $details,
-            'recentRatedItems' => $recentRatedItems,
-            'categories' => $this->categories,
-            'municities' => $this->municities,
-        ];
-
-        return view('home', $data);
+        return $details;
     }
 
     public function getGalleryByRestaurant($id)
@@ -124,7 +165,7 @@ class MainController extends Controller
             'longitude' => $restaurant->longitude,
             'review' => $review,
         ];
-        
+
         return view('details', $data);
     }
 

@@ -7,13 +7,24 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
 use App\Models\Restaurants;
+use App\Models\Gallery;
 
 class GetDirectionController extends Controller
 {
 
-    public function getLocationByRestaurant()
+    public function getGalleryByRestaurant($id)
     {
+        $result = '../assets/img/items/1.jpg';
+        $gallery = Gallery::where('restaurant_id', '=', $id)
+            ->get()
+            ->pluck('path')
+            ->toArray();
 
+        if ($gallery) {
+            $result = '../app/' . collect($gallery)->random();
+        }
+
+        return $result;
     }
 
     /**
@@ -36,8 +47,13 @@ class GetDirectionController extends Controller
         dd(json_decode($direction));
     }
 
-    public function postRestaurants(Request $request){
-        $restaurants = Restaurants::get();
+    public function postRestaurants($where = null)
+    {
+        if (!is_null($where)) {
+            $restaurants = Restaurants::where($where)->get();
+        } else {
+            $restaurants = Restaurants::get();
+        }
 
         $list = [];
         foreach ($restaurants as $restaurant) {
@@ -47,7 +63,7 @@ class GetDirectionController extends Controller
                 'longitude' => $restaurant['longitude'],
                 'title' => $restaurant['name'],
                 'location' => $restaurant['address'],
-                'marker_image' => '../assets/img/items/1.jpg',
+                'marker_image' => $this->getGalleryByRestaurant($restaurant['id']),
             ];
         }
 
