@@ -42,7 +42,7 @@
         var _latitude = 14.6753824;
         var _longitude = 120.5316586;
         var element = "map-homepage";
-        var markerTarget = "modal"; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
+        var markerTarget = null; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
         var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
         var showMarkerLabels = false; // next to every marker will be a bubble with title
         var mapDefaultZoom = 14; // default zoom

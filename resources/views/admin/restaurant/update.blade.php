@@ -197,8 +197,9 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map"></i>
                                             </div>
-                                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ $restoInfo->address }}">
+                                            <input type="text" class="form-control" id="address-autocomplete" name="address" placeholder="Address" value="{{ $restoInfo->address }}">
                                         </div>
+                                        <a href="#" data-toggle="modal" data-target="#get-location" class="btn btn-link pull-right"> Locate on map </a>
                                         @if ($errors->has('address'))
                                             <span class="help-block">
                                               <strong>{{ $errors->first('address') }}</strong>
@@ -228,6 +229,33 @@
     		                        @endif
         		                </div>
                             </section>
+                            <div class="example-modal">
+                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get-location" aria-hidden="true"  id="get-location">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Locate your address</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="map shadow" style="width: 568px; height: 400px" id="map-submit"></div>
+                                        <!--end map-->
+                                        <div class="form-group hidden">
+                                            <input type="text" class="form-control" id="latitude" name="latitude" value="" />
+                                            <input type="text" class="form-control" id="longitude" name="longitude" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                         </div>
                         <div class="box-footer">
                             <button type="reset" class="btn btn-default">Cancel</button>

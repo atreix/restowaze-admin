@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <title>{{ config('app.name') }} Admin |</title>
+        <title>{{ config('app.name') }} Admin </title>
 
         <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" type="text/css">
         <link href="{{ asset('assets/fonts/font-awesome.css') }}" rel="stylesheet">
@@ -20,12 +20,11 @@
         <link href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('admin/css/magnific-popup.css') }}" rel="stylesheet" type="text/css">
-
     </head>
-    @include('admin/layouts/header')
-        @include('includes/sidebar')
-        @yield('content')
-    @include('admin/layouts/footer')
+        @include('admin/layouts/header')
+            @include('includes/sidebar')
+            @yield('content')
+        @include('admin/layouts/footer')
         <!-- jQuery -->
         <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.1.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/jquery-migrate-1.2.1.min.js') }}"></script>

@@ -12,6 +12,7 @@
             <div class="map-wrapper">
                 <div class="map" id="map-homepage"></div>
             </div>
+            <input type="hidden" id="detail-page" value="{{ url('/detail') }}" />
             <div class="results-wrapper">
                 <div class="form search-form inputs-underline">
                     <form>
@@ -124,7 +125,7 @@
                             <div class="additional-info">
                                 <div class="rating-passive" data-rating="{{ $detail['rating'] }}">
                                     <span class="stars"></span>
-                                    <!--<span class="reviews">6</span>-->
+                                    <span class="reviews">{{ $detail['review'] }}</span>
                                 </div>
                                 <!--<div class="controls-more">
                                     <ul>
@@ -159,6 +160,8 @@
                         </div>
                         <!--end section-title-->
                         <div class="row">
+                        @if($recentRatedItems)
+                            @foreach ($recentRatedItems as $recentRatedItem)
                             <div class="col-md-4 col-sm-4">
                                 <div class="item" data-id="2">
                                     <figure class="circle featured sale">-12%</figure>
@@ -175,97 +178,21 @@
                                         <!--end image-->
                                     </a>
                                     <div class="additional-info">
-                                        <div class="rating-passive" data-rating="3">
-                                            <span class="stars"><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="fa fa-star"></figure><figure class="fa fa-star"></figure></span>
+                                        <div class="rating-passive" data-rating="1">
+                                            <span class="stars">
+                                                <figure class="active fa fa-star"></figure>
+                                                <figure class="active fa fa-star"></figure>
+                                                <figure class="active fa fa-star"></figure>
+                                            </span>
                                             <span class="reviews">13</span>
                                         </div>
-                                        <div class="controls-more">
-                                            <ul>
-                                                <li><a href="#">Add to favorites</a></li>
-                                                <li><a href="#">Add to watchlist</a></li>
-                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
-                                            </ul>
-                                        </div>
-                                        <!--end controls-more-->
                                     </div>
-                                    <!--end additional-info-->
                                 </div>
-                                <!--end item-->
                             </div>
-                            <!--<end col-md-4-->
-                            <div class="col-md-5 col-sm-5">
-                                <div class="item" data-id="3">
-                                    <figure class="ribbon">Top</figure>
-                                    <a href="detail.html">
-                                        <div class="description">
-                                            <figure>Starts at: 19:00</figure>
-                                            <div class="label label-default">Event</div>
-                                            <h3>Food Festival</h3>
-                                            <h4>840 My Drive</h4>
-                                        </div>
-                                        <!--end description-->
-                                        <div class="image bg-transfer" style="background-image: url(&quot;assets/img/items/4.jpg&quot;);">
-                                            <img src="assets/img/items/4.jpg" alt="">
-                                        </div>
-                                        <!--end image-->
-                                    </a>
-                                    <div class="additional-info">
-                                        <figure class="circle" title="Featured"><i class="fa fa-check"></i></figure>
-                                        <div class="rating-passive" data-rating="5">
-                                            <span class="stars"><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure></span>
-                                            <span class="reviews">12</span>
-                                        </div>
-                                        <div class="controls-more">
-                                            <ul>
-                                                <li><a href="#">Add to favorites</a></li>
-                                                <li><a href="#">Add to watchlist</a></li>
-                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
-                                            </ul>
-                                        </div>
-                                        <!--end controls-more-->
-                                    </div>
-                                    <!--end additional-info-->
-                                </div>
-                                <!--end item-->
-                            </div>
-                            <!--<end col-md-5-->
-                            <div class="col-md-3 col-sm-3">
-                                <div class="item" data-id="4">
-                                    <a href="detail.html">
-                                        <div class="description">
-                                            <div class="label label-default">Lounge</div>
-                                            <h3>Cosmopolit</h3>
-                                            <h4>2896 Ripple Street</h4>
-                                        </div>
-                                        <!--end description-->
-                                        <div class="image bg-transfer" style="background-image: url(&quot;assets/img/items/5.jpg&quot;);">
-                                            <img src="assets/img/items/5.jpg" alt="">
-                                        </div>
-                                        <!--end image-->
-                                    </a>
-                                    <div class="additional-info">
-                                        <div class="rating-passive" data-rating="5">
-                                            <span class="stars"><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure><figure class="active fa fa-star"></figure></span>
-                                            <span class="reviews">43</span>
-                                        </div>
-                                        <div class="controls-more">
-                                            <ul>
-                                                <li><a href="#">Add to favorites</a></li>
-                                                <li><a href="#">Add to watchlist</a></li>
-                                                <li><a href="#" class="quick-detail">Quick detail</a></li>
-                                            </ul>
-                                        </div>
-                                        <!--end controls-more-->
-                                    </div>
-                                    <!--end additional-info-->
-                                </div>
-                                <!--end item-->
-                            </div>
-                            <!--<end col-md-3-->
+                            @endforeach
+                        @endif
                         </div>
-                        <!--end row-->
                     </div>
-                    <!--end col-md-9-->
                     <div class="col-md-3 col-sm-3">
                         <div class="section-title">
                             <h2>Client’s Word</h2>
