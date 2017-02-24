@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Restaurants;
 use App\Models\Gallery;
 use App\Models\Feedback;
+use App\Models\Menu;
 
 class MainController extends Controller
 {
@@ -37,6 +38,14 @@ class MainController extends Controller
 
     public function index()
     {
+
+        $recentRatedItems = Feedback::select('id','restaurant_id')
+            ->latest()
+            ->groupBy('restaurant_id')
+            ->take(3)
+            ->get()
+            ->toArray();
+
         $restaurants = Restaurants::latest()->take(10)->get();
         $details = [];
         foreach ($restaurants as $restaurant) {
@@ -54,6 +63,7 @@ class MainController extends Controller
 
         $data = [
             'details' => $details,
+            'recentRatedItems' => $recentRatedItems,
             'categories' => $this->categories,
             'municities' => $this->municities,
         ];
@@ -84,6 +94,10 @@ class MainController extends Controller
             abort(404);
         }
 
+        $data['menus'] = Menu::where('restaurant_id', '=', $id)
+            ->get()
+            ->toArray();
+
         $data['galleries'] = Gallery::where('restaurant_id', '=', $id)
             ->get()
             ->pluck('path')
@@ -110,7 +124,7 @@ class MainController extends Controller
             'longitude' => $restaurant->longitude,
             'review' => $review,
         ];
-
+        
         return view('details', $data);
     }
 

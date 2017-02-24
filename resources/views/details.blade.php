@@ -47,23 +47,32 @@
                         </section>
                     </section>
                     <section class="box">
+                        @if (!empty($menus))
                         <h2>Menu</h2>
                         <dl>
-                            <dt>Monday</dt>
-                            <dd>08:00am - 11:00pm</dd>
-                            <dt>Tuesday</dt>
-                            <dd>08:00am - 11:00pm</dd>
-                            <dt>Wednesday</dt>
-                            <dd>12:00am - 11:00pm</dd>
-                            <dt>Thursday</dt>
-                            <dd>08:00am - 11:00pm</dd>
-                            <dt>Friday</dt>
-                            <dd>03:00pm - 02:00am</dd>
-                            <dt>Saturday</dt>
-                            <dd>03:00pm - 02:00am</dd>
-                            <dt>Sunday</dt>
-                            <dd>Closed</dd>
+                            @foreach ($menus as $menu)
+                            <div class="panel-body">
+                                <div class="wrapper">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-3"><strong>Title </strong></div>
+                                        <div class="col-md-6 col-sm-6"><strong>Description</strong></div>
+                                        <div class="col-md-3 col-sm-3"><strong>Meal Type</strong></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-3">
+                                            {{ $menu['name'] }}
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            {{ $menu['description'] }}  <small class="text text-danger"> PHP {{ $menu['price'] }}</small> 
+                                        </div>
+                                        <div class="col-md-3 col-sm-3">
+                                            {{ $menu['type'] }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </dl>
+                        @endif
                     </section>
                     <section>
                         <h2>Reviews</h2>
@@ -173,7 +182,7 @@
                                         <figure><i class="fa fa-map-marker"></i>{{ $details['address'] }}</figure>
                                         <figure><i class="fa fa-envelope"></i><a href="#">{{ $details['email'] }}</a></figure>
                                         <figure><i class="fa fa-phone"></i>{{ $details['phone_number'] }}</figure>
-                                        <figure><i class="fa fa-globe"></i><a href="{{ $details['website'] }}"> visit our page </a></figure>
+                                        <figure><i class="fa fa-globe"></i><a href="{{ $details['website'] }}"> Visit our page </a></figure>
                                     </address>
                                 </div>
                             </section>
@@ -181,12 +190,14 @@
                         <!--end detail-sidebar-->
                     </section>
                     <section>
+                        @if (!empty($details['openinghours']))
                         <h2>Opening hours</h2>
                         <ul class="tags">
                             @foreach ($details['openinghours'] as $opening)
                             <li>{{ $opening }}</li>
                             @endforeach
                         </ul>
+                        @endif
                     </section>
                 </div>
             </div>
