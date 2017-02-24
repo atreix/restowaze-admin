@@ -51,6 +51,7 @@
                 var _longitude = 120.5316586;
                 var element = "map-submit";
 
+				/*
                 if ($('#address-autocomplete').val().length) {
                     var place = $('#address-autocomplete').val();
                 }
@@ -61,7 +62,8 @@
                     maxFilesize: 5,
                     acceptedFiles: ".jpeg,.jpg,.png"
                 };
-
+				*/
+				
                 $('#birthday').datepicker({
                     format: 'yyyy/mm/dd',
                     autoclose: true,
