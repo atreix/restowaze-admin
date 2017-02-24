@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     # menu
     Route::get('/resto/add/menu', 'RestaurantController@addMenu');
-    Route::post('/resto/add/menu', 'RestaurantController@saveMenu');
+    Route::post('/resto/add/menu/{id}', 'RestaurantController@saveMenu');
 
     # gallery
     Route::post('/resto/upload/gallery/{id}', 'GalleryController@saveGallery');

@@ -1,4 +1,4 @@
-<form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/resto/add/menu') }}" novalidate>
+<form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/resto/add/menu', $restoInfo->id) }}" novalidate>
 {!! csrf_field() !!}
 <div class="box-body">
     <div class="">
@@ -16,9 +16,13 @@
                 <strong>Price</strong>
             </div>
         </div>
+        
+        
+@if (empty($menu))
         <div class="row" id="duplicate-menu">
             <div class="col-md-2 col-sm-3">
                 <div class="form-group">
+                    <input type="hidden" class="form-control" name="id[]" value="">
                     <input type="text" class="form-control" name="name[]" placeholder="Name">
                 </div>
             </div>
@@ -31,7 +35,7 @@
                 <div class="form-group">
                     <select class="form-control" name="type[]">
                         <option value="">Select meal type</option>
-                        <option value="1">Starter</option>
+                        <option value="1" selected>Starter</option>
                         <option value="2">Soup</option>
                         <option value="3">Main Course</option>
                         <option value="4">Desert</option>
@@ -41,9 +45,43 @@
             <div class="col-md-4 col-sm-3">
                 <div class="form-group">
                     <input type="text" class="form-control" name="price[]" placeholder="Price">
-                </div>
+               </div>
             </div>
         </div>
+@else
+	@foreach ($menu as $mn)
+        <div class="row" id="duplicate-menu">
+            <div class="col-md-2 col-sm-3">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="id[]" value="{{ $mn['id'] }}">
+                    <input type="text" class="form-control" name="name[]" placeholder="Name" value="{{ $mn['name'] }}">
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="description[]" placeholder="Description" value="{{ $mn['description'] }}">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-3">
+                <div class="form-group">
+                    <select class="form-control" name="type[]">
+                        <option value="">Select meal type</option>
+                        <option value="1" selected>Starter</option>
+                        <option value="2">Soup</option>
+                        <option value="3">Main Course</option>
+                        <option value="4">Desert</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-3">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="price[]" placeholder="Price" value="{{ $mn['price'] }}">
+               </div>
+            </div>
+        </div>
+	@endforeach 
+@endif
+        
     </div>
 </div>
 <div class="box-footer">
