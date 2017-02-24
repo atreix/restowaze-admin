@@ -48,7 +48,7 @@ class MainController extends Controller
                 'location' => $address[0] . (empty($address[1]) ? '' : ',' . $address[1]),
                 'rating' => 6,
                 'primary_photo' => $this->getGalleryByRestaurant($restaurant->id),
-                //'review' => $restaurant->review,
+                'review' => Feedback::where('restaurant_id', '=', $restaurant->id)->get()->count(),
             ];
         }
 
@@ -90,9 +90,9 @@ class MainController extends Controller
             ->toArray();
 
         $data['reviews'] = $this->getReviews($id);
-
+        $data['count_review'] = \DB::table('feedbacks')->selectRaw('*, count(*) AS total_review')->groupBy('from')->get()->pluck('total_review', 'from')->toArray();
+        $review = Feedback::where('restaurant_id', '=', $id)->get()->count();
         $restaurant = Restaurants::where('id', '=', $id)->get()->first();
-
         $address = explode(',', $restaurant->address);
         $data['details'] = [
             'id' => $restaurant->id,
@@ -108,7 +108,7 @@ class MainController extends Controller
             'mobile_number' => $restaurant->mobile_number,
             'latitude' => $restaurant->latitude,
             'longitude' => $restaurant->longitude,
-            //'review' => $restaurant->review,
+            'review' => $review,
         ];
 
         return view('details', $data);
@@ -152,7 +152,6 @@ class MainController extends Controller
     }
 
     public function getReviews($restaurant_id) {
-
         $reviews = Feedback::where('restaurant_id', '=', $restaurant_id)
             ->latest()
             ->get()

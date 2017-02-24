@@ -12,6 +12,7 @@
             <div class="map-wrapper">
                 <div class="map" id="map-homepage"></div>
             </div>
+            <input type="hidden" id="detail-page" value="{{ url('/detail') }}" />
             <div class="results-wrapper">
                 <div class="form search-form inputs-underline">
                     <form>
@@ -124,7 +125,7 @@
                             <div class="additional-info">
                                 <div class="rating-passive" data-rating="{{ $detail['rating'] }}">
                                     <span class="stars"></span>
-                                    <!--<span class="reviews">6</span>-->
+                                    <span class="reviews">{{ $detail['review'] }}</span>
                                 </div>
                                 <!--<div class="controls-more">
                                     <ul>

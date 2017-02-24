@@ -159,6 +159,11 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
                             }
                             else if( markerTarget == "modal" ){
                                 openModal($(this.content.firstChild).attr("data-id"), "modal_item.php");
+                            } else {
+                                window.open(
+                                    $('#detail-page').val() + '/' + $(this.content.firstChild).attr("data-id"),
+                                    '_blank'
+                                );
                             }
                         }
                     })(marker, i));

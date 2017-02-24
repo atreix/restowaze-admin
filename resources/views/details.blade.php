@@ -16,7 +16,7 @@
                     <h3>{{ $details['address'] }}</h3>
                     <div class="rating-passive" data-rating="4">
                         <span class="stars"></span>
-                        <span class="reviews">6</span>
+                        <span class="reviews">{{ $details['review'] }}</span>
                     </div>
                 </div>
                 <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
@@ -77,7 +77,7 @@
                                 <figure>
                                     <div class="rating-passive" data-rating="{{ $review['rating'] }}">
                                         <span class="stars"></span>
-                                        <span class="reviews"></span>
+                                        <span class="reviews">{{ $count_review[$review['from']] }}</span>
                                     </div>
                                     <span class="user">by : {{ $review['from'] }}</span>
                                     <span class="date">{{ date('m.d.Y', strtotime($review['created_at'])) }}</span>
