@@ -1,50 +1,48 @@
 @extends('layouts.blank')
 
 @section('main_container')
-<div class="container">
-    <ol class="breadcrumb">
-        <li><a href="{{ route('restowaze-path') }}">Home</a></li>
-        <li><a href="#">Restaurant</a></li>
-        <li class="active">Details</li>
-    </ol>
-
-    <div class="row">
-        <div class="col-md-9 col-sm-9">
-            <section class="page-title">
-                <div class="pull-left">
-                    <h1>{{ $details['name'] }}</h1>
-                    <h3>{{ $details['address'] }}</h3>
-                    <div class="rating-passive" data-rating="4">
-                        <span class="stars"></span>
-                        <span class="reviews">{{ $details['review'] }}</span>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('restowaze-path') }}">Home</a></li>
+            <li><a href="#">Restaurant</a></li>
+            <li class="active">Details</li>
+        </ol>
+        <section class="page-title">
+            <div class="pull-left">
+                <h1>{{ $details['name'] }}</h1>
+                <h3>{{ $details['address'] }}</h3>
+                <div class="rating-passive" data-rating="4">
+                    <span class="stars"></span>
+                    <span class="reviews">{{ $details['review'] }}</span>
+                </div>
+            </div>
+            <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
+        </section>
+    </div>
+    <section>
+        <div class="gallery detail">
+            <div class="owl-carousel" data-owl-items="3" data-owl-loop="1" data-owl-auto-width="1" data-owl-nav="1" data-owl-dots="0" data-owl-margin="2" data-owl-nav-container="#gallery-nav">
+                @foreach ($galleries as $gallery)
+                <div class="image">
+                    <div class="bg-transfer" style="background-image: url({{ $gallery }});">
+                        <img src="{{ url('/') }}/app/{{ $gallery }}" alt="">
                     </div>
                 </div>
-                <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
-            </section>
-
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <div class="container">
+            <input type="hidden" id="latitude" value="{{ $details['latitude'] }}" />
+            <input type="hidden" id="longitude" value="{{ $details['longitude'] }}" />
             <div class="row">
-                <div class="col-md-8 col-sm-12">
+                <div class="col-md-7 col-sm-7">
+                    <div id="gallery-nav"></div>
                     <section>
-                        <div class="gallery detail">
-                            <div class="owl-carousel" data-owl-nav="0" data-owl-dots="1">
-                            
-                                @foreach ($galleries as $gallery)
-                                <div class="image">
-                                    <div class="bg-transfer" style="background-image: url({{ $gallery }});">
-                                        <img src="{{ url('/') }}/app/{{ $gallery }}" alt="">
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <section>
-                            <h2>About this Restaurant</h2>
-                            <p>
-                                {{ $details['description'] }}
-                            </p>
-                        </section>
+                        <h2>About this restaurant</h2>
+                        <p>
+                            {{ $details['description'] }}
+                        </p>
                     </section>
                     <section class="box">
                         @if (!empty($menus))
@@ -99,11 +97,7 @@
                         </div>
                         @endforeach
                         @endif
-                       
-                        <!--end review-->
                     </section>
-                    <input type="hidden" id="latitude" value="{{ $details['latitude'] }}" />
-                    <input type="hidden" id="longitude" value="{{ $details['longitude'] }}" />
                     <section id="write-a-review">
                         <h2>Write a Review</h2>
                         <form class="clearfix form inputs-underline" method="POST" action="{{ route('write-review', $details['id']) }}">
@@ -115,7 +109,6 @@
                                             <div class="comment-title">
                                                 <h4>Review your experience</h4>
                                             </div>
-                                            <!--end title-->
                                             <div class="form-group">
                                                 <label for="name">Title of your review<em>*</em></label>
                                                 <input type="text" class="form-control" id="name" name="name" placeholder="Beautiful place!" required="">
@@ -124,18 +117,14 @@
                                                 <label for="message">Your Message<em>*</em></label>
                                                 <textarea class="form-control" id="message" rows="8" name="message" required="" placeholder="Describe your experience"></textarea>
                                             </div>
-                                            <!--end form-group-->
                                             <div class="form-group pull-right">
                                                 <button type="submit" class="btn btn-primary btn-rounded">Send Review</button>
                                             </div>
-                                            <!--end form-group-->
                                         </div>
-                                        <!--end col-md-8-->
                                         <div class="col-md-5">
                                             <div class="comment-title">
                                                 <h4>Rating</h4>
                                             </div>
-                                            <!--end title-->
                                             <dl class="visitor-rating">
                                                 <dt>Comfort</dt>
                                                 <dd class="star-rating active" data-name="comfort"></dd>
@@ -149,60 +138,44 @@
                                                 <dd class="star-rating active" data-name="value"></dd>
                                             </dl>
                                         </div>
-                                        <!--end col-md-4-->
                                     </div>
-                                    <!--end row-->
                                 </div>
-                                <!--end comment-->
                             </div>
-                            <!--end review-->
                         </form>
-                        <!--end form-->
                     </section>
-
                 </div>
-                <!--end col-md-6-->
-                <div class="col-md-4 col-sm-12">
-                    <section>
-                        <div class="detail-sidebar">
-                            <section class="shadow">
-                                <div class="map height-250px" id="map-detail"></div>
-                                <!--end map-->
-
-                                <div class="content">
-                                    <div class="vertical-aligned-elements">
-                                        <!--<div class="element">
-                                            <img src="{{ url('/restaurant-logo/chowking_logo-2_116x40.png') }}" alt="">
-                                            [LOGO HERE]
-                                        </div>-->
-                                        <div class="element text-align-right"><a href="{{ url('/get-direction') }}" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
-                                    </div>
-                                    <hr>
-                                    <address>
-                                        <figure><i class="fa fa-map-marker"></i>{{ $details['address'] }}</figure>
-                                        <figure><i class="fa fa-envelope"></i><a href="#">{{ $details['email'] }}</a></figure>
-                                        <figure><i class="fa fa-phone"></i>{{ $details['phone_number'] }}</figure>
-                                        <figure><i class="fa fa-globe"></i><a href="{{ $details['website'] }}"> Visit our page </a></figure>
-                                    </address>
+                <div class="col-md-5 col-sm-5">
+                    <div class="detail-sidebar">
+                        <section class="shadow">
+                            <div class="map height-250px" id="map-detail"></div>
+                            <div class="content">
+                                <div class="vertical-aligned-elements">
+                                    <!--<div class="element"><img src="assets/img/logo-2.png" alt=""></div>-->
+                                    <div class="element text-align-right"><a href="{{ url('/get-direction') }}" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
                                 </div>
-                            </section>
-                        </div>
-                        <!--end detail-sidebar-->
-                    </section>
-                    <section>
-                        @if (!empty($details['openinghours']))
-                        <h2>Opening hours</h2>
-                        <ul class="tags">
-                            @foreach ($details['openinghours'] as $opening)
-                            <li>{{ $opening }}</li>
-                            @endforeach
-                        </ul>
-                        @endif
-                    </section>
+                                <hr>
+                                <address>
+                                    <figure><i class="fa fa-map-marker"></i>{{ $details['address'] }}</figure>
+                                    <figure><i class="fa fa-envelope"></i><a href="#">{{ $details['email'] }}</a></figure>
+                                    <figure><i class="fa fa-phone"></i>{{ $details['phone_number'] }}</figure>
+                                    <figure><i class="fa fa-globe"></i><a href="{{ $details['website'] }}"> Visit our page </a></figure>
+                                </address>
+                            </div>
+                        </section>
+                        <section>
+                            @if (!empty($details['openinghours']))
+                            <h2>Opening hours</h2>
+                            <ul class="tags">
+                                @foreach ($details['openinghours'] as $opening)
+                                <li>{{ $opening }}</li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-        @include('sidebar-search-filter')
     </div>
 </div>
 @endsection
