@@ -18,7 +18,9 @@ class Feedback extends Authenticatable
      */
     protected $fillable = [
 		'subject', 'message', 'restaurant_id',
-		'created_at', 'rating', 'from'
+		'created_at', 'rating', 'from', 'email', 'name', 'title', 
+        'score_comfort', 'score_location', 'score_facilities',
+        'score_staff', 'score_value'
     ];
 
 	protected $dates = ['created_at'];

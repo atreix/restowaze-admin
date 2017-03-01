@@ -609,7 +609,18 @@ function rating(element){
         ;
     if( !element ) { element = ''; }
     $.each( $(element + ' .star-rating'), function(i) {
+
+        var maxrating = $(this).attr('max-rating');
+        if (maxrating > 0) {
+           ratingElement = '<span class="stars">';
+           for (var e=1; e <= maxrating; e++) {
+               ratingElement = ratingElement + '<i class="fa fa-star s' + e +'" data-score="' + e + '"></i>';
+           }
+           ratingElement = ratingElement + '</span>';
+        } 
+
         $(this).append(ratingElement);
+
         if( $(this).hasClass('active') ){
             $(this).append('<input readonly hidden="" name="score_' + $(this).attr('data-name') +'" id="score_' + $(this).attr('data-name') +'">');
         }

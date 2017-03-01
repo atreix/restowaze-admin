@@ -145,16 +145,21 @@ class MainController extends Controller
             ->toArray();
 
         $data['reviews'] = $this->getReviews($id);
-        $data['count_review'] = \DB::table('feedbacks')->selectRaw('*, count(*) AS total_review')->groupBy('from')->get()->pluck('total_review', 'from')->toArray();
-        $review = Feedback::where('restaurant_id', '=', $id)->get()->count();
+        $data['count_review'] = \DB::table('feedbacks')->selectRaw('*, count(*) AS total_review')->groupBy('email')->get()->pluck('total_review', 'email')->toArray();
+        
+        $review_count = Feedback::where('restaurant_id', '=', $id)->get()->count();
+        $review_avg = Feedback::where('restaurant_id', '=', $id)->get()->avg('rating');
+
         $restaurant = Restaurants::where('id', '=', $id)->get()->first();
+
         $address = explode(',', $restaurant->address);
+        
         $data['details'] = [
             'id' => $restaurant->id,
             'name' => title_case($restaurant->name),
             'category' => $restaurant->category,
             'address' => $address[0] . ',' . $address[1],
-            'rating' => 6,
+            'rating' => $review_avg,
             'description' => $restaurant->description,
             'openinghours' => explode(';', $restaurant->bus_hours),
             'email' => $restaurant->email,
@@ -163,10 +168,11 @@ class MainController extends Controller
             'mobile_number' => $restaurant->mobile_number,
             'latitude' => $restaurant->latitude,
             'longitude' => $restaurant->longitude,
-            'review' => $review,
+            'review_count' => $review_count,
         ];
 
-        return view('details', $data);
+       return view('details', $data);
+        
     }
 
     public function saveReview(Request $request, $id)
@@ -177,8 +183,12 @@ class MainController extends Controller
         }
 
         $data = $request->all();
+        //dd($data);
+        
         $validator = Validator::make($data, array(
             'name' => 'required|max:100',
+            'email' => 'required|email',
+            'title' => 'required|max:100',
             'message' => 'required|max:1000',
         ));
 
@@ -186,21 +196,27 @@ class MainController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
         }
 
-        $totalRating = 4;
+        //$totalRating = 4;
 
         if ($validator) {
             $create = Feedback::create([
-                'subject' => $data['name'],
+                'title' => $data['title'],
                 'message' => $data['message'],
+                'name' => $data['name'],
                 'restaurant_id' => $id,
-                'from' => (\Auth::user() === true) ? \Auth::user()->email : 'Guest',
-                'rating' => $totalRating,
-            ]);
+                
+                'email' => (\Auth::user() === true) ? \Auth::user()->email : $data['email'],
 
+                'score_comfort' => $data['score_comfort'],
+                'score_location' => $data['score_location'],
+                'score_facilities' => $data['score_facilities'],
+                'score_staff' => $data['score_staff'],
+                'score_value' => $data['score_value'],
 
-            if (!$create) {
-                abort(403);
-            }
+                'rating' => ($data['score_comfort'] + $data['score_location'] + 
+                             $data['score_facilities'] + $data['score_staff'] + 
+                             $data['score_value']) / 5
+             ]);
 
             return redirect()->back();
         }
