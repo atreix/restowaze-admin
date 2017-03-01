@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @section('main_container')
-    <div class="container">
+   <div class="container">
         <ol class="breadcrumb">
             <li><a href="{{ route('restowaze-path') }}">Home</a></li>
             <li><a href="#">Restaurant</a></li>
@@ -11,9 +11,9 @@
             <div class="pull-left">
                 <h1>{{ $details['name'] }}</h1>
                 <h3>{{ $details['address'] }}</h3>
-                <div class="rating-passive" data-rating="4">
+                <div class="rating-passive" data-rating="{{ $details['rating'] }}">
                     <span class="stars"></span>
-                    <span class="reviews">{{ $details['review'] }}</span>
+                    <span class="reviews">{{ $details['review_count'] }}</span>
                 </div>
             </div>
             <a href="#write-a-review" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-star"></i>Write a review</a>
@@ -26,7 +26,7 @@
                 <div class="image">
                     <div class="bg-transfer" style="background-image: url({{ $gallery }});">
                         <img src="{{ url('/') }}/app/{{ $gallery }}" alt="">
-                    </div>
+                   </div>
                 </div>
                 @endforeach
             </div>
@@ -78,19 +78,19 @@
                         @foreach ($reviews as $review)
                         <div class="review">
                             <div class="image">
-                                <div class="bg-transfer"><img src="{{ Gravatar::src($review['from'] ? $review['from'] : 'restowaze@gmail.com') }}" class="user-image" alt="User Image"></div>
+                                <div class="bg-transfer"><img src="{{ Gravatar::src($review['email'] ? $review['name'] : 'restowaze@gmail.com') }}" class="user-image" alt="User Image"></div>
                             </div>
                             <div class="description">
                                 <figure>
                                     <div class="rating-passive" data-rating="{{ $review['rating'] }}">
                                         <span class="stars"></span>
-                                        <span class="reviews">{{ $count_review[$review['from']] }}</span>
+                                        <span class="reviews">{{ $count_review[$review['email']] }}</span>
                                     </div>
-                                    <span class="user">by : {{ $review['from'] }}</span>
-                                    <span class="date">{{ date('m.d.Y', strtotime($review['created_at'])) }}</span>
+                                    <span class="user">by : {{ $review['name'] }}</span>
+                                    <span class="date">on : {{ date('m.d.Y', strtotime($review['created_at'])) }}</span>
                                 </figure>
                                 <p>
-                                    <strong> {{ title_case($review['subject']) }} </strong>
+                                    <strong> {{ title_case($review['title']) }} </strong>
                                     {{ $review['message'] }}
                                 </p>
                             </div>
@@ -103,15 +103,23 @@
                         <form class="clearfix form inputs-underline" method="POST" action="{{ route('write-review', $details['id']) }}">
                         {!! csrf_field() !!}
                             <div class="box">
-                                <div class="comment">
+                               <div class="comment">
                                     <div class="row">
                                         <div class="col-md-7">
                                             <div class="comment-title">
                                                 <h4>Review your experience</h4>
                                             </div>
                                             <div class="form-group">
-                                                <label for="name">Title of your review<em>*</em></label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Beautiful place!" required="">
+                                                <label for="name">Your name<em>*</em></label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your first name" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Your email address<em>*</em></label>
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="Your valid email address" required="">
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="title">Title of your review<em>*</em></label>
+                                                <input type="text" class="form-control" id="title" name="title" placeholder="Enter an appropriate title" required="">
                                             </div>
                                             <div class="form-group">
                                                 <label for="message">Your Message<em>*</em></label>
@@ -127,13 +135,13 @@
                                             </div>
                                             <dl class="visitor-rating">
                                                 <dt>Comfort</dt>
-                                                <dd class="star-rating active" data-name="comfort"></dd>
+                                                <dd class="star-rating active" max-rating="5" data-name="comfort"></dd>
                                                 <dt>Location</dt>
-                                                <dd class="star-rating active" data-name="location"></dd>
+                                                <dd class="star-rating active" max-rating="5" data-name="location"></dd>
                                                 <dt>Facilities</dt>
-                                                <dd class="star-rating active" data-name="facilities"></dd>
+                                                <dd class="star-rating active" max-rating="5" data-name="facilities"></dd>
                                                 <dt>Staff</dt>
-                                                <dd class="star-rating active" data-name="staff"></dd>
+                                                <dd class="star-rating active" max-rating="5" data-name="staff"></dd>
                                                 <dt>Value for money</dt>
                                                 <dd class="star-rating active" data-name="value"></dd>
                                             </dl>
