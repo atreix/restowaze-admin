@@ -85,8 +85,15 @@
                 $(".duplicate").live("click", function(e){
                     e.preventDefault();
                     var duplicateElement = $(this).attr("href");
+                    
+                    eclone = $(duplicateElement).clone();
+                    eclone.find(':input').each(function(){
+                    	  //$(this).val(''); 
+                    	  $(this).attr('value', '');
+                    }); 
+                   
                     var parentElement = $(duplicateElement)[0].parentElement;
-                    $(parentElement).append( $(duplicateElement)[0].outerHTML );
+                    $(parentElement).append( eclone[0].outerHTML );
                 });
 
                 $('.popup-gallery').magnificPopup({

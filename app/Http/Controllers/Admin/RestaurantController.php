@@ -33,6 +33,15 @@ class RestaurantController extends Controller
         'Samal'
     ];
 
+    private $menu_options = [
+        'Select meal type', 
+        'Starter', 
+        'Soup', 
+        'Main', 
+        'Dessert' 
+    ];
+    
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -136,32 +145,33 @@ class RestaurantController extends Controller
     public function updateBasicInfo($id)
     {
         $restaurantInfo = Restaurants::find($id);
-        
-        $gallery = Restaurants::find($id)->gallery;
-        //dd($gallery);
-        
-        $gallery_data = [];
-        $ptr = 0;
-        foreach ($gallery as $gall) {
-            $gallery_data[$ptr]['path'] = $gall->path;
-            $gallery_data[$ptr++]['name'] = $gall->name;
-        }
-        // dd($gallery_data);
-        
-        $menu = Restaurants::find($id)->menu;
-        
-        $menu_data = [];
-        $ptr = 0;
-        foreach ($menu as $mn) {
-            $menu_data[$ptr]['id'] = $mn->id;
-            $menu_data[$ptr]['name'] = $mn->name;
-            $menu_data[$ptr]['description'] = $mn->description;
-            $menu_data[$ptr]['type'] = $mn->type;
-            $menu_data[$ptr++]['price'] = $mn->price;
-        }
-        //dd($menu_data);
-        
+       
         if ($restaurantInfo) {
+
+            $gallery = Restaurants::find($id)->gallery;
+            //dd($gallery);
+            
+            $gallery_data = [];
+            $ptr = 0;
+            foreach ($gallery as $gall) {
+                $gallery_data[$ptr]['path'] = $gall->path;
+                $gallery_data[$ptr++]['name'] = $gall->name;
+            }
+            // dd($gallery_data);
+            //            
+            $menu = Restaurants::find($id)->menu;
+            
+            $menu_data = [];
+            $ptr = 0;
+            foreach ($menu as $mn) {
+                $menu_data[$ptr]['id'] = $mn->id;
+                $menu_data[$ptr]['name'] = $mn->name;
+                $menu_data[$ptr]['description'] = $mn->description;
+                $menu_data[$ptr]['type'] = $mn->type;
+                $menu_data[$ptr++]['price'] = $mn->price;
+            }
+            //dd($menu_data);
+     
             return view('admin/restaurant/update', array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'Update',
@@ -169,6 +179,7 @@ class RestaurantController extends Controller
                 'municities' => $this->municities,
                 'gallery' => $gallery_data,
                 'menu' => $menu_data,
+                'menu_options' => $this->menu_options,
                 'restoInfo' => $restaurantInfo
             ));
         }
