@@ -255,7 +255,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
                         </div>
                         <div class="box-footer">
                             <button type="reset" class="btn btn-default">Cancel</button>

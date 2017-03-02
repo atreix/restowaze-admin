@@ -65,11 +65,9 @@
             <div class="col-md-4 col-sm-3">
                 <div class="form-group">
                     <select class="form-control" name="type[]">
-                        <option value="">Select meal type</option>
-                        <option value="1" selected>Starter</option>
-                        <option value="2">Soup</option>
-                        <option value="3">Main Course</option>
-                        <option value="4">Desert</option>
+                    	@foreach ($menu_options as $ndx => $mn_option) 
+                        	<option value="{{ $ndx }}" {{ ($mn['type'] == $ndx) ? " selected " : "" }}>{{ $mn_option }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
