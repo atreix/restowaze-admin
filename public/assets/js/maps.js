@@ -495,7 +495,6 @@ function heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarge
 // Simple map ----------------------------------------------------------------------------------------------------------
 
 function simpleMap(_latitude,_longitude, element, markerDrag, place){
-
     if (!markerDrag){
         markerDrag = false;
     }
@@ -521,12 +520,13 @@ function simpleMap(_latitude,_longitude, element, markerDrag, place){
     }
     else {
         mapCenter = new google.maps.LatLng(_latitude,_longitude);
+        console.log(mapCenter);
         drawMap(mapCenter);
     }
 
     function drawMap(mapCenter){
         var mapOptions = {
-            zoom: 14,
+            zoom: 19,
             center: mapCenter,
             disableDefaultUI: true,
             scrollwheel: true,
@@ -561,13 +561,8 @@ function autoComplete(map, marker){
             map = new google.maps.Map(document.getElementById("address-autocomplete"));
         }
 
-        var defaultBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(14.6826349, 120.3926858)
-        );
-
         var options = {
             componentRestrictions: {country: "PH"},
-            bounds: defaultBounds,
             types: ['establishment']
         };
         
@@ -583,7 +578,7 @@ function autoComplete(map, marker){
                 map.fitBounds(place.geometry.viewport);
             } else {
                 map.setCenter(place.geometry.location);
-                map.setZoom(17);
+                map.setZoom(19);
             }
             if( marker ){
                 marker.setPosition(place.geometry.location);

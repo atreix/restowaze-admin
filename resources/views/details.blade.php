@@ -158,8 +158,8 @@
                             <div class="map height-250px" id="map-detail"></div>
                             <div class="content">
                                 <div class="vertical-aligned-elements">
-                                    <!--<div class="element"><img src="assets/img/logo-2.png" alt=""></div>-->
-                                    <div class="element text-align-right"><a href="{{ url('/get-direction') }}" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
+                                    <div class="element text-align-right"><a href="https://www.google.com/maps?saddr=My+Location&daddr={{ $details['latitude'] }},{{ $details['longitude'] }}
+" class="btn btn-primary btn-rounded btn-xs">Get direction</a></div>
                                 </div>
                                 <hr>
                                 <address>
