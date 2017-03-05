@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="vertical-aligned-elements">
                         <div class="element width-50">
-                            <p data-toggle="modal" data-target="#myModal">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque aliquam at neque sit amet vestibulum. <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
+                            <p data-toggle="modal" data-target="#myModal"><a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
                         </div>
                         <div class="element width-50 text-align-right">
                             <a href="#" class="circle-icon"><i class="social_twitter"></i></a>

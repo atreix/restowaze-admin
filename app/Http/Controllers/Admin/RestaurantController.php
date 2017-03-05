@@ -34,11 +34,11 @@ class RestaurantController extends Controller
     ];
 
     private $menu_options = [
-        'Select meal type', 
-        'Starter', 
-        'Soup', 
-        'Main', 
-        'Dessert' 
+        'Select meal type',
+        'Starter',
+        'Soup',
+        'Main',
+        'Dessert'
     ];
     
     
@@ -92,7 +92,7 @@ class RestaurantController extends Controller
     public function saveBasicInfo(Request $request)
     {
         $data = $request->all();
-       // dd($data);
+        dd($data);
         
         $validator = Validator::make($data, array(
             'name' => 'required|max:60|unique:restaurants,name',
@@ -205,6 +205,8 @@ class RestaurantController extends Controller
             $restaurant->email = $request->email;
             $restaurant->address = $request->address;
             $restaurant->municipality = $request->municity;
+            $restaurant->latitude = $request->latitude;
+            $restaurant->longitude = $request->longitude;
             
             $save = $restaurant->save();
             

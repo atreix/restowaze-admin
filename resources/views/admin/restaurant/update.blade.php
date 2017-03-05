@@ -243,8 +243,8 @@
                                         <div class="map shadow" style="width: 568px; height: 400px" id="map-submit"></div>
                                         <!--end map-->
                                         <div class="form-group hidden">
-                                            <input type="text" class="form-control" id="latitude" name="latitude" value="" />
-                                            <input type="text" class="form-control" id="longitude" name="longitude" value=""/>
+                                            <input type="text" class="form-control" id="latitude" name="latitude" value="{{ $restoInfo->latitude }}" />
+                                            <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $restoInfo->longitude }}"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

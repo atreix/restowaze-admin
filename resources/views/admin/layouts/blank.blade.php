@@ -46,23 +46,36 @@
         <script type="text/javascript" src="{{ url('/assets/js/maps.js') }}"></script>
 
         <script type="text/javascript">
-            $(document).ready(function(){
-                var _latitude = 14.6753824;
-                var _longitude = 120.5316586;
+            var mapX;
+
+           $(document).ready(function(){
+                var _latitude;
+                var _longitude;
+                var place;
                 var element = "map-submit";
 
-				/*
+                if ( $('#latitude').val().length && $('#longitude').val().length ) {
+                    _latitude = $('#latitude').val();
+                    _longitude = $('#longitude').val();
+                } else {
+                    _latitude = 14.6753824;
+                    _longitude = 120.5316586;
+                }
+
                 if ($('#address-autocomplete').val().length) {
-                    var place = $('#address-autocomplete').val();
+                    place = $('#address-autocomplete').val();
                 }
 
                 simpleMap(_latitude,_longitude, element, true, place);
+
+                $(document).on('shown.bs.modal','#get-location', function () {
+                    google.maps.event.trigger(mapX, 'resize'); 
+                });
 
                 Dropzone.options.imageUpload = {
                     maxFilesize: 5,
                     acceptedFiles: ".jpeg,.jpg,.png"
                 };
-				*/
 				
                 $('#birthday').datepicker({
                     format: 'yyyy/mm/dd',
