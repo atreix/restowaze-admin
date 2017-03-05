@@ -32,7 +32,6 @@ class MenuController extends Controller
     public function saveMenu(Request $request)
     {
         $data = $request->all();
-        dd($data);
         $validator = Validator::make($data, array(
             'firstname' => 'required|max:100',
             'lastname' => 'required|max:100',

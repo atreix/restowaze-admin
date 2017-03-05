@@ -36,12 +36,24 @@ class MainController extends Controller
             'Samal',
     ];
 
+    private $menu_options = [
+        'Select meal type', 
+        'Starter', 
+        'Soup', 
+        'Main', 
+        'Dessert' 
+    ];
+
     public function getResults(Request $request)
     {
         $where = [
             'municipality' => $request->municipality,
             'category' => $request->category,
         ];
+
+        if ($request->has('keyword')) {
+            $restaurants = Restaurants::where('name', 'like', '%' . $request->keyword . '%');
+        }
 
         if (!is_null($where)) {
             $restaurants = Restaurants::where($where)->get()->toArray();
@@ -59,7 +71,7 @@ class MainController extends Controller
                 'location' => $restaurant['address'],
                 'description' => $restaurant['description'],
                 'category' => $restaurant['category'],
-                'rating' => 4,
+                'rating' => Feedback::where('restaurant_id', '=', $restaurant['id'])->get()->avg('rating'),
                 'image-primary' => $this->getGalleryByRestaurant($restaurant['id']),
             ];
         }
@@ -103,7 +115,7 @@ class MainController extends Controller
                 'name' => title_case($restaurant->name),
                 'category' => $restaurant->category,
                 'location' => $address[0] . (empty($address[1]) ? '' : ',' . $address[1]),
-                'rating' => 6,
+                'rating' => Feedback::where('restaurant_id', '=', $restaurant->id)->get()->avg('rating'),
                 'primary_photo' => $this->getGalleryByRestaurant($restaurant->id),
                 'review' => Feedback::where('restaurant_id', '=', $restaurant->id)->get()->count(),
             ];
@@ -130,15 +142,11 @@ class MainController extends Controller
     public function showDetails($id)
     {
         $findId = Restaurants::find($id);
-
         if (!$findId) {
             abort(404);
         }
 
-        $data['menus'] = Menu::where('restaurant_id', '=', $id)
-            ->get()
-            ->toArray();
-
+        $data['menus'] = $this->getMenu($id);
         $data['galleries'] = Gallery::where('restaurant_id', '=', $id)
             ->get()
             ->pluck('path')
@@ -172,7 +180,25 @@ class MainController extends Controller
         ];
 
        return view('details', $data);
-        
+    }
+
+    public function getMenu($restaurantId)
+    {
+        $items = Menu::where('restaurant_id', '=', $restaurantId)
+            ->get()
+            ->toArray();
+
+        $menu = [];
+        foreach ($items as $item) {
+            $menu[] = [
+                'name' => title_case($item['name']),
+                'description' => ucfirst($item['description']),
+                'type' => $this->menu_options[$item['type']],
+                'price' => $item['price'],
+            ];
+        }
+
+        return $menu;
     }
 
     public function saveReview(Request $request, $id)
@@ -183,8 +209,6 @@ class MainController extends Controller
         }
 
         $data = $request->all();
-        //dd($data);
-        
         $validator = Validator::make($data, array(
             'name' => 'required|max:100',
             'email' => 'required|email',
@@ -195,8 +219,6 @@ class MainController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
-
-        //$totalRating = 4;
 
         if ($validator) {
             $create = Feedback::create([
