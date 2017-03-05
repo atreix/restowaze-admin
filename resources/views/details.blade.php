@@ -48,7 +48,6 @@
                         @if (!empty($menus))
                         <h2>Menu</h2>
                         <dl>
-                            @foreach ($menus as $menu)
                             <div class="panel-body">
                                 <div class="wrapper">
                                     <div class="row">
@@ -56,6 +55,7 @@
                                         <div class="col-md-6 col-sm-6"><strong>Description</strong></div>
                                         <div class="col-md-3 col-sm-3"><strong>Meal Type</strong></div>
                                     </div>
+                                    @foreach ($menus as $menu)
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3">
                                             {{ $menu['name'] }}
@@ -67,8 +67,9 @@
                                             {{ $menu['type'] }}
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
                         </dl>
                         @endif
                     </section>
