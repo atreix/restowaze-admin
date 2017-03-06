@@ -19,7 +19,6 @@
         @include('errors/messages')
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-                <li><a href="#schedulex" data-toggle="tab"><i class="fa fa-calendar-plus-o"></i> Schedule</a></li>
                 <li><a href="#galleryx" data-toggle="tab"><i class="fa fa-th"></i> Gallery</a></li>
                 <li><a href="#menux" data-toggle="tab"><i class="fa fa-spoon"></i> Menu</a></li>
                 <li class="active"><a href="#basic" data-toggle="tab"><i class="fa fa-pencil"></i> Basic Info</a></li>
@@ -268,10 +267,7 @@
                 <div class="tab-pane" id="galleryx">
                     @include('admin/restaurant/gallery')
                 </div>
-                <div class="tab-pane" id="schedulex">
-                    @include('admin/restaurant/schedule')
-                </div>
-          </div>
+         </div>
     </section>
 </div>
 @endsection
