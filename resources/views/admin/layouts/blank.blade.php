@@ -69,14 +69,14 @@
                 simpleMap(_latitude,_longitude, element, true, place);
 
                 $(document).on('shown.bs.modal','#get-location', function () {
-                    google.maps.event.trigger(mapX, 'resize'); 
+                    google.maps.event.trigger(mapX, 'resize');
                 });
 
                 Dropzone.options.imageUpload = {
                     maxFilesize: 5,
                     acceptedFiles: ".jpeg,.jpg,.png"
                 };
-				
+
                 $('#birthday').datepicker({
                     format: 'yyyy/mm/dd',
                     autoclose: true,
@@ -98,13 +98,13 @@
                 $(".duplicate").live("click", function(e){
                     e.preventDefault();
                     var duplicateElement = $(this).attr("href");
-                    
+
                     eclone = $(duplicateElement).clone();
                     eclone.find(':input').each(function(){
-                    	  //$(this).val(''); 
+                    	  //$(this).val('');
                     	  $(this).attr('value', '');
-                    }); 
-                   
+                    });
+
                     var parentElement = $(duplicateElement)[0].parentElement;
                     $(parentElement).append( eclone[0].outerHTML );
                 });
@@ -122,7 +122,7 @@
             		image: {
             			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
             			titleSrc: function(item) {
-            				return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+            				return item.el.attr('title');
             			}
             		}
             	});

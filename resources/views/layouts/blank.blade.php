@@ -38,20 +38,26 @@
     <script type="text/javascript">
         $('.cog').hide();
         rating(".visitor-rating");
-        var optimizedDatabaseLoading = 0;
-        var _latitude = 14.6753824;
-        var _longitude = 120.5316586;
-        var element = "map-homepage";
-        var markerTarget = null; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
-        var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
-        var showMarkerLabels = false; // next to every marker will be a bubble with title
-        var mapDefaultZoom = 14; // default zoom
-        heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarget, showMarkerLabels, mapDefaultZoom);
 
-        var element = "map-detail";
-        var _latitude = $('#latitude').val();
-        var _longitude = $('#longitude').val();
-        simpleMap(_latitude,_longitude, element);
+        if (document.getElementById('map-homepage')) {
+        	var optimizedDatabaseLoading = 0;
+	        var _latitude = 14.6753824;
+	        var _longitude = 120.5316586;
+	        var element = "map-homepage";
+	        var markerTarget = null; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
+	        var sidebarResultTarget = "modal"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
+	        var showMarkerLabels = false; // next to every marker will be a bubble with title
+	        var mapDefaultZoom = 14; // default zoom
+	        heroMap(_latitude,_longitude, element, markerTarget, sidebarResultTarget, showMarkerLabels, mapDefaultZoom);
+        }
+
+        if (document.getElementById('map-detail')) {
+			var element = "map-detail";
+            var _latitude = $('#latitude').val();
+			var _longitude = $('#longitude').val();
+    		simpleMap(_latitude,_longitude, element);
+        }
+
     </script>
     </body>
 </html>

@@ -40,8 +40,8 @@ class RestaurantController extends Controller
         'Main',
         'Dessert'
     ];
-    
-    
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -55,7 +55,7 @@ class RestaurantController extends Controller
             'restaurants' => Restaurants::latest()->paginate(10),
             'categories' => $this->categories
         );
-        
+
         return view('admin/restaurant/list', $data);
     }
 
@@ -67,13 +67,13 @@ class RestaurantController extends Controller
             // ->orWhere('municipality', 'like', '%' . $request->get('table_search') . '%')
             latest()
                 ->paginate(10);
-            
+
             $data = array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'List',
                 'restaurants' => $searchQuery
             );
-            
+
             return view('admin/restaurant/list', $data);
         }
     }
@@ -92,8 +92,8 @@ class RestaurantController extends Controller
     public function saveBasicInfo(Request $request)
     {
         $data = $request->all();
-        dd($data);
-        
+        //dd($data);
+
         $validator = Validator::make($data, array(
             'name' => 'required|max:60|unique:restaurants,name',
             'description' => 'required|max:500',
@@ -108,13 +108,13 @@ class RestaurantController extends Controller
             'address' => 'required|max:255',
             'municity' => 'required|max:500'
         ));
-        
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors($validator);
         }
-        
+
         if ($validator) {
             $create = Restaurants::create([
                 'name' => $data['name'],
@@ -132,11 +132,11 @@ class RestaurantController extends Controller
                 'latitude' => $data['latitude'],
             	'longitude' => $data['longitude'],
            ]);
-            
+
             if (! $create) {
                 abort(403);
             }
-            
+
             $request->session()->flash('alert-success', 'Restaurant was successfully added!');
             return redirect()->route('getRestoList');
         }
@@ -145,12 +145,12 @@ class RestaurantController extends Controller
     public function updateBasicInfo($id)
     {
         $restaurantInfo = Restaurants::find($id);
-       
+
         if ($restaurantInfo) {
 
             $gallery = Restaurants::find($id)->gallery;
             //dd($gallery);
-            
+
             $gallery_data = [];
             $ptr = 0;
             foreach ($gallery as $gall) {
@@ -158,9 +158,9 @@ class RestaurantController extends Controller
                 $gallery_data[$ptr++]['name'] = $gall->name;
             }
             // dd($gallery_data);
-            //            
+            //
             $menu = Restaurants::find($id)->menu;
-            
+
             $menu_data = [];
             $ptr = 0;
             foreach ($menu as $mn) {
@@ -171,7 +171,7 @@ class RestaurantController extends Controller
                 $menu_data[$ptr++]['price'] = $mn->price;
             }
             //dd($menu_data);
-     
+
             return view('admin/restaurant/update', array(
                 'module_name' => 'Restaurant',
                 'module_page' => 'Update',
@@ -192,7 +192,7 @@ class RestaurantController extends Controller
 
         if ($request->has('submit')) {
             $restaurant = Restaurants::find($id);
-            
+
             $restaurant->name = $request->name;
             $restaurant->description = $request->description;
             $restaurant->category = $request->category;
@@ -207,13 +207,13 @@ class RestaurantController extends Controller
             $restaurant->municipality = $request->municity;
             $restaurant->latitude = $request->latitude;
             $restaurant->longitude = $request->longitude;
-            
+
             $save = $restaurant->save();
-            
+
             if (false == $save) {
                 abort(403);
             }
-            
+
             $request->session()->flash('alert-success', 'Restaurant was successfully updated!');
             return redirect()->route('getRestoList');
         }
@@ -223,7 +223,7 @@ class RestaurantController extends Controller
     {
         $restoId = Restaurants::findOrFail($id);
         $deleted = $restoId->delete();
-        
+
         return redirect()->route('getRestoList');
     }
 
@@ -236,31 +236,31 @@ class RestaurantController extends Controller
     {
         $requests = $request->all();
         //dd($requests);
-        
+
         $validator = Validator::make($requests, array(
             'name.*' => 'required|max:100',
             'description.*' => 'required|max:500',
             'type.*' => 'required',
             'price.*' => 'required|numeric'
         ));
-        
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors($validator);
         }
-        
+
         unset($requests['_token']);
         // $requests['restaurant_id'] = 2; // todo: change restaurant_id
         //
-       
+
         // dd($requests);
-        
+
         if ($validator) {
-            
+
             $menu = $this->merge_menu_items($requests['id'], $requests['name'], $requests['description'], $requests['type'], $requests['price']);
             //dd($menu);
-            
+
             foreach ($menu as $item) {
                 if (empty($item['id'])) {
                     $create = Menu::create([
@@ -270,9 +270,9 @@ class RestaurantController extends Controller
                         'type' => $item['type'],
                         'price' => $item['price']
                     ]);
-                         
+
                 } else {
-                    
+
                     //$new_menu = Menu::firstOrNew(array('restaurant_id' => $item['id'], 'name' => $item['name']));
                     $new_menu = Menu::firstOrNew(array('id' => $item['id']));
                     $new_menu->restaurant_id = $id;
@@ -281,12 +281,12 @@ class RestaurantController extends Controller
                     $new_menu->type = $item['type'];
                     $new_menu->price = $item['price'];
 
-                    $new_menu->save(); 
+                    $new_menu->save();
 
                     //dd($new_menu);
                 }
             }
-           
+
             $request->session()->flash('alert-success', 'Menu was successfully updated!');
             return redirect()->back();
         }
@@ -295,7 +295,7 @@ class RestaurantController extends Controller
     public function merge_menu_items(array $ids, array $names, array $descs, array $types, array $prices)
     {
         $menu = [];
-        
+
         foreach ($names as $key => $name) {
             $menu[] = [
                 'name' => $name,
@@ -305,7 +305,7 @@ class RestaurantController extends Controller
                 'price' => $prices[$key]
             ];
         }
-        
+
         return $menu;
     }
 }
