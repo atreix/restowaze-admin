@@ -89,7 +89,7 @@
                 <div class="center">
                     <div class="section-title">
                         <div class="center">
-                            <h2>Nearby Places</h2>
+                            <h2>Recently Added Places</h2>
                             <h3 class="subtitle"></h3>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                 <div class="row">
                     <div class="col-md-9 col-sm-9">
                         <div class="section-title">
-                            <h2>Recently Rated Items</h2>
+                            <h2>Recently Rated Restaurants</h2>
                         </div>
                         <!--end section-title-->
                         <div class="row">
