@@ -103,7 +103,7 @@ class MainController extends Controller
 
     public function getRecentUser()
     {
-        $recentUser = User::select('id', 'name', 'email')
+        $recentUser = User::select('id', 'name', 'firstname', 'email')
             ->latest()
             ->take(1)
             ->get()

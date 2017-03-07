@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
 -->
-                                            <h3>{{ $recentUser['name'] }}</h3>
+                                            <h3>{{ !empty($recentUser['name']) ? $recentUser['name'] : $recentUser['firstname'] }}</h3>
                                             <h4></h4>
                                             <p></p>
                                         </blockquote>
