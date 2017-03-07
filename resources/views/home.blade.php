@@ -90,7 +90,7 @@
                     <div class="section-title">
                         <div class="center">
                             <h2>Nearby Places</h2>
-                            <h3 class="subtitle">Fusce eu mollis dui, varius convallis mauris. Nam dictum id</h3>
+                            <h3 class="subtitle"></h3>
                         </div>
                     </div>
                     <!--end section-title-->

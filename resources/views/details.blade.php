@@ -112,11 +112,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="name">Your name<em>*</em></label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your first name" required="">
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Your first name" required="" value="{{ Auth::check() ? Auth::user()->name : '' }}" {{ Auth::check() ? 'READONLY' : '' }}>
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Your email address<em>*</em></label>
-                                                <input type="text" class="form-control" id="email" name="email" placeholder="Your valid email address" required="">
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="Your valid email address" required="" value="{{ Auth::check() ? Auth::user()->email : '' }}" {{ Auth::check() ? 'READONLY' : '' }}>
                                             </div>
                                              <div class="form-group">
                                                 <label for="title">Title of your review<em>*</em></label>
