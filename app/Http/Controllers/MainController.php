@@ -11,6 +11,7 @@ use App\Models\Restaurants;
 use App\Models\Gallery;
 use App\Models\Feedback;
 use App\Models\Menu;
+use App\Models\User;
 
 class MainController extends Controller
 {
@@ -37,45 +38,50 @@ class MainController extends Controller
     ];
 
     private $menu_options = [
-        'Select meal type', 
-        'Starter', 
-        'Soup', 
-        'Main', 
-        'Dessert' 
+        'Select meal type',
+        'Starter',
+        'Soup',
+        'Main',
+        'Dessert'
     ];
 
     public function getResults(Request $request)
     {
-        $where = [
-            'municipality' => $request->municipality,
-            'category' => $request->category,
-        ];
-
+        $where = [];
+        if (!empty($request->municipality)) {
+            $where[] = ['municipality', $request->municipality];
+        }
+        if (!empty($request->category)) {
+            $where[] = ['category', $request->category];
+        }
         if ($request->has('keyword')) {
-            $restaurants = Restaurants::where('name', 'like', '%' . $request->keyword . '%');
+            $where[] = ['name', 'like', '%' . $request->keyword . '%'];
         }
-
-        if (!is_null($where)) {
-            $restaurants = Restaurants::where($where)->get()->toArray();
-        } else {
-            $restaurants = Restaurants::get()->toArray();
-        }
+        //dd($where);
 
         $list = [];
-        foreach ($restaurants as $restaurant) {
-            $list[] = [
-                'id' => $restaurant['id'],
-                'latitude' => $restaurant['latitude'],
-                'longitude' => $restaurant['longitude'],
-                'title' => $restaurant['name'],
-                'location' => $restaurant['address'],
-                'description' => $restaurant['description'],
-                'category' => $restaurant['category'],
-                'rating' => Feedback::where('restaurant_id', '=', $restaurant['id'])->get()->avg('rating'),
-                'image-primary' => $this->getGalleryByRestaurant($restaurant['id']),
-            ];
-        }
+        if (!empty($where)) {
+            $restaurants = Restaurants::where($where)
+                ->get()
+                ->toArray();
 
+            foreach ($restaurants as $restaurant) {
+                $list[] = [
+                    'id' => $restaurant['id'],
+                    'latitude' => $restaurant['latitude'],
+                    'longitude' => $restaurant['longitude'],
+                    'title' => $restaurant['name'],
+                    'location' => $restaurant['address'],
+                    'description' => $restaurant['description'],
+                    'category' => $restaurant['category'],
+                    'rating' => Feedback::where('restaurant_id', '=', $restaurant['id'])->get()->avg('rating'),
+                    'image-primary' => $this->getGalleryByRestaurant($restaurant['id']),
+                ];
+            }
+        }
+        //dd($restaurants);
+
+       //dd($list);
         return $list;
     }
 
@@ -87,14 +93,28 @@ class MainController extends Controller
             'recentRatedItems' => $this->getRecentItems(),
             'categories' => $this->categories,
             'municities' => $this->municities,
+            'recentUser' => $this->getRecentUser(),
         ];
+
+        //dd($data);
 
         return view('home', $data);
     }
 
+    public function getRecentUser()
+    {
+        $recentUser = User::select('id', 'name', 'email')
+            ->latest()
+            ->take(1)
+            ->get()
+            ->toArray();
+
+        return $recentUser[0];
+    }
+
     public function getRecentItems()
     {
-        $recentRatedItems = Feedback::select('id','restaurant_id')
+        $recentRatedItems = Feedback::select('id', 'restaurant_id')
             ->latest()
             ->groupBy('restaurant_id')
             ->take(3)
@@ -104,7 +124,7 @@ class MainController extends Controller
         return $recentRatedItems;
     }
 
-    public function getDetails() 
+    public function getDetails()
     {
         $restaurants = Restaurants::latest()->take(10)->get();
         $details = [];
@@ -154,14 +174,14 @@ class MainController extends Controller
 
         $data['reviews'] = $this->getReviews($id);
         $data['count_review'] = \DB::table('feedbacks')->selectRaw('*, count(*) AS total_review')->groupBy('email')->get()->pluck('total_review', 'email')->toArray();
-        
+
         $review_count = Feedback::where('restaurant_id', '=', $id)->get()->count();
         $review_avg = Feedback::where('restaurant_id', '=', $id)->get()->avg('rating');
 
         $restaurant = Restaurants::where('id', '=', $id)->get()->first();
 
         $address = explode(',', $restaurant->address);
-        
+
         $data['details'] = [
             'id' => $restaurant->id,
             'name' => title_case($restaurant->name),
@@ -226,7 +246,7 @@ class MainController extends Controller
                 'message' => $data['message'],
                 'name' => $data['name'],
                 'restaurant_id' => $id,
-                
+
                 'email' => (\Auth::user() === true) ? \Auth::user()->email : $data['email'],
 
                 'score_comfort' => $data['score_comfort'],
@@ -235,8 +255,8 @@ class MainController extends Controller
                 'score_staff' => $data['score_staff'],
                 'score_value' => $data['score_value'],
 
-                'rating' => ($data['score_comfort'] + $data['score_location'] + 
-                             $data['score_facilities'] + $data['score_staff'] + 
+                'rating' => ($data['score_comfort'] + $data['score_location'] +
+                             $data['score_facilities'] + $data['score_staff'] +
                              $data['score_value']) / 5
              ]);
 

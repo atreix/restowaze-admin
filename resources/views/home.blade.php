@@ -16,12 +16,12 @@
             <div class="results-wrapper">
                 <div class="form search-form inputs-underline">
                     <form method="get" action="{{ url('/') }}">
-                        
+
                         <div class="section-title">
                             <h2>Search</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="keyword" placeholder="Enter keyword">
+                            <input type="text" class="form-control" id="address-autocomplete" name="keyword" placeholder="Enter keyword">
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
@@ -63,7 +63,7 @@
                                             <a href="{{ url('/detail', $getResult['id']) }}" class=""><h3>{{ $getResult['title'] }}</h3>
                                                 <div class="result-item-detail">
                                                     <div class="image" style="background-image: url({{ url('/') }}/app/{{ $getResult['image-primary'] }})">
-                                                        
+
                                                     </div>
                                                     <div class="description"><h5><i class="fa fa-map-marker"></i>{{ $getResult['location'] }}</h5>
                                                         <div class="rating-passive" data-rating="{{ $getResult['rating'] }}">
@@ -186,31 +186,37 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <div class="section-title">
-                            <h2>Client’s Word</h2>
+                            <h2>Latest User</h2>
                         </div>
                         <div class="testimonials center box">
                             <div class="owl-carousel owl-loaded owl-drag" data-owl-items="1" data-owl-nav="0" data-owl-dots="1">
 
+                            <div class="owl-stage-outer owl-height" style="height: 245px;">
+                                <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 526px;">
+                                    <div class="owl-item active" style="width: 263px;">
+                                        <blockquote>
 
-                            <div class="owl-stage-outer owl-height" style="height: 245px;"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 0s; width: 526px;"><div class="owl-item active" style="width: 263px;"><blockquote>
+                                            <div class="image">
+                                                <div class="bg-transfer">
+                                                    <img src="{{ Gravatar::src($recentUser['email'] ? $recentUser['name'] : 'restowaze@gmail.com') }}" class="user-image" alt="User Image">
+                                                </div>
+                                            </div>
+
+<!--
                                     <div class="image">
                                         <div class="bg-transfer" style="background-image: url(&quot;assets/img/person-01.jpg&quot;);">
                                             <img src="assets/img/person-01.jpg" alt="">
                                         </div>
                                     </div>
-                                    <h3>Jane Woodstock</h3>
-                                    <h4>CEO at ArtBrands</h4>
-                                    <p>Ut nec vulputate enim. Nulla faucibus convallis dui. Donec arcu enim, scelerisque gravida lacus vel.</p>
-                                </blockquote></div><div class="owl-item" style="width: 263px;"><blockquote>
-                                    <div class="image">
-                                        <div class="bg-transfer" style="background-image: url(&quot;assets/img/person-04.jpg&quot;);">
-                                            <img src="assets/img/person-04.jpg" alt="">
-                                        </div>
+-->
+                                            <h3>{{ $recentUser['name'] }}</h3>
+                                            <h4></h4>
+                                            <p></p>
+                                        </blockquote>
                                     </div>
-                                    <h3>Peter Doe</h3>
-                                    <h4>CEO at ArtBrands</h4>
-                                    <p>Donec arcu enim, scelerisque gravida lacus vel, dignissim cursus lectus. Aliquam laoreet purus in iaculis sodales.</p>
-                                </blockquote></div></div></div><div class="owl-nav disabled"><div class="owl-prev"></div><div class="owl-next"></div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div>
+                                </div>
+                            </div>
+                           </div>
                         </div>
                     </div>
                     <!--end col-md-3-->
