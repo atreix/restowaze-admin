@@ -156,7 +156,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="item" data-id="2">
                             <!--        <figure class="circle featured sale">-12%</figure> -->
-                                    <a href="detail.html">
+                                    <a href="{{ url('/detail', $recentRatedItem['restaurant_id']) }}">
                                         <div class="description">
                                             <div class="label label-default">{{ $recentRatedItem['restaurant']['category'] }}</div>
                                             <h3>{{ $recentRatedItem['restaurant']['name'] }}</h3>
