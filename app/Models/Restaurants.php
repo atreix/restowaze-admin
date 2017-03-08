@@ -18,19 +18,25 @@ class Restaurants extends Model
     protected $fillable = [
         'name', 'date_established', 'owner', 'description',
         'phone_number', 'mobile_number', 'email',
-        'address', 'category', 'website', 'created_at', 'updated_at', 'deleted_at', 
-    	'municipality', 'bus_hours', 'latitude', 'longitude'
+        'address', 'category', 'website', 'created_at', 'updated_at', 'deleted_at',
+        'municipality', 'bus_hours', 'latitude', 'longitude'
     ];
 
     protected $dates = ['deleted_at'];
     
     
-    public function gallery() {
-    	return $this->hasMany(Gallery::class, 'restaurant_id');
+    public function gallery()
+    {
+        return $this->hasMany(Gallery::class, 'restaurant_id');
     }
     
-    public function menu() {
+    public function menu()
+    {
         return $this->hasMany(Menu::class, 'restaurant_id');
     }
     
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class, 'restaurant_id');
+    }
 }

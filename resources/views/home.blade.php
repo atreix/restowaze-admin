@@ -100,7 +100,7 @@
                     @foreach ($details as $detail)
                     <div class="col-md-3 col-sm-3">
                         <div class="item" data-id="{{ $detail['id'] }}">
-                            <a href="{{ url('/detail', $detail['id']) }}">
+                            <a href="{{ url('/detail', $detail['id']) }}">$detail['name']
                                 <div class="description">
                                     <!--<figure>Average Price: $8 - $30</figure>-->
                                     <div class="label label-default">{{ $detail['category'] }}</div>
@@ -155,12 +155,12 @@
                             @foreach ($recentRatedItems as $recentRatedItem)
                             <div class="col-md-4 col-sm-4">
                                 <div class="item" data-id="2">
-                                    <figure class="circle featured sale">-12%</figure>
+                            <!--        <figure class="circle featured sale">-12%</figure> -->
                                     <a href="detail.html">
                                         <div class="description">
-                                            <div class="label label-default">Restaurant</div>
-                                            <h3>Ironapple</h3>
-                                            <h4>4209 Glenview Drive</h4>
+                                            <div class="label label-default">{{ $recentRatedItem['restaurant']['category'] }}</div>
+                                            <h3>{{ $recentRatedItem['restaurant']['name'] }}</h3>
+                                            <h4>{{ $recentRatedItem['restaurant']['address'] }}</h4>
                                         </div>
                                         <!--end description-->
                                         <div class="image bg-transfer" style="background-image: url('../assets/img/items/2.jpg');">
@@ -168,17 +168,14 @@
                                         </div>
                                         <!--end image-->
                                     </a>
-                                    <div class="additional-info">
-                                        <div class="rating-passive" data-rating="1">
-                                            <span class="stars">
-                                                <figure class="active fa fa-star"></figure>
-                                                <figure class="active fa fa-star"></figure>
-                                                <figure class="active fa fa-star"></figure>
-                                            </span>
-                                            <span class="reviews">13</span>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                     <div class="additional-info">
+                                         <div class="rating-passive" data-rating="{{ $recentRatedItem['rating'] }}">
+                                             <span class="stars"></span>
+                                         </div>
+                                        <!--end controls-more-->
+                                     </div>
+                               </div>
                             </div>
                             @endforeach
                         @endif

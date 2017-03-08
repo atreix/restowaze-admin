@@ -114,7 +114,7 @@ class MainController extends Controller
 
     public function getRecentItems()
     {
-        $recentRatedItems = Feedback::select('id', 'restaurant_id')
+        $recentRatedItems = Feedback::with('restaurant')->select('id', 'restaurant_id', 'rating')
             ->latest()
             ->groupBy('restaurant_id')
             ->take(3)
