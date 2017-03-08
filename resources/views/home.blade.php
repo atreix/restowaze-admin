@@ -100,7 +100,7 @@
                     @foreach ($details as $detail)
                     <div class="col-md-3 col-sm-3">
                         <div class="item" data-id="{{ $detail['id'] }}">
-                            <a href="{{ url('/detail', $detail['id']) }}">$detail['name']
+                            <a href="{{ url('/detail', $detail['id']) }}">
                                 <div class="description">
                                     <!--<figure>Average Price: $8 - $30</figure>-->
                                     <div class="label label-default">{{ $detail['category'] }}</div>
@@ -163,10 +163,10 @@
                                             <h4>{{ $recentRatedItem['restaurant']['address'] }}</h4>
                                         </div>
                                         <!--end description-->
-                                        <div class="image bg-transfer" style="background-image: url('../assets/img/items/2.jpg');">
-                                            <img src="{{ url('../assets/img/items/2.jpg') }}" alt="">
+                                        <div class="image bg-transfer">
+                                            <img src="{{ url('/') }}/app/{{ $recentRatedItem['primary_photo'] }}" alt="">
                                         </div>
-                                        <!--end image-->
+                                       <!--end image-->
                                     </a>
 
                                      <div class="additional-info">

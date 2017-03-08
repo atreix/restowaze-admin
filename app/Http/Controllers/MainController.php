@@ -114,12 +114,20 @@ class MainController extends Controller
 
     public function getRecentItems()
     {
-        $recentRatedItems = Feedback::with('restaurant')->select('id', 'restaurant_id', 'rating')
+        $recentRated = Feedback::with('restaurant')->select('id', 'restaurant_id', 'rating')
             ->latest()
             ->groupBy('restaurant_id')
             ->take(3)
             ->get()
             ->toArray();
+
+        $recentRatedItems = [];
+        foreach ($recentRated as $item) {
+            $item['primary_photo'] = $this->getGalleryByRestaurant($item['restaurant_id']);
+            $recentRatedItems[] =  $item;
+        }
+
+        //dd($recentRatedItems);
 
         return $recentRatedItems;
     }
